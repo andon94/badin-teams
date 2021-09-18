@@ -4,12 +4,18 @@
          ref="bubbleContainer">
       <Bubble v-for="(bubble, i) in bubbleArr" :key="bubble.name+i"
               :bubble="bubble"/>
+      <div class="back-to-teams"
+           v-if="bubbleArr === allTeamEmployeesArr">
+        <button @click="backToTeams()">
+          teams
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Bubble from './Bubble.vue'
 
 export default {
@@ -21,6 +27,7 @@ export default {
     return {
       allTeamsArr: [],
       allTeamEmployeesArr: [],
+      bubbleArr: [],
       semiDiameter: 0,
       bubbleDeg: 0
     }
@@ -29,10 +36,6 @@ export default {
     ...mapGetters(['allTeamEmployees']),
     ...mapGetters(['allTeams']),
     ...mapGetters(['selectedTeam']),
-    bubbleArr() {
-      if (this.selectedTeam !== '') return this.allTeamEmployeesArr
-      else return this.allTeamsArr
-    }
   },
   watch: {
     allTeams() {
@@ -43,11 +46,14 @@ export default {
           left: 0
         }
         all.push({
-          name: team,
+          name: team.name,
+          id: team.id,
           position
         })
       })
+      // privremeno resenje
       this.allTeamsArr = all
+      this.bubbleArr = this.allTeamsArr
     },
     allTeamEmployees() {
       const all = []
@@ -59,7 +65,9 @@ export default {
         const newEmployee = {...employee, position}
         all.push(newEmployee)
       })
+      // privremeno resenje
       this.allTeamEmployeesArr = all
+      this.bubbleArr = this.allTeamEmployeesArr
     },
     bubbleArr() {
       this.arrangeBubbles()
@@ -229,6 +237,13 @@ export default {
           }
         })
       }
+    },
+    ...mapActions(['fetchTeamEmployees']),
+    ...mapMutations(['clearTeam']),
+    backToTeams () {
+      // privremeno clearteam
+      this.clearTeam()
+      this.bubbleArr = this.allTeamsArr
     }
   }
 }
@@ -247,6 +262,24 @@ export default {
     border-radius: 50%;
 
     transition: all ease-in 0.2s;
+
+  }
+
+  .back-to-teams {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    button {
+      width: 40px;
+      height: 40px;
+      font-weight: bold;
+      font-size: 9px;
+      background-color: pink;
+      border: none;
+      border-radius: 50%;
+      outline: none;
+      // transform: translate(-50%,-50%);
+    }
   }
 }
 </style>

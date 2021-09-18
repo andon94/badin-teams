@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Bubble',
   props: {
@@ -16,9 +18,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchTeamEmployees']),
     handleBubbleClick() {
-      if (!this.$store.state.teams.team) this.$store.commit('setTeam', this.bubble.name)
-      else this.$store.commit('setSelectedEmployee', this.bubble)
+      if (!this.$store.state.teams.team) {
+        this.$store.commit('setTeam', this.bubble.id)
+        this.fetchTeamEmployees(this.$store.state.teams.team)
+        // privremeno resenje
+      } else {
+        // privremeno resenje
+        this.$store.commit('setSelectedEmployee', this.bubble)
+        this.$router.push({ path: `/employee-profile/${this.bubble.id}`})
+      }
     }
   }
 }

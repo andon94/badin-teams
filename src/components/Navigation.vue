@@ -8,7 +8,7 @@
         <ul v-show="!mobile">
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Teams' }">Teams</router-link>
-          <router-link class="link" to="#">Create team</router-link>
+          <router-link class="link" :to="{ name: 'CreateTeams' }">Create Teams</router-link>
           <router-link class="link" :to="{ name: 'Login' }">Login/Register</router-link>
         </ul>
       </div>
@@ -18,7 +18,7 @@
       <ul class="mobile-nav" v-show="mobileNav" @click="toggleMobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Teams' }">Teams</router-link>
-        <router-link class="link" to="#">Create team</router-link>
+          <router-link class="link" :to="{ name: 'CreateTeams' }">Create Teams</router-link>
         <router-link class="link" :to="{ name: 'Login' }">Login/Register</router-link>
       </ul>
     </transition>

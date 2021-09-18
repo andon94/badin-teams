@@ -1,6 +1,6 @@
 <template>
   <div class="employee-list">
-    <ul v-if="this.$store.state.teams.team">
+    <ul>
       <Employee v-for="employee in allTeamEmployees" :key="employee.id"
                 :employee="employee" />
     </ul>
@@ -16,17 +16,25 @@ export default {
   components: {
     Employee
   },
-  computed: {
-    ...mapGetters(['allTeamEmployees']),
-    ...mapGetters(['selectedTeam'])
-  },
-  watch: {
-    selectedTeam() {
-      this.fetchTeamEmpolyees()
+  props: {
+    team: {
+      type: Object,
+      default: null
     }
   },
+  watch: {
+    team() {
+      this.fetchTeamEmployees(this.team.id)
+    }
+  },
+  computed: {
+    ...mapGetters(['allTeamEmployees']),
+  },
   methods: {
-    ...mapActions(['fetchTeamEmpolyees']),
+    ...mapActions(['fetchTeamEmployees']),
+  },
+  beforeDestroy() {
+    this.$store.state.employees.teamEmployees = []
   }
 }
 </script>

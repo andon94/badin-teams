@@ -1,23 +1,30 @@
 <template>
-  <li class="team"
-      @click="setTeam()">
-    {{team}}
+  <li class="team">
+    <div class="name"
+         @click="setTeam()">
+      {{team.name}}
+    </div>
+    <div class="delete" v-if="this.$store.state.teams.team">
+      <button @click="removeTeam">delete</button>
+    </div>
   </li>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Employee',
   props: {
     team: {
-      type: String,
+      type: Object,
       default: null
     }
   },
   methods: {
-    setTeam() {
-      this.$store.commit('setTeam', this.team)
-    }
+    ...mapActions(['deleteTeam']),
+    setTeam() { this.$router.push({ path: `/create-teams/${this.team.id}`}) },
+    removeTeam() { this.deleteTeam(this.team.id) }
   }
 }
 </script>
@@ -25,9 +32,24 @@ export default {
 <style scoped lang="scss">
 li {
   list-style-type: none;
-  margin: 10px 0 5px 0;
+  width: 100%;
+  margin: 20px 0;
   padding: 0 10px;
   font-weight: bold;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .delete {
+    margin-left: 25px;
+    button {
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 14px;
+      color: crimson;
+      font-weight: bold;
+    }
+  }
 }
 </style>

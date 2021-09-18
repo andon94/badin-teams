@@ -14,19 +14,34 @@
           </li>
         </ul>
       </div>
+      <div class="remove-employee">
+        <button @click="removeTheEmployee">
+          remove employee
+        </button>
+      </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'EmployeeProfile',
   computed: {
-    ...mapGetters(['selectedEmployee'])
+    ...mapGetters(['selectedEmployee', 'allEmployees'])
   },
+  watch: {
+    allEmployees() {
+      this.$router.push({ path: `/add-employee/`})
+    }
+  },
+  methods: {
+    ...mapActions(['removeEmployee']),
+    removeTheEmployee () {
+      this.removeEmployee(this.$route.params.id)
+    }
+  }
 }
 </script>
 
@@ -65,6 +80,17 @@ export default {
           font-size: 14px;
           margin: 2px 0;
         }
+      }
+    }
+
+    .remove-employee {
+      margin-top: 20px;
+      button {
+        border: none;
+        outline: none;
+        background-color: white;
+        color: crimson;
+        padding: 10px 0;
       }
     }
   }

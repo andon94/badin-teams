@@ -3,7 +3,7 @@
     <BubbleContainer />
     <TeamList />
     <EmployeeList v-if="!this.$store.state.employees.selectedEmployee.name"/>
-    <EmployeeProfile v-else/>
+    <!-- <EmployeeProfile v-else/> -->
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 import BubbleContainer from '../components/TeamsComponents/BubbleComponents/BubbleContainer.vue'
 import TeamList from '../components/TeamsComponents/ColectiveComponents/TeamComponents/TeamList.vue'
 import EmployeeList from '../components/TeamsComponents/ColectiveComponents/EmployeeComponents/EmployeeList.vue'
-import EmployeeProfile from '../components/TeamsComponents/ColectiveComponents/EmployeeComponents/EmployeeProfile.vue'
+// import EmployeeProfile from './EmployeeProfile.vue'
 
 export default {
   name: 'teams',
@@ -19,7 +19,7 @@ export default {
     BubbleContainer,
     TeamList,
     EmployeeList,
-    EmployeeProfile
+    // EmployeeProfile
   }
 }
 </script>
