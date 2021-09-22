@@ -1,42 +1,31 @@
 <template>
   <div class="add-employees">
-    <form @submit.prevent="filterEmployees()">
-      <!-- povuci ime tima kroz querry params da ne bi lagovalo -->
-      <!-- ubaci selectInput sa novim prop za apdejt dok kucas pored dugmeta -->
-      <p>Add a member to <span>{{team.name}}</span></p>
-      <div class="input-container">
-        <input type="text"
-               placeholder="Employee name"
-               v-model="employeeInput">
-        <button type="submit">Search</button>
-      </div>
+    <form @submit.prevent="filterEmployees">
+      <p>Add a member to <span>{{selectedTeam.name}}</span></p>
+      <SelectInput placeholder="Employee name"
+                   @inputValue="setEmployeeName"/>
     </form>
 
     <div class="employee-container"
          v-if="filteredEmployees.length">
       <ul>
         <Employee v-for="(employee, i) in filteredEmployees" :key="i"
-                  :employee="employee"
-                  :team="team"/>
+                  :employee="employee" />
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import SelectInput from '../SmallComponents/SelectInput.vue'
 import Employee from '../TeamsComponents/ColectiveComponents/EmployeeComponents/Employee.vue'
 
 export default {
   name: 'AddEmployees',
   components: {
+    SelectInput,
     Employee
-  },
-  props: {
-    team: {
-      type: Object,
-      default: null
-    }
   },
   data() {
     return {
@@ -46,12 +35,12 @@ export default {
     }
   },
   created() {
-    if (!this.$store.state.employees.employees.length) {
+    if (!this.allEmployees.length) {
       this.fetchEmployees()
     }
   },
   computed: {
-    ...mapGetters(['allEmployees', 'isUpdated'])
+    ...mapGetters(['allEmployees', 'isUpdated', 'selectedTeam'])
   },
   watch: {
     allEmployees() {
@@ -62,8 +51,8 @@ export default {
     },
     isUpdated() {
       if (this.isUpdated) {
-        this.fetchTeamEmployees(this.team.id)
-        this.$store.state.teams.updated = false
+        this.fetchTeamEmployees(this.selectedTeam.id)
+        this.updateTeam(false)
       }
       this.filteredEmployees = []
       this.employeeInput = ''
@@ -71,6 +60,10 @@ export default {
   },
   methods: {
     ...mapActions(['fetchEmployees', 'fetchTeamEmployees']),
+    ...mapMutations(['setTeam', 'updateTeam']),
+    setEmployeeName(val) {
+      this.employeeInput = val
+    },
     filterEmployees() {
       if (this.employeeInput.length > 0) {
         let data = []
@@ -79,13 +72,10 @@ export default {
         })
         this.filteredEmployees = [...data]
       } else if (!this.employeeInput.length) this.filteredEmployees = []
-    },
-    clearFilteredEmployees() {
-      this.filteredEmployees = []
     }
   },
   beforeDestroy() {
-    this.$store.state.teams.team = {}
+    this.setTeam({})
   }
 }
 </script>
@@ -99,29 +89,6 @@ export default {
       font-weight: bold;
       span {
         color: crimson;
-      }
-    }
-
-    .input-container {
-      display: flex;
-
-      button, input {
-        flex-grow: 1;
-        padding: 10px 15px;
-        border: 3px solid black;
-        outline: none;
-      }
-
-      input {
-        border-bottom-left-radius: 10px;
-      }
-
-      button {
-        border-top-right-radius: 10px;
-        border-left: none;
-        background: black;
-        color: white;
-        font-weight: bold;
       }
     }
   }

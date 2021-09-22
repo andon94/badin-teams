@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Employee from './Employee.vue'
 
 export default {
@@ -16,25 +16,20 @@ export default {
   components: {
     Employee
   },
-  props: {
-    team: {
-      type: Object,
-      default: null
-    }
-  },
   watch: {
-    team() {
-      this.fetchTeamEmployees(this.team.id)
+    selectedTeam() {
+      if (this.selectedTeam.id) this.fetchTeamEmployees(this.selectedTeam.id)
     }
   },
   computed: {
-    ...mapGetters(['allTeamEmployees']),
+    ...mapGetters(['allTeamEmployees', 'selectedTeam']),
   },
   methods: {
     ...mapActions(['fetchTeamEmployees']),
+    ...mapMutations(['setTeamEmployees'])
   },
   beforeDestroy() {
-    this.$store.state.employees.teamEmployees = []
+    this.setTeamEmployees([])
   }
 }
 </script>

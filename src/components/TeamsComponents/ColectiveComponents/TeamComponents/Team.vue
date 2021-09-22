@@ -1,17 +1,17 @@
 <template>
   <li class="team">
     <div class="name"
-         @click="setTeam()">
+         @click="editTeam">
       {{team.name}}
     </div>
-    <div class="delete" v-if="this.$store.state.teams.team">
+    <div class="delete" v-if="$route.path === '/create-teams'">
       <button @click="removeTeam">delete</button>
     </div>
   </li>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Employee',
@@ -23,7 +23,14 @@ export default {
   },
   methods: {
     ...mapActions(['deleteTeam']),
-    setTeam() { this.$router.push({ path: `/create-teams/${this.team.id}`}) },
+    ...mapMutations(['setTeam']),
+    // ubaci uslov u editTeam kad si na teams stranici
+    editTeam() {
+      if (this.$route.path === '/create-teams') this.$router.push({ path: `/create-teams/${this.team.id}`})
+      else {
+        this.setTeam(this.team)
+      }
+    },
     removeTeam() { this.deleteTeam(this.team.id) }
   }
 }

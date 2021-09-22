@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Bubble',
@@ -17,17 +17,21 @@ export default {
       default: null
     }
   },
+  computed: {
+    ...mapGetters(['selectedTeam'])
+  },
   methods: {
     ...mapActions(['fetchTeamEmployees']),
+    ...mapMutations(['setTeam', 'setSelectedEmployee']),
     handleBubbleClick() {
-      if (!this.$store.state.teams.team) {
-        this.$store.commit('setTeam', this.bubble.id)
-        this.fetchTeamEmployees(this.$store.state.teams.team)
-        // privremeno resenje
+      if (Object.keys(this.$route.query).length === 0) {
+        this.$router.push({path:'/teams', query:{id: this.bubble.id}})
+        this.setTeam(this.bubble)
+        this.fetchTeamEmployees(this.bubble.id)
       } else {
-        // privremeno resenje
-        this.$store.commit('setSelectedEmployee', this.bubble)
+        this.setSelectedEmployee(this.bubble)
         this.$router.push({ path: `/employee-profile/${this.bubble.id}`})
+        this.setTeam({})
       }
     }
   }

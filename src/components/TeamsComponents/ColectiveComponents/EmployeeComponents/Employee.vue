@@ -1,8 +1,7 @@
 <template>
   <li class="employee"
-
       ref="employee">
-    <div class="employee-container" @click="selectEmployee()">
+    <div class="employee-container" @click="selectEmployee">
       <div class="employee-name">
         {{employee.name}}
       </div>
@@ -13,7 +12,7 @@
     <div class="img-container">
       <div @click="openRemoveModal">
         <div v-if="$route.name === 'EditTeam' && imgClicked"
-            @click="removeEmployeeFromTeam()">
+            @click="removeEmployeeFromTeam">
           remove
         </div>
       </div>
@@ -22,16 +21,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Employee',
   props: {
     employee: {
-      type: Object,
-      default: null
-    },
-    team: {
       type: Object,
       default: null
     }
@@ -41,29 +36,34 @@ export default {
       imgClicked: false
     }
   },
+  computed: {
+    ...mapGetters(['selectedTeam'])
+  },
   methods: {
-    ...mapActions(['updateTeam']),
-    ...mapActions(['fetchTeamEmployees', 'removeFromTeam']),
+    ...mapActions(['fetchTeamEmployees', 'updateTeam', 'removeFromTeam']),
+    ...mapMutations(['setSelectedEmployee']),
     selectEmployee() {
       // proverava da li je element na koji se klikce pozicioniran u search dropdown-u ili u originalnoj listi clanova tima
       if (this.$refs.employee.parentNode.parentNode.className === 'employee-container') {
         const payload = {
           employeeId: this.employee.id,
-          teamId: this.team.id
+          teamId: this.selectedTeam.id
         }
+        console.log(payload)
         this.updateTeam(payload)
       } else if (this.$refs.employee.parentNode.parentNode.className === 'employee-list') {
-        this.$store.commit('setSelectedEmployee', this.employee)
+        console.log(this.employee)
+        this.setSelectedEmployee(this.employee)
         this.$router.push({ path: `/employee-profile/${this.employee.id}`})
       }
     },
     openRemoveModal() {
-      if (this.$route.name === 'EditTeam') this.imgClicked = true
+      if (this.$route.name === 'EditTeam' && this.$refs.employee.parentNode.parentNode.className === 'employee-list') this.imgClicked = true
     },
     removeEmployeeFromTeam() {
       const payload = {
         employeeId: this.employee.id,
-        teamId: this.$store.state.teams.team.id
+        teamId: this.selectedTeam.id
       }
       this.removeFromTeam(payload)
     }

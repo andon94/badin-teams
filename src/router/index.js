@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Teams from "../views/Teams.vue";
+import TeamBubbles from "../views/TeamBubbles.vue";
 import CreateTeams from "../views/CreateTeams.vue";
 import EditTeam from "../views/EditTeam.vue";
 import EmployeeProfile from '../views/EmployeeProfile.vue'
@@ -27,6 +28,14 @@ const routes = [
     component: Teams,
     meta: {
       title: 'Teams',
+    },
+  },
+  {
+    path: "/teams/:id",
+    name: "TeamBubbles",
+    component: TeamBubbles,
+    meta: {
+      title: 'Team Bubbles',
     },
   },
   {

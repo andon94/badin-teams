@@ -1,9 +1,11 @@
 <template>
-  <div class="team-list"
-       :class="this.$store.state.teams.team ? 'single-team-layout' : ''">
-    <ul>
+  <div class="team-list">
+    <ul v-if="!selectedTeam.id">
       <Team v-for="(team, i) in allTeams" :key="i"
             :team="team"/>
+    </ul>
+    <ul v-else>
+      <Team :team="selectedTeam"/>
     </ul>
   </div>
 </template>
@@ -21,7 +23,7 @@ export default {
     if (!this.allTeams.length) this.fetchTeams()
   },
   computed: {
-    ...mapGetters(['allTeams']),
+    ...mapGetters(['allTeams', 'selectedTeam']),
   },
   methods: {
     ...mapActions(['fetchTeams']),

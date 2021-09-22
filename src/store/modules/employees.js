@@ -64,6 +64,7 @@ const actions = {
   },
 
   removeEmployee({commit}, payload) {
+    // izbaci zaposlenog i iz junction kolekcije
     db.collection('employees').doc(payload).delete()
     .then(() => {
       console.log("Successfully removed an employee!");
@@ -75,7 +76,6 @@ const actions = {
 const mutations = {
   setEmployees: (state, employees) => (state.employees = employees),
   setTeamEmployees: (state, teamEmployees) => (state.teamEmployees = teamEmployees),
-  clearTeamEmployees: (state, emptyArr) => (state.teamEmployees = emptyArr),
   setSelectedEmployee(state, selectedEmployee) {state.selectedEmployee = selectedEmployee},
   addEmployee (state, payload) {
     state.newEmployee = payload

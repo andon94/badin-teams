@@ -5,7 +5,7 @@
       <Bubble v-for="(bubble, i) in bubbleArr" :key="bubble.name+i"
               :bubble="bubble"/>
       <div class="back-to-teams"
-           v-if="bubbleArr === allTeamEmployeesArr">
+           v-if="Object.keys(this.$route.query).length !== 0">
         <button @click="backToTeams()">
           teams
         </button>
@@ -33,12 +33,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['allTeamEmployees']),
-    ...mapGetters(['allTeams']),
-    ...mapGetters(['selectedTeam']),
+    ...mapGetters(['allTeamEmployees', 'allTeams', 'selectedTeam'])
   },
   watch: {
-    allTeams() {
+    allTeams () {
       const all = []
       this.allTeams.forEach(team => {
         const position = {
@@ -51,11 +49,12 @@ export default {
           position
         })
       })
-      // privremeno resenje
       this.allTeamsArr = all
-      this.bubbleArr = this.allTeamsArr
     },
-    allTeamEmployees() {
+    allTeamsArr () {
+      if (Object.keys(this.$route.query).length === 0 && !this.bubbleArr.length) this.bubbleArr = this.allTeamsArr
+    },
+    allTeamEmployees () {
       const all = []
       this.allTeamEmployees.forEach(employee => {
         const position = {
@@ -65,17 +64,30 @@ export default {
         const newEmployee = {...employee, position}
         all.push(newEmployee)
       })
-      // privremeno resenje
       this.allTeamEmployeesArr = all
-      this.bubbleArr = this.allTeamEmployeesArr
+      if (Object.keys(this.$route.query).length !== 0) this.bubbleArr = all
     },
-    bubbleArr() {
-      this.arrangeBubbles()
+    bubbleArr () {
+      if (this.bubbleArr.length) this.arrangeBubbles()
+    },
+    '$route.path' : {
+      // ne renderuju se krugovi kad se ode putanjom od tima, preko zaposlenog, do profila, pa skroz nazad na timove
+      // podesi da se klikovima na timove dole, apdejtuju krugovi gore
+      handler: function () {
+        if (Object.keys(this.$route.query).length === 0) {
+          this.setTeam({})
+          this.bubbleArr = this.allTeamsArr
+        }
+      },
+      deep:true
     }
   },
   mounted () {
     // pola visine bubble-a plus po 30 piksela za marginu
     this.semiDiameter = (this.$refs.bubbleContainer.offsetHeight / 2) - 60
+
+    if (Object.keys(this.$route.query).length !== 0) this.fetchTeamEmployees(this.$route.query.id)
+    else this.fetchTeams()
   },
   methods: {
     toRadians (angle) {
@@ -238,12 +250,12 @@ export default {
         })
       }
     },
-    ...mapActions(['fetchTeamEmployees']),
-    ...mapMutations(['clearTeam']),
+    ...mapActions(['fetchTeamEmployees', 'fetchTeams']),
+    ...mapMutations(['setTeam', 'setTeamEmployees']),
     backToTeams () {
-      // privremeno clearteam
-      this.clearTeam()
-      this.bubbleArr = this.allTeamsArr
+      this.$router.push({ path: `/teams`})
+      this.setTeam({})
+      this.setTeamEmployees([])
     }
   }
 }

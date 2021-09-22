@@ -52,7 +52,7 @@ export default {
     },
     buttonInput: {
       type: Boolean,
-      defaul: false
+      default: false
     }
   },
   data() {

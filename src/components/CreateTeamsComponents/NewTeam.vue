@@ -3,8 +3,8 @@
     <form @submit.prevent="createNewTeam()">
       <TeamOrEmployee />
       <SelectInput :placeholder="'Team name'"
-                    @inputValue="setTeamName"
-                    :buttonInput="true"/>
+                   @inputValue="setTeamName"
+                   :buttonInput="true"/>
     </form>
   </div>
 </template>
@@ -46,25 +46,6 @@ export default {
     .input-container {
       display: flex;
       margin-top: 20px;
-
-      button, input {
-        flex-grow: 1;
-        padding: 10px 15px;
-        border: 3px solid black;
-        outline: none;
-      }
-
-      input {
-        border-bottom-left-radius: 10px;
-      }
-
-      button {
-        border-top-right-radius: 10px;
-        border-left: none;
-        background: black;
-        color: white;
-        font-weight: bold;
-      }
     }
   }
 }

@@ -3,15 +3,15 @@
     <BubbleContainer />
     <TeamList />
     <EmployeeList v-if="!this.$store.state.employees.selectedEmployee.name"/>
-    <!-- <EmployeeProfile v-else/> -->
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 import BubbleContainer from '../components/TeamsComponents/BubbleComponents/BubbleContainer.vue'
 import TeamList from '../components/TeamsComponents/ColectiveComponents/TeamComponents/TeamList.vue'
 import EmployeeList from '../components/TeamsComponents/ColectiveComponents/EmployeeComponents/EmployeeList.vue'
-// import EmployeeProfile from './EmployeeProfile.vue'
 
 export default {
   name: 'teams',
@@ -19,7 +19,12 @@ export default {
     BubbleContainer,
     TeamList,
     EmployeeList,
-    // EmployeeProfile
+  },
+  created () {
+    this.setTeam({})
+  },
+  methods: {
+    ...mapMutations(['setTeam']),
   }
 }
 </script>

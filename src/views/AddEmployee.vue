@@ -13,6 +13,7 @@
       <div class="skills">
         <SelectInput :placeholder="'Add a skill'"
                      :buttonInput="true"
+                     :reactive="false"
                      @inputValue="setSkill"
                      class="skills-input"/>
         <ul class="skill-list">

@@ -4,7 +4,7 @@ import 'firebase/firestore';
 
 const state = {
   teams: [],
-  team: '',
+  team: {},
   updated: false
 }
 
@@ -71,7 +71,7 @@ const actions = {
     })
     .then(() => {
       console.log("Team successfully updated!");
-      commit('updateTeam')
+      commit('updateTeam', true)
     })
   },
 
@@ -80,7 +80,7 @@ const actions = {
     db.collection('junction').doc(docId).delete()
     .then(() => {
       console.log("Successfully removed from team!");
-      commit('updateTeam')
+      commit('updateTeam', true)
     })
   }}
 
@@ -89,9 +89,7 @@ const mutations = {
   setTeam(state, team) {state.team = team},
   createTeam (state, payload) {state.teams.unshift({name: payload.name, id: payload.id})},
   deleteTeam (state, payload) {state.teams = state.teams.filter(team => team.id !== payload.id)},
-  updateTeam (state) {state.updated = true},
-  // privremeno clear team
-  clearTeam(state) {state.team = {}}
+  updateTeam (state, payload) {state.updated = payload},
 }
 
 export default {
