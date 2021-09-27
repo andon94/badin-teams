@@ -2,7 +2,7 @@
   <div class="teams">
     <BubbleContainer />
     <TeamList />
-    <EmployeeList v-if="!this.$store.state.employees.selectedEmployee.name"/>
+    <EmployeeList v-if="$route.fullPath !== '/teams'"/>
   </div>
 </template>
 

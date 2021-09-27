@@ -49,10 +49,8 @@ export default {
           employeeId: this.employee.id,
           teamId: this.selectedTeam.id
         }
-        console.log(payload)
         this.updateTeam(payload)
       } else if (this.$refs.employee.parentNode.parentNode.className === 'employee-list') {
-        console.log(this.employee)
         this.setSelectedEmployee(this.employee)
         this.$router.push({ path: `/employee-profile/${this.employee.id}`})
       }

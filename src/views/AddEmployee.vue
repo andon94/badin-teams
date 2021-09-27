@@ -77,9 +77,6 @@ export default {
           seniority,
           extra
         }
-        // console.log(e.keycode, e.which, e.location. e.key)
-        // console.log(e)
-        // if (e.code !== 13)
         this.addEmployee(obj)
       }
     },

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Team from './Team.vue'
 
 export default {
@@ -20,13 +20,19 @@ export default {
     Team
   },
   created() {
-    if (!this.allTeams.length) this.fetchTeams()
+    if (this.$route.name === 'Teams' && this.$route.query.id) {
+      this.fetchTeam(this.$route.query.id)
+    } else if (this.$route.name === 'CreateTeams') {
+      this.setTeam({})
+      this.fetchTeams()
+    }
   },
   computed: {
     ...mapGetters(['allTeams', 'selectedTeam']),
   },
   methods: {
-    ...mapActions(['fetchTeams']),
+    ...mapActions(['fetchTeams', 'fetchTeam']),
+    ...mapMutations(['setTeam'])
   }
 }
 </script>

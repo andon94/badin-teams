@@ -71,13 +71,13 @@ export default {
       if (this.bubbleArr.length) this.arrangeBubbles()
     },
     '$route.path' : {
-      // ne renderuju se krugovi kad se ode putanjom od tima, preko zaposlenog, do profila, pa skroz nazad na timove
-      // podesi da se klikovima na timove dole, apdejtuju krugovi gore
       handler: function () {
         if (Object.keys(this.$route.query).length === 0) {
           this.setTeam({})
           this.bubbleArr = this.allTeamsArr
         }
+
+        if (this.$route.fullPath === '/teams') this.bubbleArr = this.allTeams
       },
       deep:true
     }

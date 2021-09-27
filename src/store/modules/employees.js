@@ -71,6 +71,22 @@ const actions = {
       commit('removeEmployee', {id:payload})
     })
   },
+
+  fetchEmployee({commit}, payload) {
+    db.collection('employees')
+    .where(firebase.firestore.FieldPath.documentId(), "==", payload)
+    .get()
+    .then( res => {
+        let data = {}
+        res.forEach(doc => {
+          data = { ...doc.data() }
+        })
+        commit('setSelectedEmployee', data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 }
 
 const mutations = {

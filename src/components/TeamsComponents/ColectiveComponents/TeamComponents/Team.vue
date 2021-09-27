@@ -14,7 +14,7 @@
 import { mapActions, mapMutations } from 'vuex'
 
 export default {
-  name: 'Employee',
+  name: 'Team',
   props: {
     team: {
       type: Object,
@@ -27,7 +27,8 @@ export default {
     // ubaci uslov u editTeam kad si na teams stranici
     editTeam() {
       if (this.$route.path === '/create-teams') this.$router.push({ path: `/create-teams/${this.team.id}`})
-      else {
+      else if (this.$route.path === '/teams') {
+        this.$router.push({path:'/teams', query:{id: this.team.id}})
         this.setTeam(this.team)
       }
     },

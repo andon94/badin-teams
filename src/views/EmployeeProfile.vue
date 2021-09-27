@@ -28,6 +28,9 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'EmployeeProfile',
+  mounted () {
+    if (!this.selectedEmployee.id) this.fetchEmployee(this.$route.params.id)
+  },
   computed: {
     ...mapGetters(['selectedEmployee', 'allEmployees'])
   },
@@ -37,7 +40,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['removeEmployee']),
+    ...mapActions(['removeEmployee', 'fetchEmployee']),
     removeTheEmployee () {
       this.removeEmployee(this.$route.params.id)
     }
