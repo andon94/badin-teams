@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['deleteTeam']),
+    ...mapActions(['deleteTeam', 'fetchTeamEmployees']),
     ...mapMutations(['setTeam']),
     // ubaci uslov u editTeam kad si na teams stranici
     editTeam() {
@@ -30,6 +30,7 @@ export default {
       else if (this.$route.path === '/teams') {
         this.$router.push({path:'/teams', query:{id: this.team.id}})
         this.setTeam(this.team)
+        this.fetchTeamEmployees(this.team.id)
       }
     },
     removeTeam() { this.deleteTeam(this.team.id) }
