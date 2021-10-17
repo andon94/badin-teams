@@ -1,6 +1,7 @@
 <template>
   <div class="base-input">
-    <div class="input-container" v-click-outside="handleOutsideClick">
+    <div class="input-container"
+         v-click-outside="handleOutsideClick">
       <input :type="type"
              :value="value"
              @input="updateValue($event.target.value)"
@@ -177,6 +178,7 @@ export default {
       transition: all linear 0.1s;
       touch-action: none;
       font-size: 14px;
+      pointer-events: none;
 
       &.placeholder-label {
         transform: translate(10px, -10px);
