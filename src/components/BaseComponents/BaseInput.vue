@@ -1,8 +1,7 @@
 <template>
   <div class="base-input">
-    <div class="input-container">
+    <div class="input-container" v-click-outside="handleOutsideClick">
       <input :type="type"
-             :class="{'no-right-border-radius': buttonInput }"
              :value="value"
              @input="updateValue($event.target.value)"
              @focus="riseLabel"
@@ -10,29 +9,31 @@
              v-if="!name">
       <input v-else
              :type="type"
-             :class="{'no-right-border-radius': buttonInput }"
              :value="value[name]"
+             readonly="true"
              @input="updateValue($event.target.value)"
              @focus="riseLabel"
              @blur="lowerLabel">
       <span class="placeholder"
             :class="{'placeholder-label': placeholderLabel}"
-            @click="placeholderLabel = true">
-        {{placeholder}}
+            @click="riseLabel">
+        {{customPlaceholder}}
       </span>
+      <div v-if="name && value"
+           @click="clearValue"
+           class="trash-button">
+        <svg-icon type="mdi"
+                  :path="path.trash">
+        </svg-icon>
+      </div>
       <div v-if="selectArr !== null"
-           @click="selectIsOpen=!selectIsOpen"
+           @click="toggleDropdown"
            class="dropdown-button">
-        <svg-icon type="mdi" :path="path.chevronUp"
+        <svg-icon type="mdi"
+                  :path="path.chevronUp"
                   :class="{'rotate-180': selectIsOpen }">
         </svg-icon>
       </div>
-      <button v-if="buttonInput"
-              class="input-button"
-              ref="inputButton"
-              @click="$emit('btnClick')">
-        Add
-      </button>
     </div>
     <div class="select-container"
          v-if="selectArr !== null && selectIsOpen">
@@ -55,7 +56,7 @@
 <script>
 import '../../assets/customDirectives/customDirectives.js'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiChevronUp } from '@mdi/js'
+import { mdiChevronUp, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
   name: 'BaseInput',
@@ -74,10 +75,6 @@ export default {
       type: Array,
       default: null
     },
-    buttonInput: {
-      type: Boolean,
-      default: false
-    },
     type: {
       type: String,
       default: 'text'
@@ -92,7 +89,8 @@ export default {
       selectIsOpen: false,
       placeholderLabel: false,
       path: {
-        chevronUp: mdiChevronUp
+        chevronUp: mdiChevronUp,
+        trash: mdiTrashCanOutline
       }
     }
   },
@@ -109,6 +107,13 @@ export default {
         })
       }
       return arr || this.selectArr
+    },
+    customPlaceholder () {
+      if (this.name) {
+        if (!this.value) return `Select a ${this.placeholder}`
+        else return this.placeholder
+      }
+      else return this.placeholder
     }
   },
   methods: {
@@ -121,12 +126,24 @@ export default {
       this.$emit('input', value)
     },
     riseLabel () {
-      this.placeholderLabel = true
-      this.selectIsOpen = false
+      if (!this.name) {
+        this.placeholderLabel = true
+        this.selectIsOpen = false
+      }
     },
     lowerLabel () {
       if (!this.value && !this.option) this.placeholderLabel = false
       this.selectIsOpen = false
+    },
+    handleOutsideClick () {
+      if (this.selectIsOpen) this.selectIsOpen = false
+    },
+    clearValue () {
+      this.updateValue('')
+      this.placeholderLabel = false
+    },
+    toggleDropdown () {
+      this.selectIsOpen = !this.selectIsOpen
     }
   }
 }
@@ -150,11 +167,6 @@ export default {
       outline: none;
       padding-right: 25px;
       font-weight: bold;
-
-      &.no-right-border-radius {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
     }
 
     .placeholder {
@@ -170,17 +182,13 @@ export default {
         transform: translate(10px, -10px);
         padding: 3px;
         opacity: 1;
-        z-index: 9999;
+        z-index: 10;
         background: white;
         font-size: 12px;
       }
     }
 
     .dropdown-button {
-      background: none;
-      outline: none;
-      border: none;
-
       position: absolute;
       top: 20%;
       right: 5px;
@@ -189,6 +197,12 @@ export default {
           transform: rotate(-180deg);
         }
       }
+    }
+
+    .trash-button {
+      position: absolute;
+      top: 20%;
+      right: 30px;
     }
 
     .input-button {
@@ -210,7 +224,7 @@ export default {
     margin-top: 10px;
     position: absolute;
     background: white;
-    z-index: 10;
+    z-index: 11;
 
     ul {
       li {

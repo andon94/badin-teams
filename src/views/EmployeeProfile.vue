@@ -16,8 +16,7 @@
       </li>
       <li>
         <div class="label">Position:</div>
-        <div>{{employee.position}}
-        </div>
+        <div>{{employee.position}}</div>
       </li>
       <li>
         <div class="label">Seniority:</div>
@@ -26,12 +25,28 @@
       </li>
       <li>
         <div class="label">Main technology:</div>
-        <div>{{employee.mainTechnology}}
+        <div>{{employee.mainTechnology}}</div>
+      </li>
+      <li v-if="employee.lead">
+        <div class="label">Lead:</div>
+        <div>{{employee.lead}}</div>
+      </li>
+      <li v-if="teams.length">
+        <div class="label">Teams:</div>
+        <div v-for="(team, i) in teams" :key="i">
+          {{team.name}}
         </div>
       </li>
-      <li>
-        <div class="label">Lead:</div>
-        <div>{{employee.lead}}
+      <li v-if="clients.length">
+        <div class="label">Clients:</div>
+        <div v-for="(client, i) in clients" :key="i">
+          {{client.name}}
+        </div>
+      </li>
+      <li v-if="projects.length">
+        <div class="label">Projects:</div>
+        <div v-for="(project, i) in projects" :key="i">
+          {{project.name}}
         </div>
       </li>
     </ul>
@@ -50,7 +65,10 @@ export default {
   name: 'EmployeeProfile',
   data () {
     return {
-      employee: {}
+      employee: {},
+      teams: [],
+      clients: [],
+      projects: []
     }
   },
   mounted () {
@@ -58,13 +76,43 @@ export default {
   },
   methods: {
     fetchEmployee () {
-    employeesApi.fetchEmployee(this.$route.query.id)
-      .then(res => {
-        this.employee = {...res}
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      employeesApi.fetchEmployee(this.$route.query.id)
+        .then(res => {
+          this.employee = {...res}
+          this.fetchEmployeeTeams()
+          this.fetchEmployeeProjects()
+          this.fetchEmployeeClients()
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchEmployeeTeams () {
+      employeesApi.fetchEmployeeTeams(this.employee.id)
+        .then(res => {
+          this.teams = res
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchEmployeeClients () {
+      employeesApi.fetchEmployeeClients(this.employee.id)
+        .then(res => {
+          this.clients = res
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchEmployeeProjects () {
+      employeesApi.fetchEmployeeProjects(this.employee.id)
+        .then(res => {
+          this.projects = res
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }

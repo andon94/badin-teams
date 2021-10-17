@@ -23,13 +23,13 @@ export default {
   },
   methods: {
     fetchTeam () {
-    teamsApi.fetchTeam(this.$route.query.id)
-      .then(res => {
-        this.team = {...res}
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      teamsApi.fetchTeam(this.$route.query.id)
+        .then(res => {
+          this.team = {...res}
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }

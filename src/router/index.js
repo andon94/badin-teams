@@ -15,6 +15,9 @@ import AddEmployee from '../views/AddEmployee.vue'
 import EditEmployees from "../views/EditEmployees.vue";
 import EmployeeProfile from '../views/EmployeeProfile.vue'
 import CreateClient from "../views/CreateClient.vue";
+import ClientProfile from "../views/ClientProfile.vue";
+import CreateProject from "../views/CreateProject.vue";
+import ProjectProfile from "../views/ProjectProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -105,6 +108,30 @@ const routes = [
     component: CreateClient,
     meta: {
       title: 'CreateClient',
+    },
+  },
+  {
+    path: "/client/:id",
+    name: "ClientProfile",
+    component: ClientProfile,
+    meta: {
+      title: 'ClientProfile',
+    },
+  },
+  {
+    path: "/create-project",
+    name: "CreateProject",
+    component: CreateProject,
+    meta: {
+      title: 'CreateProject',
+    },
+  },
+  {
+    path: "/project/:id",
+    name: "ProjectProfile",
+    component: ProjectProfile,
+    meta: {
+      title: 'ProjectProfile',
     },
   },
   {

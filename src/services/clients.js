@@ -8,6 +8,14 @@ class ClientsAPI {
 	createClient (data) {
 		return this.baseFetcher.post("/clients", data)
 	}
+
+	fetchClients () {
+		return this.baseFetcher.get("/clients")
+	}
+
+	fetchClient (id) {
+		return this.baseFetcher.get(`/clients/${id}`)
+	}
 }
 
-export const clientsAPI = new ClientsAPI(baseFetcher);
+export const clientsApi = new ClientsAPI(baseFetcher);

@@ -2,20 +2,13 @@
   <div class="bubble-wrap">
     <div class="bubble-container"
          ref="bubbleContainer">
-      <Bubble v-for="(bubble, i) in bubbleArr" :key="bubble.name+i"
+      <Bubble v-for="(bubble, i) in bubbleArr" :key="i"
               :bubble="bubble"/>
-      <!-- <div class="back-to-teams"
-           v-if="Object.keys(this.$route.query).length !== 0">
-        <button @click="backToTeams()">
-          teams
-        </button>
-      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-// import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Bubble from './Bubble.vue'
 
 export default {
@@ -27,88 +20,60 @@ export default {
     teams: {
       type: Array,
       default: () => []
+    },
+    employees: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
       allTeamsArr: [],
       allTeamEmployeesArr: [],
-      // bubbleArr: [],
       semiDiameter: 0,
       bubbleDeg: 0
     }
   },
   computed: {
-    // ...mapGetters(['allTeamEmployees', 'allTeams', 'selectedTeam'])
     bubbleArr () {
       const arr = []
-      this.teams.forEach(team => {
-        const position = {
-          top: 0,
-          left: 0
-        }
-        arr.push({
-          name: team.name,
-          id: team.id,
-          position
+      if (this.teams.length) {
+        this.teams.forEach(team => {
+          const position = {
+            top: 0,
+            left: 0
+          }
+          arr.push({
+            name: team.name,
+            id: team.id,
+            position
+          })
         })
-      })
+      } else if (this.employees.length) {
+        this.employees.forEach(employee => {
+          const position = {
+            top: 0,
+            left: 0
+          }
+          arr.push({
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+            id: employee.id,
+            position
+          })
+        })
+      }
       return arr
     }
   },
   watch: {
-    // allTeams () {
-    //   const all = []
-    //   this.allTeams.forEach(team => {
-    //     const position = {
-    //       top: 0,
-    //       left: 0
-    //     }
-    //     all.push({
-    //       name: team.name,
-    //       id: team.id,
-    //       position
-    //     })
-    //   })
-    //   this.allTeamsArr = all
-    // },
-    // allTeamsArr () {
-    //   if (Object.keys(this.$route.query).length === 0 && !this.bubbleArr.length) this.bubbleArr = this.allTeamsArr
-    // },
-    // allTeamEmployees () {
-    //   const all = []
-    //   this.allTeamEmployees.forEach(employee => {
-    //     const position = {
-    //       top: 0,
-    //       left: 0
-    //     }
-    //     const newEmployee = {...employee, position}
-    //     all.push(newEmployee)
-    //   })
-    //   this.allTeamEmployeesArr = all
-    //   if (Object.keys(this.$route.query).length !== 0) this.bubbleArr = all
-    // },
     bubbleArr () {
       if (this.bubbleArr.length) this.arrangeBubbles()
-    },
-    // '$route.path' : {
-    //   handler: function () {
-    //     if (Object.keys(this.$route.query).length === 0) {
-    //       this.setTeam({})
-    //       this.bubbleArr = this.allTeamsArr
-    //     }
-
-    //     if (this.$route.fullPath === '/teams') this.bubbleArr = this.allTeams
-    //   },
-    //   deep:true
-    // }
+    }
   },
   mounted () {
     // pola visine bubble-a plus po 30 piksela za marginu
     this.semiDiameter = (this.$refs.bubbleContainer.offsetHeight / 2) - 60
-
-    // if (Object.keys(this.$route.query).length !== 0) this.fetchTeamEmployees(this.$route.query.id)
-    // else this.fetchTeams()
   },
   methods: {
     toRadians (angle) {
@@ -270,21 +235,13 @@ export default {
           }
         })
       }
-    },
-    // ...mapActions(['fetchTeamEmployees', 'fetchTeams']),
-    // ...mapMutations(['setTeam', 'setTeamEmployees']),
-    // backToTeams () {
-    //   this.$router.push({ path: `/teams`})
-    //   this.setTeam({})
-    //   this.setTeamEmployees([])
-    // }
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
 .bubble-wrap {
-  margin-top: 20%;
   .bubble-container {
     position: relative;
     width: 300px;
@@ -295,24 +252,6 @@ export default {
     border-radius: 50%;
 
     transition: all ease-in 0.2s;
-
-  }
-
-  .back-to-teams {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    button {
-      width: 40px;
-      height: 40px;
-      font-weight: bold;
-      font-size: 9px;
-      background-color: pink;
-      border: none;
-      border-radius: 50%;
-      outline: none;
-      // transform: translate(-50%,-50%);
-    }
   }
 }
 </style>

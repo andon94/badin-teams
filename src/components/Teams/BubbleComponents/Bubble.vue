@@ -1,14 +1,12 @@
 <template>
 <div class="bubble"
-     :style="`top: ${this.bubble.position.top}px; left:${this.bubble.position.left}px;`"
+     :style="`top: ${bubble.position.top}px; left:${bubble.position.left}px;`"
      @click="handleBubbleClick">
-  {{this.bubble.name}}
+  {{bubbleData}}
 </div>
 </template>
 
 <script>
-// import { mapActions, mapGetters, mapMutations } from 'vuex'
-
 export default {
   name: 'Bubble',
   props: {
@@ -18,26 +16,17 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters(['selectedTeam'])
+    bubbleData () {
+      if (this.$route.name === 'Teams') return this.bubble.name
+      else if (this.$route.name === 'Employees') return `${this.bubble.firstName} ${this.bubble.lastName}`
+      else return ''
+    }
   },
   methods: {
     handleBubbleClick () {
-      // this.$router.push({path:'/team/:id', query:{id: this.bubble.id}})
-      this.$router.push({path:'/employees/:id', query:{id: this.bubble.id}})
+      if (this.$route.name === 'Teams') this.$router.push({path:'/employees/:id', query:{id: this.bubble.id}})
+      else if (this.$route.name === 'Employees') this.$router.push({path:'/employee-profile/:id', query:{id: this.bubble.id}})
     }
-    // ...mapActions(['fetchTeamEmployees']),
-    // ...mapMutations(['setTeam', 'setSelectedEmployee']),
-    // handleBubbleClick() {
-    //   if (Object.keys(this.$route.query).length === 0) {
-    //     this.$router.push({path:'/teams', query:{id: this.bubble.id}})
-    //     this.setTeam(this.bubble)
-    //     this.fetchTeamEmployees(this.bubble.id)
-    //   } else {
-    //     this.setSelectedEmployee(this.bubble)
-    //     this.$router.push({ path: `/employee-profile/${this.bubble.id}`})
-    //     this.setTeam({})
-    //   }
-    // }
   }
 }
 </script>

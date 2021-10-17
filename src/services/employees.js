@@ -6,6 +6,7 @@ class EmployeesAPI {
 	}
 
 	createEmployee (data) {
+		console.log(data)
 		return this.baseFetcher.post("/users", data)
 	}
 
@@ -17,6 +18,17 @@ class EmployeesAPI {
 		return this.baseFetcher.get(`/users/${id}`)
   }
 
+	fetchEmployeeTeams (id) {
+		return this.baseFetcher.get(`/users/${id}/teams`)
+	}
+
+	fetchEmployeeProjects (id) {
+		return this.baseFetcher.get(`/users/${id}/projects`)
+	}
+
+	fetchEmployeeClients (id) {
+		return this.baseFetcher.get(`/users/${id}/clients`)
+	}
 }
 
 export const employeesApi = new EmployeesAPI(baseFetcher);

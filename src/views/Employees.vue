@@ -3,10 +3,22 @@
     <ViewNavigator @setPosition="setPosition"/>
     <div class="teams-content"
          :style="{'margin-left': position}">
-      <!-- <BubbleContainer :employees="employees"
-                       class="bubbles"/> -->
-      <EmployeeList :employees="employees"
-                    class="list"/>
+      <div class="bubbles">
+        <div class="team-name"
+             v-if="team"
+             @click="handleTeamClick">
+          {{team.name}}
+        </div>
+        <BubbleContainer :employees="employees"/>
+      </div>
+      <div class="list">
+        <div class="team-name"
+             v-if="team"
+             @click="handleTeamClick">
+          {{team.name}}
+        </div>
+        <EmployeeList :employees="employees"/>
+      </div>
     </div>
   </div>
 </template>
@@ -14,35 +26,51 @@
 <script>
 import { teamsApi } from '../services/teams.js'
 import ViewNavigator from '../components/Teams/ViewNavigator.vue'
-// import BubbleContainer from '../components/Teams/BubbleComponents/BubbleContainer.vue'
+import BubbleContainer from '../components/Teams/BubbleComponents/BubbleContainer.vue'
 import EmployeeList from '../components/Teams/ColectiveComponents/EmployeeComponents/EmployeeList.vue'
 
 export default {
-  name: 'Teams',
+  name: 'Employees',
   components: {
     ViewNavigator,
-    // BubbleContainer,
+    BubbleContainer,
     EmployeeList
   },
   data () {
     return {
       position: 0,
-      employees: []
+      employees: [],
+      team: {}
     }
   },
   mounted () {
-    teamsApi.fetchTeamMembers(this.$route.query.id)
-      .then(res => {
-        console.log(res)
-        // odradi dodavanje zaposlenog u tim, pa nastavi ovde
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.fetchTeam()
+    this.fetchTeamMembers()
   },
   methods: {
     setPosition (val) {
       this.position = val
+    },
+    handleTeamClick () {
+      this.$router.push({path:'/team/:id', query:{id: this.team.id}})
+    },
+    fetchTeamMembers () {
+      teamsApi.fetchTeamMembers(this.$route.query.id)
+        .then(res => {
+          this.employees = [...res]
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchTeam () {
+      teamsApi.fetchTeam(this.$route.query.id)
+        .then(res => {
+          this.team = {...res}
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }
@@ -60,6 +88,21 @@ export default {
     transition: all linear 0.2s;
     .bubbles, .list {
       min-width: 100vw;
+      .team-name {
+        width: 100%;
+        font-weight: bold;
+        margin: 20px 0;
+      }
+    }
+    .bubbles {
+      .team-name {
+        text-align: center;
+      }
+    }
+    .list {
+      .team-name {
+        padding-left: 10px;
+      }
     }
   }
 }

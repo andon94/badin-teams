@@ -1,28 +1,43 @@
 <template>
-  <li class="employee"
-      ref="employee">
-    <div class="employee-container" @click="selectEmployee">
-      <div class="employee-name">
-        {{employee.name}}
+  <li class="employee">
+    <div class="employee-container">
+      <div class="employee-container-name">
+        <div>
+          {{employee.firstName}}
+        </div>
+        <div>
+          {{employee.lastName}}
+        </div>
+        <div>
+          {{employee.nickname}}
+        </div>
       </div>
-      <div class="employee-title">
-        {{employee.title}}
+      <div class="employee-container-about">
+        <label>Working area: </label>
+        <div>
+          {{employee.workingArea}}
+        </div>
+      </div>
+      <div class="employee-container-about">
+        <label>Seniority: </label>
+        <div>
+          {{employee.seniority}}
+        </div>
       </div>
     </div>
     <div class="img-container">
-      <div @click="openRemoveModal">
-        <div v-if="$route.name === 'EditTeam' && imgClicked"
+      <!-- <div @click="openRemoveModal"> -->
+      <div>
+        <!-- <div v-if="$route.name === 'EditTeam' && imgClicked"
             @click="removeEmployeeFromTeam">
           remove
-        </div>
+        </div> -->
       </div>
     </div>
   </li>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
-
 export default {
   name: 'Employee',
   props: {
@@ -35,65 +50,54 @@ export default {
     return {
       imgClicked: false
     }
-  },
-  computed: {
-    ...mapGetters(['selectedTeam'])
-  },
-  methods: {
-    ...mapActions(['fetchTeamEmployees', 'updateTeam', 'removeFromTeam']),
-    ...mapMutations(['setSelectedEmployee']),
-    selectEmployee() {
-      // proverava da li je element na koji se klikce pozicioniran u search dropdown-u ili u originalnoj listi clanova tima
-      if (this.$refs.employee.parentNode.parentNode.className === 'employee-container') {
-        const payload = {
-          employeeId: this.employee.id,
-          teamId: this.selectedTeam.id
-        }
-        this.updateTeam(payload)
-      } else if (this.$refs.employee.parentNode.parentNode.className === 'employee-list') {
-        this.setSelectedEmployee(this.employee)
-        this.$router.push({ path: `/employee-profile/${this.employee.id}`})
-      }
-    },
-    openRemoveModal() {
-      if (this.$route.name === 'EditTeam' && this.$refs.employee.parentNode.parentNode.className === 'employee-list') this.imgClicked = true
-    },
-    removeEmployeeFromTeam() {
-      const payload = {
-        employeeId: this.employee.id,
-        teamId: this.selectedTeam.id
-      }
-      this.removeFromTeam(payload)
-    }
   }
 }
 </script>
 
 <style scoped lang="scss">
 .employee {
-  margin-bottom: 15px;
   list-style-type: none;
-
+  width: 100%;
+  margin: 20px 0;
+  padding: 0 10px;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
 
-  .employee-container {
+  &-container {
     margin-right: 30px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 
-    .employee-name {
-      font-weight: bold;
+    &-name, &-about {
+      display: flex;
     }
-    .employee-title {
-      font-size: 14px;
+
+    &-name {
+      margin-bottom: 15px;
+      font-weight: bold;
+      & > div {
+        margin-right: 5px;
+      }
+    }
+
+    &-about {
+      margin: 5px 0;
+      & > label {
+        margin-right: 10px;
+      }
+      & > div {
+        font-weight: bold;
+      }
     }
   }
 
   .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     & > div {
       width: 70px;
       height: 70px;

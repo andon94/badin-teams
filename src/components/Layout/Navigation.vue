@@ -13,6 +13,7 @@
           <router-link class="link" :to="{ name: 'AddEmployee' }">Add Employee</router-link>
           <router-link class="link" :to="{ name: 'EditEmployees' }">Edit Employees</router-link>
           <router-link class="link" :to="{ name: 'CreateClient' }">Add Client</router-link>
+          <router-link class="link" :to="{ name: 'CreateProject' }">Create Project</router-link>
           <router-link class="link" :to="{ name: 'Login' }">Login</router-link>
         </ul>
       </div>
@@ -27,6 +28,7 @@
           <router-link class="link" :to="{ name: 'AddEmployee' }">Add Employee</router-link>
           <router-link class="link" :to="{ name: 'EditEmployees' }">Edit Employees</router-link>
           <router-link class="link" :to="{ name: 'CreateClient' }">Add Client</router-link>
+          <router-link class="link" :to="{ name: 'CreateProject' }">Create Project</router-link>
         <router-link class="link" :to="{ name: 'Login' }">Login</router-link>
       </ul>
     </transition>

@@ -4,36 +4,38 @@
       <PhotoInput label="Add a profile photo:"
                   photoPath=""/>
       <BaseInput :placeholder="'First name'"
-                   v-model="firstName"/>
+                 v-model="firstName"/>
       <BaseInput :placeholder="'Last name'"
-                   v-model="lastName"/>
+                 v-model="lastName"/>
       <BaseInput :placeholder="'Nickname'"
-                   v-model="nickName"/>
+                 v-model="nickName"/>
       <BaseInput :placeholder="'Email'"
-                   v-model="email"/>
+                 v-model="email"/>
       <BaseInput :placeholder="'Position'"
-                   v-model="position"/>
+                 v-model="position"/>
       <BaseInput :placeholder="'Team'"
                  :name="'name'"
                  :selectArr="teams"
                  v-model="team"/>
       <BaseInput :placeholder="'Client'"
-                   :selectArr="clients"
-                   v-model="client"/>
+                 name="name"
+                 :selectArr="clients"
+                 v-model="client"/>
       <BaseInput :placeholder="'Project'"
+                 name="name"
                  :selectArr="projects"
                  v-model="project"/>
       <BaseInput :placeholder="'Seniority'"
-                   :selectArr="seniorities"
-                   v-model="seniority"/>
+                 :selectArr="seniorities"
+                 v-model="seniority"/>
       <BaseInput :placeholder="'Main tech'"
-                   v-model="mainTech"/>
+                 v-model="mainTech"/>
       <BaseInput :placeholder="'Work area'"
-                   :selectArr="workAreas"
-                   v-model="workArea"/>
+                 :selectArr="workAreas"
+                 v-model="workArea"/>
       <BaseInput :placeholder="'Lead'"
-                   :selectArr="leads"
-                   v-model="lead"/>
+                 :selectArr="leads"
+                 v-model="lead"/>
       <!-- <div class="skills">
         <BaseInput :placeholder="'Add skills'"
                      :buttonInput="true"
@@ -79,7 +81,6 @@ export default {
       image: '',
       team: '',
       client: '',
-      clients: [],
       seniority: '',
       seniorities: ['Junior', 'Medior', 'Senior'],
       workArea: '',
@@ -87,18 +88,19 @@ export default {
       lead: '',
       leads: ['Tech Lead', 'Product owner', 'People manager'],
       mainTech: '',
-      project: '',
-      projects: []
+      project: ''
     }
   },
   mounted () {
     if (!this.teams.length) this.fetchTeams()
+    if (!this.clients.length) this.fetchClients()
+    if (!this.projects.length) this.fetchProjects()
   },
   computed: {
-    ...mapGetters(['teams']),
+    ...mapGetters(['teams', 'clients', 'projects']),
   },
   methods: {
-    ...mapActions(['fetchTeams']),
+    ...mapActions(['fetchTeams', 'fetchClients', 'fetchProjects']),
     addNewEmployee() {
       const data = {
         email: this.email,
@@ -112,8 +114,8 @@ export default {
         workingArea: this.workArea,
         lead: this.lead,
         teams: [this.team.id],
-        clients: [],
-        projects: []
+        clients: [this.client.id],
+        projects: [this.project.id]
       }
 
       employeesApi.createEmployee(data)

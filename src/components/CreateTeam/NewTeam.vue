@@ -1,16 +1,18 @@
 <template>
   <div class="new-team">
-    <form @submit.prevent="createNewTeam">
+    <form @submit.prevent>
       <PhotoInput label="Add a photo"
                   photoPath=""/>
       <BaseInput :placeholder="'Team name'"
                  v-model="teamName"/>
       <BaseInput :placeholder="'Client'"
                  :selectArr="clients"
-                 v-model="client"/>
+                 v-model="client"
+                 name="name"/>
       <BaseInput :placeholder="'Project'"
                  :selectArr="projects"
-                 v-model="project"/>
+                 v-model="project"
+                 name="name"/>
       <TextareaInput placeholder="About team"
                      v-model="about"/>
       <BaseButton text="Create"
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import { teamsApi } from '../../services/teams'
 import PhotoInput from '../BaseComponents/PhotoInput.vue'
 import BaseInput from '../BaseComponents/BaseInput.vue'
@@ -39,19 +42,25 @@ export default {
       image: '',
       teamName: '',
       client: '',
-      clients: ['Laf', 'Super Top', 'Joca i Nena', 'Dagi'],
       project: '',
-      projects: ['Menhetn', 'Pustinjska oluja', 'X'],
       about: ''
     }
   },
+  mounted () {
+    if (!this.clients.length) this.fetchClients()
+    if (!this.projects.length) this.fetchProjects()
+  },
+  computed: {
+    ...mapGetters(['clients', 'projects']),
+  },
   methods: {
+    ...mapActions(['fetchClients', 'fetchProjects']),
     createNewTeam() {
       const data = {
         image: null,
         name: this.teamName,
-        clients: [],
-        projects: [],
+        clients: [this.client.id],
+        projects: [this.project.id],
         about: this.about,
       }
 

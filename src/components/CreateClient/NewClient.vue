@@ -5,7 +5,8 @@
                   photoPath=""/>
       <BaseInput :placeholder="'Client name'"
                  v-model="clientName"/>
-      <TextareaInput placeholder="About client"/>
+      <TextareaInput placeholder="About client"
+                     v-model="about"/>
       <BaseButton text="Create"
                   @click="createClient"/>
     </form>
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import { clientsAPI } from '../../services/clients'
+import { clientsApi } from '../../services/clients'
 import PhotoInput from '../BaseComponents/PhotoInput.vue'
 import BaseInput from '../BaseComponents/BaseInput.vue'
 import TextareaInput from '../BaseComponents/TextareaInput.vue'
@@ -41,9 +42,9 @@ export default {
         logo: null
       }
 
-      clientsAPI.createClient(data)
+      clientsApi.createClient(data)
         .then(res => {
-          console.log(res)
+          this.$router.push({path:'/client/:id', query:{id: res.id}})
         })
         .catch(err => {
           console.log(err)
