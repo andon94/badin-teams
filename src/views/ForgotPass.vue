@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import email from "../assets/Icons/envelope-regular.svg";
-import Modal from "../components/Modal";
-import Loading from "../components/Loading";
+import email from "../assets/images/Icons/envelope-regular.svg";
+import Modal from "../components/BaseComponents/Modal";
+import Loading from "../components/BaseComponents/Loading";
 export default {
 name: "ForgtoPass",
     data() {

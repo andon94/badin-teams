@@ -5,25 +5,25 @@
         <h2 class="hero-title" v-if="post.welcomeScreen">{{ post.title }}</h2>
         <p class="hero-text" v-if="post.welcomeScreen">{{ post.text }}</p>
         <router-link v-if="post.welcomeScreen" class="link link-light" :to="{ name: 'Login' }">
-          Login/Register <Arrow class="arrow arrow-light" />
+          Login <Arrow class="arrow arrow-light" />
         </router-link>
         <router-link v-else class="link link-light" to="#">
           View hero <Arrow class="arrow arrow-light" />
         </router-link>
       </div>
       <div class="photo-wrapper">
-        <img v-if="post.welcomeScreen" :src="require(`../assets/blogPhotos/${post.photo}.jpg`)" alt="">
-        <img v-else :src="require(`../assets/blogPhotos/${post.blogCoverPhoto}.jpg`)" alt="">
+        <img v-if="post.welcomeScreen" :src="require(`../../assets/images/blogPhotos/${post.photo}.jpg`)" alt="">
+        <img v-else :src="require(`../../assets/images/blogPhotos/${post.blogCoverPhoto}.jpg`)" alt="">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Arrow from '../assets/Icons/arrow-right-light.svg';
+import Arrow from '../../assets/images/Icons/arrow-right-light.svg';
 
 export default {
-  name: 'hero',
+  name: 'Hero',
   props: ["post"],
   components: {
     Arrow

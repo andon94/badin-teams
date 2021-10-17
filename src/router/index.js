@@ -1,15 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import Home from "../views/Home.vue";
-import Teams from "../views/Teams.vue";
-// import TeamBubbles from "../views/TeamBubbles.vue";
-import CreateTeams from "../views/CreateTeams.vue";
-import EditTeam from "../views/EditTeam.vue";
-import EmployeeProfile from '../views/EmployeeProfile.vue'
-import AddEmployee from '../views/AddEmployee.vue'
 import Login from "../views/Login.vue";
-import Register from "../views/Register.vue";
 import ForgotPass from "../views/ForgotPass.vue";
+
+import Teams from "../views/Teams.vue";
+import TeamProfile from "../views/TeamProfile.vue";
+import CreateTeam from "../views/CreateTeam.vue";
+import EditTeams from "../views/EditTeams.vue";
+import EditTeam from "../views/EditTeam.vue";
+import Employees from '../views/Employees.vue'
+import AddEmployee from '../views/AddEmployee.vue'
+import EditEmployees from "../views/EditEmployees.vue";
+import EmployeeProfile from '../views/EmployeeProfile.vue'
+import CreateClient from "../views/CreateClient.vue";
 
 Vue.use(VueRouter);
 
@@ -30,36 +35,44 @@ const routes = [
       title: 'Teams',
     },
   },
-  // {
-  //   path: "/teams/:id",
-  //   name: "TeamBubbles",
-  //   component: TeamBubbles,
-  //   meta: {
-  //     title: 'Team Bubbles',
-  //   },
-  // },
   {
-    path: "/create-teams",
-    name: "CreateTeams",
-    component: CreateTeams,
+    path: "/employees/:id",
+    name: "Employees",
+    component: Employees,
+    meta: {
+      title: 'Employees',
+    },
+  },
+  {
+    path: "/team/:id",
+    name: "TeamProfile",
+    component: TeamProfile,
+    meta: {
+      title: 'TeamProfile',
+    },
+  },
+  {
+    path: "/create-team",
+    name: "CreateTeam",
+    component: CreateTeam,
     meta: {
       title: 'Create Teams',
     },
   },
   {
-    path: "/create-teams/:id",
-    name: "EditTeam",
-    component: EditTeam,
+    path: "/edit/teams",
+    name: "EditTeams",
+    component: EditTeams,
     meta: {
-      title: 'Edit a Team',
+      title: 'EditTeams',
     },
   },
   {
-    path: "/employee-profile/:id",
-    name: "EmployeeProfile",
-    component: EmployeeProfile,
+    path: "/edit/team/:id",
+    name: "EditTeam",
+    component: EditTeam,
     meta: {
-      title: 'EmployeeProfile',
+      title: 'EditTeam',
     },
   },
   {
@@ -71,19 +84,35 @@ const routes = [
     },
   },
   {
+    path: "/edit/employees",
+    name: "EditEmployees",
+    component: EditEmployees,
+    meta: {
+      title: 'EditEmployees',
+    },
+  },
+  {
+    path: "/employee-profile/:id",
+    name: "EmployeeProfile",
+    component: EmployeeProfile,
+    meta: {
+      title: 'EmployeeProfile',
+    },
+  },
+  {
+    path: "/create-client",
+    name: "CreateClient",
+    component: CreateClient,
+    meta: {
+      title: 'CreateClient',
+    },
+  },
+  {
     path: "/login",
     name: "Login",
     component: Login,
     meta: {
       title: 'Login',
-    },
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register,
-    meta: {
-      title: 'Register',
     },
   },
   {

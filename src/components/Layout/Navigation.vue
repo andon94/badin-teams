@@ -2,14 +2,18 @@
   <header>
     <nav class="container">
       <div class="branding">
-        <router-link class="header" :to="{ name: 'Home' }">BadinTeams</router-link>
+        <router-link class="header" :to="{ name: 'Home' }">{{navHeader}}</router-link>
       </div>
       <div class="nav-links">
         <ul v-show="!mobile">
           <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
           <router-link class="link" :to="{ name: 'Teams' }">Teams</router-link>
-          <router-link class="link" :to="{ name: 'CreateTeams' }">Create Teams</router-link>
-          <router-link class="link" :to="{ name: 'Login' }">Login/Register</router-link>
+          <router-link class="link" :to="{ name: 'CreateTeam' }">Create Team</router-link>
+          <router-link class="link" :to="{ name: 'EditTeams' }">Edit Teams</router-link>
+          <router-link class="link" :to="{ name: 'AddEmployee' }">Add Employee</router-link>
+          <router-link class="link" :to="{ name: 'EditEmployees' }">Edit Employees</router-link>
+          <router-link class="link" :to="{ name: 'CreateClient' }">Add Client</router-link>
+          <router-link class="link" :to="{ name: 'Login' }">Login</router-link>
         </ul>
       </div>
     </nav>
@@ -18,15 +22,19 @@
       <ul class="mobile-nav" v-show="mobileNav" @click="toggleMobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
         <router-link class="link" :to="{ name: 'Teams' }">Teams</router-link>
-          <router-link class="link" :to="{ name: 'CreateTeams' }">Create Teams</router-link>
-        <router-link class="link" :to="{ name: 'Login' }">Login/Register</router-link>
+          <router-link class="link" :to="{ name: 'CreateTeam' }">Create Team</router-link>
+          <router-link class="link" :to="{ name: 'EditTeams' }">Edit Teams</router-link>
+          <router-link class="link" :to="{ name: 'AddEmployee' }">Add Employee</router-link>
+          <router-link class="link" :to="{ name: 'EditEmployees' }">Edit Employees</router-link>
+          <router-link class="link" :to="{ name: 'CreateClient' }">Add Client</router-link>
+        <router-link class="link" :to="{ name: 'Login' }">Login</router-link>
       </ul>
     </transition>
   </header>
 </template>
 
 <script>
-import MenuIcon from '../assets/Icons/bars-regular.svg';
+import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
 
 export default {
   name: 'Navigation',
@@ -43,6 +51,13 @@ export default {
   created() {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
+  },
+  computed: {
+    navHeader () {
+      let routeName = this.$route.name
+      if (routeName) routeName = routeName.replace( /([a-z])([A-Z])/g, "$1 $2");
+      return routeName || ''
+    }
   },
   methods: {
     checkScreen() {
@@ -66,7 +81,7 @@ export default {
 <style lang="scss" scoped>
 header {
   background-color: #fff;
-  padding: 0 25px;
+  padding: 0 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
 
@@ -82,7 +97,7 @@ header {
 
   nav {
     display: flex;
-    padding: 25px 0;
+    padding: 15px 0;
 
     .branding {
       display: flex;
@@ -120,8 +135,8 @@ header {
   .menu-icon {
     cursor: pointer;
     position: absolute;
-    top: 30px;
-    right: 20px;
+    top: 20px;
+    right: 10px;
     height: 20px;
     width: auto;
   }

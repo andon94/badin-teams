@@ -1,9 +1,8 @@
 <template>
   <div class="add-employees">
     <form @submit.prevent="filterEmployees">
-      <p>Add a member to <span>{{selectedTeam.name}}</span></p>
-      <SelectInput placeholder="Employee name"
-                   @inputValue="setEmployeeName"/>
+      <BaseInput :placeholder="`Add a member to ${selectedTeam.name}`"
+                 v-model="employeeInput"/>
     </form>
 
     <div class="employee-container"
@@ -18,13 +17,13 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import SelectInput from '../SmallComponents/SelectInput.vue'
-import Employee from '../TeamsComponents/ColectiveComponents/EmployeeComponents/Employee.vue'
+import BaseInput from '../BaseComponents/BaseInput.vue'
+import Employee from '../Teams/ColectiveComponents/EmployeeComponents/Employee.vue'
 
 export default {
   name: 'AddEmployees',
   components: {
-    SelectInput,
+    BaseInput,
     Employee
   },
   data() {
@@ -61,9 +60,6 @@ export default {
   methods: {
     ...mapActions(['fetchEmployees', 'fetchTeamEmployees']),
     ...mapMutations(['setTeam', 'updateTeam']),
-    setEmployeeName(val) {
-      this.employeeInput = val
-    },
     filterEmployees() {
       if (this.employeeInput.length > 0) {
         let data = []
@@ -82,17 +78,6 @@ export default {
 
 <style scoped lang="scss">
 .add-employees {
-  margin: 30px 10px;
-  form {
-    p {
-      margin-bottom: 15px;
-      font-weight: bold;
-      span {
-        color: crimson;
-      }
-    }
-  }
-
   .employee-container {
     position: absolute;
     background: white;

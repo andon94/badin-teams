@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
+import Navigation from './components/Layout/Navigation';
+import Footer from './components/Layout/Footer';
 
 export default {
   name: "app",
@@ -29,7 +29,7 @@ export default {
   mounted() {},
   methods: {
     checkRoute() {
-      if (this.$route.name === "Login" || this.$route.name === "Register" || this.$route.name === "ForgotPass") {
+      if (this.$route.name === "Login" || this.$route.name === "ForgotPass") {
         this.navigationDisabled = true;
         return;
       }

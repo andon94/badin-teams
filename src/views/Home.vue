@@ -1,14 +1,15 @@
 <template>
   <div class="home">
-    <Hero :post="welcomeScreen" />
+    <!-- <Hero :post="welcomeScreen" /> -->
   </div>
 </template>
 
 <script>
-import Hero from '../components/Hero';
+// import Hero from '../components/Layout/Hero';
+
 export default {
   name: "Home",
-  components: { Hero },
+  // components: { Hero },
   data() {
     return {
       welcomeScreen: {
@@ -19,11 +20,5 @@ export default {
       }
     }
   }
-
-  // computed: {
-  //   sampleTeamsCards() {
-  //     return this.$store.state
-  //   }
-  // }
-};
+}
 </script>

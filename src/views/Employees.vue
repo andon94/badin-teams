@@ -3,42 +3,44 @@
     <ViewNavigator @setPosition="setPosition"/>
     <div class="teams-content"
          :style="{'margin-left': position}">
-      <BubbleContainer :teams="teams"
-                       class="bubbles"/>
-      <TeamList :teams="teams"
-                class="list"/>
+      <!-- <BubbleContainer :employees="employees"
+                       class="bubbles"/> -->
+      <EmployeeList :employees="employees"
+                    class="list"/>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
+import { teamsApi } from '../services/teams.js'
 import ViewNavigator from '../components/Teams/ViewNavigator.vue'
-import BubbleContainer from '../components/Teams/BubbleComponents/BubbleContainer.vue'
-import TeamList from '../components/Teams/ColectiveComponents/TeamComponents/TeamList.vue'
+// import BubbleContainer from '../components/Teams/BubbleComponents/BubbleContainer.vue'
+import EmployeeList from '../components/Teams/ColectiveComponents/EmployeeComponents/EmployeeList.vue'
 
 export default {
   name: 'Teams',
   components: {
     ViewNavigator,
-    BubbleContainer,
-    TeamList,
+    // BubbleContainer,
+    EmployeeList
   },
   data () {
     return {
-      position: 0
+      position: 0,
+      employees: []
     }
   },
   mounted () {
-    this.fetchTeams()
-    // .then
-  },
-  computed: {
-    ...mapGetters(['teams'])
+    teamsApi.fetchTeamMembers(this.$route.query.id)
+      .then(res => {
+        console.log(res)
+        // odradi dodavanje zaposlenog u tim, pa nastavi ovde
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   methods: {
-    ...mapActions(['fetchTeams']),
     setPosition (val) {
       this.position = val
     }
