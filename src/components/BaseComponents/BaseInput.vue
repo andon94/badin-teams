@@ -95,6 +95,9 @@ export default {
       }
     }
   },
+  updated () {
+    if (this.value) this.placeholderLabel = true
+  },
   computed: {
     selectOptions () {
       const arr = []

@@ -20,6 +20,14 @@ class TeamsAPI {
 	fetchTeamMembers (id) {
 		return this.baseFetcher.get(`/teams/${id}/members`)
 	}
+
+	fetchTeamProjects (id) {
+		return this.baseFetcher.get(`/teams/${id}/projects`)
+	}
+
+	fetchTeamClients (id) {
+		return this.baseFetcher.get(`/teams/${id}/clients`)
+	}
 }
 
 export const teamsApi = new TeamsAPI(baseFetcher);

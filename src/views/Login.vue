@@ -15,6 +15,7 @@
         Forgot your password?
       </router-link> -->
       <BaseButton text="Create"
+                  type="submit"
                   @click="handleLogin"/>
       <div class="angle"></div>
     </form>
@@ -53,8 +54,8 @@ export default {
 
       authAPI.login(data)
         .then(res => {
-          console.log(res)
           localStorage.setItem('token', JSON.stringify(res.token))
+          this.$router.push({path:'/'})
         })
         .catch(err => {
           console.log(err)

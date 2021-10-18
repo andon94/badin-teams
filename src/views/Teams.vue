@@ -6,6 +6,7 @@
       <BubbleContainer :teams="teams"
                        class="bubbles"/>
       <TeamList :teams="teams"
+                :teamsFilter="true"
                 class="list"/>
     </div>
   </div>

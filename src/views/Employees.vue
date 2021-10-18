@@ -9,7 +9,7 @@
              @click="handleTeamClick">
           {{team.name}}
         </div>
-        <BubbleContainer :employees="employees"/>
+        <BubbleContainer :employees="teamMembers"/>
       </div>
       <div class="list">
         <div class="team-name"
@@ -17,14 +17,14 @@
              @click="handleTeamClick">
           {{team.name}}
         </div>
-        <EmployeeList :employees="employees"/>
+        <EmployeeList :employees="teamMembers"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { teamsApi } from '../services/teams.js'
+import { mapActions, mapGetters } from 'vuex'
 import ViewNavigator from '../components/Teams/ViewNavigator.vue'
 import BubbleContainer from '../components/Teams/BubbleComponents/BubbleContainer.vue'
 import EmployeeList from '../components/Teams/ColectiveComponents/EmployeeComponents/EmployeeList.vue'
@@ -38,39 +38,23 @@ export default {
   },
   data () {
     return {
-      position: 0,
-      employees: [],
-      team: {}
+      position: 0
     }
   },
   mounted () {
-    this.fetchTeam()
-    this.fetchTeamMembers()
+    this.fetchTeam(this.$route.query.id)
+    this.fetchTeamMembers(this.$route.query.id)
+  },
+  computed: {
+    ...mapGetters(['team', 'teamMembers']),
   },
   methods: {
+    ...mapActions(['fetchTeam', 'fetchTeamMembers']),
     setPosition (val) {
       this.position = val
     },
     handleTeamClick () {
       this.$router.push({path:'/team/:id', query:{id: this.team.id}})
-    },
-    fetchTeamMembers () {
-      teamsApi.fetchTeamMembers(this.$route.query.id)
-        .then(res => {
-          this.employees = [...res]
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    fetchTeam () {
-      teamsApi.fetchTeam(this.$route.query.id)
-        .then(res => {
-          this.team = {...res}
-        })
-        .catch(err => {
-          console.log(err)
-        })
     }
   }
 }
