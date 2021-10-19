@@ -95,8 +95,10 @@ export default {
       }
     }
   },
-  updated () {
-    if (this.value) this.placeholderLabel = true
+  watch: {
+    value () {
+      if (this.value) this.placeholderLabel = true
+    }
   },
   computed: {
     selectOptions () {

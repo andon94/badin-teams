@@ -52,7 +52,6 @@ const actions = {
   fetchTeamProjects ({commit}, id) {
     teamsApi.fetchTeamProjects(id)
       .then(res => {
-        console.log(res)
         commit('setTeamProjects', res)
       })
       .catch(err => {
@@ -63,7 +62,6 @@ const actions = {
   fetchTeamClients ({commit}, id) {
     teamsApi.fetchTeamClients(id)
       .then(res => {
-        console.log(res)
         commit('setTeamClients', res)
       })
       .catch(err => {

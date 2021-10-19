@@ -6,7 +6,6 @@ class EmployeesAPI {
 	}
 
 	createEmployee (data) {
-		console.log(data)
 		return this.baseFetcher.post("/users", data)
 	}
 
@@ -28,6 +27,14 @@ class EmployeesAPI {
 
 	fetchEmployeeClients (id) {
 		return this.baseFetcher.get(`/users/${id}/clients`)
+	}
+
+	editEmployee (id, data) {
+		return this.baseFetcher.put(`/users/${id}`, data)
+	}
+
+	deleteEmployee (id) {
+		return this.baseFetcher.delete(`/users/${id}`)
 	}
 }
 

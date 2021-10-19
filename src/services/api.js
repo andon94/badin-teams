@@ -31,13 +31,13 @@ class BaseFetcher {
 		return this.fetcher.get(...options).then(res => res.data);
 	}
 
-	// put (...options) {
-	// 	return this.fetcher.put(...options).then(res => res.data);
-	// }
+	put (...options) {
+		return this.fetcher.put(...options).then(res => res.data);
+	}
 
-	// delete (...options) {
-	// 	return this.fetcher.delete(...options).then(res => res.data);
-	// }
+	delete (...options) {
+		return this.fetcher.delete(...options).then(res => res.data);
+	}
 }
 
 export const baseFetcher = new BaseFetcher(fetcher, {baseURL: process.env.VUE_APP_API_BASE_URL})

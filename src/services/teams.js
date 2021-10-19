@@ -28,6 +28,14 @@ class TeamsAPI {
 	fetchTeamClients (id) {
 		return this.baseFetcher.get(`/teams/${id}/clients`)
 	}
+
+	editTeam (id, data) {
+		return this.baseFetcher.put(`/teams/${id}`, data)
+	}
+
+	deleteTeam (id) {
+		return this.baseFetcher.delete(`/teams/${id}`)
+	}
 }
 
 export const teamsApi = new TeamsAPI(baseFetcher);

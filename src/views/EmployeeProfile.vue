@@ -31,89 +31,44 @@
         <div class="label">Lead:</div>
         <div>{{employee.lead}}</div>
       </li>
-      <li v-if="teams.length">
+      <li v-if="employeeTeams.length">
         <div class="label">Teams:</div>
-        <div v-for="(team, i) in teams" :key="i">
+        <div v-for="(team, i) in employeeTeams" :key="i">
           {{team.name}}
         </div>
       </li>
-      <li v-if="clients.length">
+      <li v-if="employeeClients.length">
         <div class="label">Clients:</div>
-        <div v-for="(client, i) in clients" :key="i">
+        <div v-for="(client, i) in employeeClients" :key="i">
           {{client.name}}
         </div>
       </li>
-      <li v-if="projects.length">
+      <li v-if="employeeProjects.length">
         <div class="label">Projects:</div>
-        <div v-for="(project, i) in projects" :key="i">
+        <div v-for="(project, i) in employeeProjects" :key="i">
           {{project.name}}
         </div>
       </li>
     </ul>
-    <!-- <div class="remove-employee">
-      <button @click="removeTheEmployee">
-        remove employee
-      </button>
-    </div> -->
   </div>
 </template>
 
 <script>
-import { employeesApi } from '../services/employees'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'EmployeeProfile',
-  data () {
-    return {
-      employee: {},
-      teams: [],
-      clients: [],
-      projects: []
-    }
-  },
   mounted () {
-    this.fetchEmployee()
+    this.fetchEmployee(this.$route.query.id)
+    this.fetchEmployeeTeams(this.$route.query.id)
+    this.fetchEmployeeClients(this.$route.query.id)
+    this.fetchEmployeeProjects(this.$route.query.id)
+  },
+  computed: {
+    ...mapGetters(['employee', 'employeeTeams', 'employeeProjects', 'employeeClients'])
   },
   methods: {
-    fetchEmployee () {
-      employeesApi.fetchEmployee(this.$route.query.id)
-        .then(res => {
-          this.employee = {...res}
-          this.fetchEmployeeTeams()
-          this.fetchEmployeeProjects()
-          this.fetchEmployeeClients()
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    fetchEmployeeTeams () {
-      employeesApi.fetchEmployeeTeams(this.employee.id)
-        .then(res => {
-          this.teams = res
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    fetchEmployeeClients () {
-      employeesApi.fetchEmployeeClients(this.employee.id)
-        .then(res => {
-          this.clients = res
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    fetchEmployeeProjects () {
-      employeesApi.fetchEmployeeProjects(this.employee.id)
-        .then(res => {
-          this.projects = res
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
+    ...mapActions(['fetchEmployee', 'fetchEmployeeTeams', 'fetchEmployeeClients', 'fetchEmployeeProjects'])
   }
 }
 </script>
@@ -156,17 +111,6 @@ export default {
         margin-right: 5px;
       }
     }
-
-    // .remove-employee {
-    //   margin-top: 20px;
-    //   button {
-    //     border: none;
-    //     outline: none;
-    //     background-color: white;
-    //     color: crimson;
-    //     padding: 10px 0;
-    //   }
-    // }
   }
 }
 </style>

@@ -33,7 +33,6 @@ export default {
   },
   mounted () {
     this.fetchTeams()
-    // .then
   },
   computed: {
     ...mapGetters(['teams'])
