@@ -13,6 +13,7 @@ import EditTeam from "../views/EditTeam.vue";
 import Employees from '../views/Employees.vue'
 import AddEmployee from '../views/AddEmployee.vue'
 import EditEmployees from "../views/EditEmployees.vue";
+import EditEmployee from "../views/EditEmployee.vue";
 import EmployeeProfile from '../views/EmployeeProfile.vue'
 import CreateClient from "../views/CreateClient.vue";
 import ClientProfile from "../views/ClientProfile.vue";
@@ -36,14 +37,6 @@ const routes = [
     component: Teams,
     meta: {
       title: 'Teams',
-    },
-  },
-  {
-    path: "/employees/:id",
-    name: "Employees",
-    component: Employees,
-    meta: {
-      title: 'Employees',
     },
   },
   {
@@ -79,6 +72,22 @@ const routes = [
     },
   },
   {
+    path: "/employees/:id",
+    name: "Employees",
+    component: Employees,
+    meta: {
+      title: 'Employees',
+    },
+  },
+  {
+    path: "/employee-profile/:id",
+    name: "EmployeeProfile",
+    component: EmployeeProfile,
+    meta: {
+      title: 'EmployeeProfile',
+    },
+  },
+  {
     path: "/add-employee",
     name: "AddEmployee",
     component: AddEmployee,
@@ -95,11 +104,11 @@ const routes = [
     },
   },
   {
-    path: "/employee-profile/:id",
-    name: "EmployeeProfile",
-    component: EmployeeProfile,
+    path: "/edit/employee/:id",
+    name: "EditEmployee",
+    component: EditEmployee,
     meta: {
-      title: 'EmployeeProfile',
+      title: 'EditEmployee',
     },
   },
   {

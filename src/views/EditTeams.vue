@@ -1,8 +1,7 @@
 <template>
   <div class="edit-teams">
     <TeamList :teams="teams"
-              :teamsFilter="true"
-              class="list"/>
+              :teamsFilter="true"/>
   </div>
 </template>
 

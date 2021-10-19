@@ -73,6 +73,7 @@ export default {
 
     &-name, &-about {
       display: flex;
+      flex-wrap: wrap;
     }
 
     &-name {

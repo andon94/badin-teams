@@ -19,7 +19,7 @@ const getters = {
 const actions = {
 
   fetchEmployees({commit}) {
-    employeesApi.fetchTeams()
+    employeesApi.fetchEmployees()
       .then(res => {
         commit('setEmployees', res)
       })
