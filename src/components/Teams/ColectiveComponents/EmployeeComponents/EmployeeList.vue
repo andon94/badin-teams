@@ -1,6 +1,6 @@
 <template>
   <div class="employee-list">
-    <ul>
+    <ul class="employee-list-container">
       <!-- trenutno samo po imenu -->
       <BaseFilter placeholder="Filter employees"
                   :dataArr="this.employees"
@@ -40,8 +40,9 @@ export default {
       this.filteredData = val
     },
     handleEmployeeClick (id) {
-      this.$router.push({path:'/edit/employee/:id', query:{id: id}})
-    }
+      console.log(this.$route.name)
+      if (this.$route.name === 'Employees') this.$router.push({path:'/employee-profile/:id', query:{id: id}})
+      if (this.$route.name === 'EditEmployees') this.$router.push({path:'/edit/employee/:id', query:{id: id}})    }
   }
 }
 </script>
@@ -50,7 +51,9 @@ export default {
 .employee-list {
   &-container {
     position: relative;
-    margin: 20px 10px;
+    li {
+      list-style: none;
+    }
   }
 }
 </style>

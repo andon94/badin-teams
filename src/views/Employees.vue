@@ -84,6 +84,7 @@ export default {
       }
     }
     .list {
+      padding-left: 10px;
       .team-name {
         padding-left: 10px;
       }
