@@ -71,15 +71,18 @@ export default {
       this.currentProjects = [...val]
     },
     editTeam () {
+      const clientIds = this.currentClients.map(client => client.id)
+      const projectIds = this.currentProjects.map(project => project.id)
+
       const data = {
         name: this.team.name,
         about: this.team.about,
         image: null,
-        clients: this.currentClients,
-        projects: this.currentProjects
+        clients: clientIds,
+        projects: projectIds
       }
 
-      // bug na be, niz klijenta/projekta prima stringove umesto objekta
+      // bug na be, nema responsa
       teamsApi.editTeam(this.$route.query.id, data)
         .then(res => {
           console.log(res)
