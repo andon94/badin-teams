@@ -1,36 +1,49 @@
 <template>
   <div class="team-profile">
     <Team :team="team"/>
+    <BaseArrayViewer label="Members"
+                     :dataArr="teamMembers"
+                     name="name"/>
+    <BaseArrayViewer label="Clients"
+                     :dataArr="teamClients"
+                     name="name"/>
+    <BaseArrayViewer label="Projects"
+                     :dataArr="teamProjects"
+                     name="name"/>
   </div>
 </template>
 
 <script>
-import { teamsApi } from '../services/teams'
+import { mapActions, mapGetters } from 'vuex'
 import Team from '../components/Teams/ColectiveComponents/TeamComponents/Team.vue'
+import BaseArrayViewer from '../components/BaseComponents/BaseArrayViewer.vue'
 
 export default {
   name: 'TeamProfile',
   components: {
-    Team
-  },
-  data () {
-    return {
-      team: {}
-    }
+    Team,
+    BaseArrayViewer
   },
   mounted () {
-    this.fetchTeam()
+    this.fetchTeam(this.$route.query.id)
+    this.fetchTeamMembers(this.$route.query.id)
+    this.fetchTeamProjects(this.$route.query.id)
+    this.fetchTeamClients(this.$route.query.id)
+  },
+  computed: {
+    ...mapGetters(['team', 'teamMembers', 'teamProjects', 'teamClients']),
   },
   methods: {
-    fetchTeam () {
-      teamsApi.fetchTeam(this.$route.query.id)
-        .then(res => {
-          this.team = {...res}
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
+    ...mapActions(['fetchTeam', 'fetchTeamMembers', 'fetchTeamProjects', 'fetchTeamClients'])
   }
 }
 </script>
+
+<style scoped lang="scss">
+.team-profile {
+  .team-member, .team-project, .team-client {
+    margin: 10px;
+    font-weight: bold;
+  }
+}
+</style>
