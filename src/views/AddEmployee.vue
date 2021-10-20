@@ -36,19 +36,6 @@
       <BaseInput :placeholder="'Lead'"
                  :selectArr="leads"
                  v-model="lead"/>
-      <!-- <div class="skills">
-        <BaseInput :placeholder="'Add skills'"
-                     :buttonInput="true"
-                     v-model="skill"
-                     class="skills-input"
-                     @btnClick="setSkill"/>
-        <ul class="skill-list">
-          <li v-for="(skill, i) in skills" :key="skill+i"
-              @click="removeSkill(skill)">
-            {{skill}}
-          </li>
-        </ul>
-      </div> -->
       <BaseButton type="submit"
                   text="Create"
                   @click="addNewEmployee"
@@ -126,18 +113,6 @@ export default {
           console.log(err)
         })
       }
-    // }
-    // setSkill() {
-    //   // kad ubacis validaciju, ubaci i poruku da postoji identican
-    //   const exists = this.skills.find(skill => skill === this.skill)
-    //   if (this.skill !== '' && !exists) {
-    //     this.skills.push(this.skill)
-    //     this.skill = ''
-    //   }
-    // },
-    // removeSkill(val) {
-    //   this.skills = this.skills.filter(skill => skill !== val)
-    // }
   }
 }
 </script>
@@ -147,38 +122,6 @@ export default {
   margin: 15px 10px;
 
   form {
-    // .skills {
-    //   display: flex;
-    //   flex-direction: column-reverse;
-
-    //   .skills-input {
-    //     margin-top: -5px;
-    //   }
-
-    //   .skill-list {
-    //     padding: 10px;
-    //     border: 3px dashed black;
-    //     border-radius: 10px;
-    //     border-bottom-right-radius: 0;
-    //     border-bottom-left-radius: 0;
-    //     border-top-left-radius: 0;
-    //     height: 100px;
-    //     overflow: scroll;
-
-    //     li {
-    //       list-style-type: none;
-    //       font-weight: bold;
-    //       font-size: 14px;
-    //       margin: 5px;
-    //       padding: 5px 10px;
-    //       background-color: black;
-    //       color: white;
-    //       border-radius: 10px;
-    //       display: inline-block;
-    //     }
-    //   }
-    // }
-
     .submit-button {
       margin-top: 0;
     }

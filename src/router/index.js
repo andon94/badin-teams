@@ -11,14 +11,17 @@ import CreateTeam from "../views/CreateTeam.vue";
 import EditTeams from "../views/EditTeams.vue";
 import EditTeam from "../views/EditTeam.vue";
 import Employees from '../views/Employees.vue'
+import EmployeeProfile from '../views/EmployeeProfile.vue'
 import AddEmployee from '../views/AddEmployee.vue'
 import EditEmployees from "../views/EditEmployees.vue";
 import EditEmployee from "../views/EditEmployee.vue";
-import EmployeeProfile from '../views/EmployeeProfile.vue'
 import CreateClient from "../views/CreateClient.vue";
 import ClientProfile from "../views/ClientProfile.vue";
-import CreateProject from "../views/CreateProject.vue";
+import Projects from "../views/Projects.vue"
 import ProjectProfile from "../views/ProjectProfile.vue";
+import CreateProject from "../views/CreateProject.vue";
+import EditProjects from "../views/EditProjects"
+import EditProject from '../views/EditProject.vue'
 
 Vue.use(VueRouter);
 
@@ -112,6 +115,14 @@ const routes = [
     },
   },
   {
+    path: "/projects",
+    name: "Projects",
+    component: Projects,
+    meta: {
+      title: 'Projects',
+    },
+  },
+  {
     path: "/create-client",
     name: "CreateClient",
     component: CreateClient,
@@ -128,6 +139,14 @@ const routes = [
     },
   },
   {
+    path: "/edit/projects",
+    name: "EditProjects",
+    component: EditProjects,
+    meta: {
+      title: 'EditProjects',
+    },
+  },
+  {
     path: "/create-project",
     name: "CreateProject",
     component: CreateProject,
@@ -136,7 +155,15 @@ const routes = [
     },
   },
   {
-    path: "/project/:id",
+    path: "/edit/project/:id",
+    name: "EditProject",
+    component: EditProject,
+    meta: {
+      title: 'EditProject',
+    },
+  },
+  {
+    path: "/project-profile/:id",
     name: "ProjectProfile",
     component: ProjectProfile,
     meta: {

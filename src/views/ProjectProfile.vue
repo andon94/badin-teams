@@ -10,11 +10,8 @@
       </div>
       <div class="project-client"
            v-if="project.client">
-        {{project.client.name}}
+        <span>Klijent:</span> {{project.client.name}}
       </div>
-    </div>
-    <div class="img-container">
-      <div></div>
     </div>
   </div>
 </template>
@@ -45,3 +42,29 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.project-profile {
+  &-container {
+    margin: 20px 10px;
+
+    .project-name {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .project-about {
+      color: gray;
+      margin: 10px 0;
+    }
+
+    .project-clilent {
+      font-weight: bold;
+      span {
+        font-weight: normal;
+      }
+    }
+  }
+}
+</style>

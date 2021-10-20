@@ -40,7 +40,6 @@ export default {
       this.filteredData = val
     },
     handleEmployeeClick (id) {
-      console.log(this.$route.name)
       if (this.$route.name === 'Employees') this.$router.push({path:'/employee-profile/:id', query:{id: id}})
       if (this.$route.name === 'EditEmployees') this.$router.push({path:'/edit/employee/:id', query:{id: id}})    }
   }

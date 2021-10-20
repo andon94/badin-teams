@@ -54,7 +54,7 @@ export default {
       projectsApi.createProject(data)
         .then(res => {
           console.log(res)
-          this.$router.push({path:'/project/:id', query:{id: res.id}})
+          this.$router.push({path:'/project-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
           console.log(err)

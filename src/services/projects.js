@@ -16,6 +16,14 @@ class ProjectsAPI {
 	fetchProject (id) {
 		return this.baseFetcher.get(`/projects/${id}`)
 	}
+
+	editProject (id, data) {
+		return this.baseFetcher.put(`/projects/${id}`, data)
+	}
+
+	deleteProject (id) {
+		return this.baseFetcher.delete(`/projects/${id}`)
+	}
 }
 
 export const projectsApi = new ProjectsAPI(baseFetcher);

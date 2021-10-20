@@ -7,6 +7,7 @@
 <script>
 import { teamsApi } from '../../services/teams.js'
 import { employeesApi } from '../../services/employees.js'
+import { projectsApi } from '../../services/projects.js'
 import BaseButton from '../BaseComponents/BaseButton.vue'
 
 export default {
@@ -25,6 +26,7 @@ export default {
       // bug na be, vraca errror 500
       if (this.label === 'team') this.deleteTeam()
       if (this.label === 'employee') this.deleteEmployee()
+      if (this.label === 'project') this.deleteProject()
     },
     deleteTeam () {
       teamsApi.deleteTeam(this.$route.query.id)
@@ -37,6 +39,15 @@ export default {
     },
     deleteEmployee () {
       employeesApi.deleteEmployee(this.$route.query.id)
+        .then(() => {
+          this.$router.push({path:'/'})
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    deleteProject () {
+      projectsApi.deleteProject(this.$route.query.id)
         .then(() => {
           this.$router.push({path:'/'})
         })
