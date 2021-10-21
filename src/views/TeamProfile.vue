@@ -2,12 +2,15 @@
   <div class="team-profile">
     <Team :team="team"/>
     <BaseArrayViewer label="Members"
+                     path="employee"
                      :dataArr="teamMembers"
                      name="name"/>
     <BaseArrayViewer label="Clients"
+                     path="client"
                      :dataArr="teamClients"
                      name="name"/>
     <BaseArrayViewer label="Projects"
+                     path="project"
                      :dataArr="teamProjects"
                      name="name"/>
   </div>

@@ -66,7 +66,7 @@ export default {
 
       teamsApi.createTeam(data)
         .then(res => {
-          this.$router.push({path:'/team/:id', query:{id: res.id}})
+          this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
           console.log(err)

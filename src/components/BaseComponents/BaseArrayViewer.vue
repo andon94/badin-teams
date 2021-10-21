@@ -4,7 +4,9 @@
     <div class="array-viewer-element"
           v-for="(element, i) in dataArr" :key="i">
       <!-- privremeno dok ne ubacim name kao niz-->
-      {{label === 'Members' ? `${element.firstName} ${element.lastName} ${element.nickname}` : element[name]}}
+      <router-link class="link" :to="{path:`/${path}-profile/:id`, query:{id: element.id}}">
+        {{label === 'Members' ? `${element.firstName} ${element.lastName} ${element.nickname}` : element[name]}}
+      </router-link>
     </div>
   </div>
 </template>
@@ -22,6 +24,10 @@ export default {
       default: () => []
     },
     name: {
+      type: String,
+      default: ''
+    },
+    path: {
       type: String,
       default: ''
     }

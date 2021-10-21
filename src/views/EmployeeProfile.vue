@@ -34,19 +34,25 @@
       <li v-if="employeeTeams.length">
         <div class="label">Teams:</div>
         <div v-for="(team, i) in employeeTeams" :key="i">
-          {{team.name}}
+          <router-link class="link" :to="{path:'/team-profile/:id', query:{id: team.id}}">
+            {{team.name}}
+          </router-link>
         </div>
       </li>
       <li v-if="employeeClients.length">
         <div class="label">Clients:</div>
         <div v-for="(client, i) in employeeClients" :key="i">
-          {{client.name}}
+          <router-link class="link" :to="{path:'/client-profile/:id', query:{id: client.id}}">
+            {{client.name}}
+          </router-link>
         </div>
       </li>
       <li v-if="employeeProjects.length">
         <div class="label">Projects:</div>
         <div v-for="(project, i) in employeeProjects" :key="i">
-          {{project.name}}
+          <router-link class="link" :to="{path:'/project-profile/:id', query:{id: project.id}}">
+            {{project.name}}
+          </router-link>
         </div>
       </li>
     </ul>

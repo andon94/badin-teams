@@ -64,7 +64,7 @@ export default {
       clientsApi.editClient(this.$route.query.id, data)
         .then(res => {
           console.log(res)
-          this.$router.push({path:'/client/:id', query:{id: res.id}})
+          this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
           console.log(err)

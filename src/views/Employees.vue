@@ -54,7 +54,7 @@ export default {
       this.position = val
     },
     handleTeamClick () {
-      this.$router.push({path:'/team/:id', query:{id: this.team.id}})
+      this.$router.push({path:'/team-profile/:id', query:{id: this.team.id}})
     }
   }
 }

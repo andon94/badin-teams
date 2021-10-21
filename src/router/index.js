@@ -46,7 +46,7 @@ const routes = [
     },
   },
   {
-    path: "/team/:id",
+    path: "/team-profile/:id",
     name: "TeamProfile",
     component: TeamProfile,
     meta: {
@@ -158,7 +158,7 @@ const routes = [
     },
   },
   {
-    path: "/client/:id",
+    path: "/client-profile/:id",
     name: "ClientProfile",
     component: ClientProfile,
     meta: {

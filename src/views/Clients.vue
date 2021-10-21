@@ -42,7 +42,7 @@ export default {
       this.filteredData = val
     },
     handleClientClick (val) {
-      this.$router.push({path:'/client/:id', query:{id: val}})
+      this.$router.push({path:'/client-profile/:id', query:{id: val}})
     }
   }
 }

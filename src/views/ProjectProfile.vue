@@ -10,7 +10,10 @@
       </div>
       <div class="project-client"
            v-if="project.client">
-        <span>Klijent:</span> {{project.client.name}}
+        <span>Klijent:</span>
+        <router-link class="link" :to="{path:'/client-profile/:id', query:{id: project.client.id}}">
+          {{project.client.name}}
+        </router-link>
       </div>
     </div>
   </div>
