@@ -15,7 +15,10 @@ import EmployeeProfile from '../views/EmployeeProfile.vue'
 import AddEmployee from '../views/AddEmployee.vue'
 import EditEmployees from "../views/EditEmployees.vue";
 import EditEmployee from "../views/EditEmployee.vue";
+import Clients from '../views/Clients.vue'
 import CreateClient from "../views/CreateClient.vue";
+import EditClients from '../views/EditClients.vue'
+import EditClient from "../views/EditClient.vue";
 import ClientProfile from "../views/ClientProfile.vue";
 import Projects from "../views/Projects.vue"
 import ProjectProfile from "../views/ProjectProfile.vue";
@@ -120,6 +123,30 @@ const routes = [
     component: Projects,
     meta: {
       title: 'Projects',
+    },
+  },
+  {
+    path: "/clients",
+    name: "Clients",
+    component: Clients,
+    meta: {
+      title: 'Clients',
+    },
+  },
+  {
+    path: "/edit/clients",
+    name: "EditClients",
+    component: EditClients,
+    meta: {
+      title: 'EditClients',
+    },
+  },
+  {
+    path: "/edit/client/:id",
+    name: "EditClient",
+    component: EditClient,
+    meta: {
+      title: 'EditClient',
     },
   },
   {

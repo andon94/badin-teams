@@ -16,6 +16,14 @@ class ClientsAPI {
 	fetchClient (id) {
 		return this.baseFetcher.get(`/clients/${id}`)
 	}
+
+	editClient (id) {
+		return this.baseFetcher.put(`/clients/${id}`)
+	}
+
+	deleteClient (id) {
+		return this.baseFetcher.delete(`/clients/${id}`)
+	}
 }
 
 export const clientsApi = new ClientsAPI(baseFetcher);

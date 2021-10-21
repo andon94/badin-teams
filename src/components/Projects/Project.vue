@@ -14,7 +14,8 @@ export default {
   name: 'Project',
   props: {
     project: {
-      type: Object
+      type: Object,
+      default: null
     }
   }
 }

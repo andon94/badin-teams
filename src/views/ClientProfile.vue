@@ -36,7 +36,22 @@ export default {
         .catch(err => {
           console.log(err)
         })
-      }
+    }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.client-profile {
+  margin: 20px 10px;
+  &-container {
+    .client-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .client-about {
+      color: gray;
+    }
+  }
+}
+</style>

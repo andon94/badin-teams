@@ -8,6 +8,7 @@
 import { teamsApi } from '../../services/teams.js'
 import { employeesApi } from '../../services/employees.js'
 import { projectsApi } from '../../services/projects.js'
+import { clientsApi } from '../../services/clients.js'
 import BaseButton from '../BaseComponents/BaseButton.vue'
 
 export default {
@@ -27,6 +28,7 @@ export default {
       if (this.label === 'team') this.deleteTeam()
       if (this.label === 'employee') this.deleteEmployee()
       if (this.label === 'project') this.deleteProject()
+      if (this.label === 'client') this.deleteClient()
     },
     deleteTeam () {
       teamsApi.deleteTeam(this.$route.query.id)
@@ -48,6 +50,15 @@ export default {
     },
     deleteProject () {
       projectsApi.deleteProject(this.$route.query.id)
+        .then(() => {
+          this.$router.push({path:'/'})
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    deleteClient () {
+      clientsApi.deleteClient(this.$route.query.id)
         .then(() => {
           this.$router.push({path:'/'})
         })
