@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .clients {
+  .edit-clients {
     margin: 20px 10px;
   }
 </style>
