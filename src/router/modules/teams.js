@@ -1,3 +1,4 @@
+import { canNavigate } from '../index'
 import Teams from "../../views/Teams.vue";
 import TeamProfile from "../../views/TeamProfile.vue";
 import CreateTeam from "../../views/TeamCreate.vue";
@@ -12,6 +13,9 @@ const routes = [
     meta: {
       title: 'Teams',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/team-profile/:id",
@@ -28,6 +32,9 @@ const routes = [
     meta: {
       title: 'Create Teams',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/teams",
@@ -44,7 +51,7 @@ const routes = [
     meta: {
       title: 'EditTeam',
     },
-  }
+  },
 ]
 
 export default routes

@@ -7,12 +7,12 @@ class BaseFetcher {
 		}
 		this.fetcher = fetcher.create(options);
 
-		if (localStorage.token) {
+		if (localStorage.badinTeamsStorage) {
 			this.fetcher.interceptors.request.use(
 				(config) => {
-					const token = JSON.parse(localStorage.token) || null
-					if (token) {
-						config.headers.authorization = token
+					const storage = JSON.parse(localStorage.badinTeamsStorage) || null
+					if (storage.token) {
+						config.headers.authorization = storage.token
 					}
 					return config
 				},

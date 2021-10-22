@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@casl/ability": "^5.4.3",
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^6.1.95",
     "axios": "^0.23.0",

@@ -54,8 +54,9 @@ export default {
 
       authAPI.login(data)
         .then(res => {
-          localStorage.setItem('token', JSON.stringify(res.token))
+          localStorage.setItem('badinTeamsStorage', JSON.stringify(res))
           this.$router.push({path:'/'})
+          console.log(res)
         })
         .catch(err => {
           console.log(err)
