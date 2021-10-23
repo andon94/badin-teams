@@ -23,7 +23,7 @@ import BaseButton from '../components/BaseComponents/BaseButton.vue'
 import DeleteUnit from '../components/DeleteUnit/DeleteUnit.vue'
 
 export default {
-  name: 'EditTeam',
+  name: 'EditClient',
   components: {
     PhotoInput,
     BaseInput,
@@ -60,12 +60,12 @@ export default {
         about: this.about,
         logo:  this.logo
       }
-      console.log(data)
+      console.log(data, this.$route.query.id)
       // bug na be, nema responsa
       clientsApi.editClient(this.$route.query.id, data)
         .then(res => {
           console.log(res)
-          // this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+          this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
           console.log(err)

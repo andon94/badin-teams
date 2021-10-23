@@ -20,7 +20,7 @@ import BaseFilter from '../components/BaseComponents/BaseFilter.vue'
 import Client from '../components/Clients/Client.vue'
 
 export default {
-  name: 'Clients',
+  name: 'EditClients',
   components: {
     BaseFilter,
     Client

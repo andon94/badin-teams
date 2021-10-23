@@ -17,8 +17,8 @@ class ClientsAPI {
 		return this.baseFetcher.get(`/clients/${id}`)
 	}
 
-	editClient (id) {
-		return this.baseFetcher.put(`/clients/${id}`)
+	editClient (id, data) {
+		return this.baseFetcher.put(`/clients/${id}`, data)
 	}
 
 	deleteClient (id) {
