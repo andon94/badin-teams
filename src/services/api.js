@@ -6,7 +6,10 @@ class BaseFetcher {
 			throw new Error('Please add fetcher!')
 		}
 		this.fetcher = fetcher.create(options);
+		this.checkLoginStatus()
+	}
 
+	checkLoginStatus() {
 		if (localStorage.badinTeamsStorage) {
 			this.fetcher.interceptors.request.use(
 				(config) => {

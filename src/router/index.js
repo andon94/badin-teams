@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import { baseFetcher } from "../services/api"
+
 import { ability } from './rules/ability'
 import defineRulesFor from './rules/defineRulesFor'
 import { MANAGE } from './rules/constants'
@@ -22,6 +24,7 @@ export const isLoggedIn = () => {
     // ubaci expiration uslov
     if (auth.token) auth = true
   }
+  baseFetcher.checkLoginStatus()
   return auth
 }
 
