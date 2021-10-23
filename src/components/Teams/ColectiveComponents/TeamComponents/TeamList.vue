@@ -3,7 +3,7 @@
     <ul>
       <BaseFilter placeholder="Filter teams"
                   :dataArr="this.teams"
-                  dataProperty="name"
+                  :filterProperties="['name']"
                   @filteredData="setFilteredData"/>
       <li v-for="(team, i) in filteredData" :key="i"
           @click="handleTeamClick(team.id)">

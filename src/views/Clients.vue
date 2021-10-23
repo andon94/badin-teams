@@ -2,7 +2,7 @@
   <div class="clients">
     <BaseFilter  placeholder="Filter clients"
                  :dataArr="this.clients"
-                 dataProperty="name"
+                 :filterProperties="['name']"
                  @filteredData="setFilteredData"/>
     <div class="clients-container">
       <div class="client"

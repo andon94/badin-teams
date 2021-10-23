@@ -1,9 +1,9 @@
 <template>
   <div class="edit-projects">
     <BaseFilter  placeholder="Filter projects"
-                  :dataArr="this.projects"
-                  dataProperty="name"
-                  @filteredData="setFilteredData"/>
+                 :dataArr="this.projects"
+                 :filterProperties="['name']"
+                 @filteredData="setFilteredData"/>
     <div class="projects-container">
       <div class="project"
           v-for="(project, i) in filteredData" :key="i"

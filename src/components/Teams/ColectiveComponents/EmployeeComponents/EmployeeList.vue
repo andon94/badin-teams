@@ -4,7 +4,7 @@
       <!-- trenutno samo po imenu -->
       <BaseFilter placeholder="Filter employees"
                   :dataArr="this.employees"
-                  dataProperty="firstName"
+                  :filterProperties="['firstName', 'lastName', 'nickname']"
                   @filteredData="setFilteredData"/>
       <li v-for="(employee, i) in filteredData" :key="i"
           @click="handleEmployeeClick(employee.id)">
