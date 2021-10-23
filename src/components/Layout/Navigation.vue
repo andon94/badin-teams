@@ -71,41 +71,41 @@
           <router-link class="link" :to="{ name: 'Teams' }">
             Teams
           </router-link>
-          <router-link class="link" :to="{ name: 'CreateTeam' }"
+          <router-link class="link admin" :to="{ name: 'CreateTeam' }"
                        v-if="show">
             Create Team
           </router-link>
-          <router-link class="link" :to="{ name: 'EditTeams' }"
+          <router-link class="link admin" :to="{ name: 'EditTeams' }"
                        v-if="show">
             Edit Teams
           </router-link>
-          <router-link class="link" :to="{ name: 'AddEmployee' }"
+          <router-link class="link admin" :to="{ name: 'AddEmployee' }"
                        v-if="show">
             Add Employee
           </router-link>
-          <router-link class="link" :to="{ name: 'EditEmployees' }"
+          <router-link class="link admin" :to="{ name: 'EditEmployees' }"
                        v-if="show">
             Edit Employees
           </router-link>
           <router-link class="link" :to="{ name: 'Clients' }">
             Clients
           </router-link>
-          <router-link class="link" :to="{ name: 'CreateClient' }"
+          <router-link class="link admin" :to="{ name: 'CreateClient' }"
                        v-if="show">
             Add Client
           </router-link>
-          <router-link class="link" :to="{ name: 'EditClients' }"
+          <router-link class="link admin" :to="{ name: 'EditClients' }"
                        v-if="show">
             Edit Clients
           </router-link>
           <router-link class="link" :to="{ name: 'Projects' }">
             Projects
           </router-link>
-          <router-link class="link" :to="{ name: 'CreateProject' }"
+          <router-link class="link admin" :to="{ name: 'CreateProject' }"
                        v-if="show">
             Create Project
           </router-link>
-          <router-link class="link" :to="{ name: 'EditProjects' }"
+          <router-link class="link admin" :to="{ name: 'EditProjects' }"
                        v-if="show">
             EditProjects
           </router-link>
@@ -113,7 +113,7 @@
                        v-if="!show">
             Login
           </router-link>
-          <li class="link" :to="{ name: 'Home' }"
+          <li class="link logout" :to="{ name: 'Home' }"
                        @click="logout"
                        v-if="show">
             Logout
@@ -257,6 +257,16 @@ header {
       padding: 15px 0;
       color: #fff;
       list-style-type: none;
+
+      &.admin {
+        padding-left: 10px;
+        font-size: 15px;
+        color: gray;
+      }
+
+      &.logout {
+        color: darkred;
+      }
     }
   }
 
