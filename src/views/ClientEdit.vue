@@ -35,7 +35,8 @@ export default {
     return {
       name: '',
       about: '',
-      id: ''
+      id: '',
+      logo: null
     }
   },
   mounted () {
@@ -57,14 +58,14 @@ export default {
       const data = {
         name: this.name,
         about: this.about,
-        id:  this.id
+        logo:  this.logo
       }
-
+      console.log(data)
       // bug na be, nema responsa
       clientsApi.editClient(this.$route.query.id, data)
         .then(res => {
           console.log(res)
-          this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+          // this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
           console.log(err)

@@ -1,3 +1,4 @@
+import { canNavigate } from '../index'
 import Projects from "../../views/Projects.vue"
 import ProjectProfile from "../../views/ProjectProfile.vue";
 import CreateProject from "../../views/ProjectCreate.vue";
@@ -12,6 +13,9 @@ const routes = [
     meta: {
       title: 'Projects',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/project-profile/:id",
@@ -20,6 +24,9 @@ const routes = [
     meta: {
       title: 'ProjectProfile',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/projects",
@@ -28,6 +35,9 @@ const routes = [
     meta: {
       title: 'EditProjects',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/create-project",
@@ -36,6 +46,9 @@ const routes = [
     meta: {
       title: 'CreateProject',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/project/:id",
@@ -44,6 +57,9 @@ const routes = [
     meta: {
       title: 'EditProject',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   }
 ]
 

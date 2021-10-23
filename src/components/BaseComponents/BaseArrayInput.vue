@@ -66,6 +66,7 @@ export default {
       if (!valueExists && this.value) {
         this.finalArr.push(this.value)
       }
+      this.value = ''
     }
   }
 }

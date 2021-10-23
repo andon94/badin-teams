@@ -1,3 +1,4 @@
+import { canNavigate } from '../index'
 import Employees from '../../views/Employees.vue'
 import EmployeeProfile from '../../views/EmployeeProfile.vue'
 import AddEmployee from '../../views/EmployeeAdd.vue'
@@ -12,6 +13,9 @@ const routes = [
     meta: {
       title: 'Employees',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/employee-profile/:id",
@@ -20,6 +24,9 @@ const routes = [
     meta: {
       title: 'EmployeeProfile',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/add-employee",
@@ -28,6 +35,9 @@ const routes = [
     meta: {
       title: 'AddEmployee',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/employees",
@@ -36,6 +46,9 @@ const routes = [
     meta: {
       title: 'EditEmployees',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/employee/:id",
@@ -44,6 +57,9 @@ const routes = [
     meta: {
       title: 'EditEmployee',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   }
 ]
 

@@ -56,11 +56,17 @@ export default {
   methods: {
     ...mapActions(['fetchClients', 'fetchProjects']),
     createNewTeam() {
+      const clientsArr = []
+      if (this.client.id) clientsArr.push(this.client.id)
+
+      const projectsArr = []
+      if (this.project.id) projectsArr.push(this.project.id)
+
       const data = {
         image: null,
         name: this.teamName,
-        clients: [this.client.id],
-        projects: [this.project.id],
+        clients: clientsArr,
+        projects: projectsArr,
         about: this.about,
       }
 

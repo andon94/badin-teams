@@ -6,44 +6,125 @@
       </div>
       <div class="nav-links">
         <ul v-show="!mobile">
-          <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-          <router-link class="link" :to="{ name: 'Teams' }">Teams</router-link>
-          <router-link class="link" :to="{ name: 'CreateTeam' }">Create Team</router-link>
-          <router-link class="link" :to="{ name: 'EditTeams' }">Edit Teams</router-link>
-          <router-link class="link" :to="{ name: 'AddEmployee' }">Add Employee</router-link>
-          <router-link class="link" :to="{ name: 'EditEmployees' }">Edit Employees</router-link>
-          <router-link class="link" :to="{ name: 'Clients' }">Clients</router-link>
-          <router-link class="link" :to="{ name: 'CreateClient' }">Add Client</router-link>
-          <router-link class="link" :to="{ name: 'EditClients' }">Edit Clients</router-link>
-          <router-link class="link" :to="{ name: 'Projects' }">Projects</router-link>
-          <router-link class="link" :to="{ name: 'CreateProject' }">Create Project</router-link>
-          <router-link class="link" :to="{ name: 'EditProjects' }">EditProjects</router-link>
-          <router-link class="link" :to="{ name: 'Login' }">Login</router-link>
+          <router-link class="link" :to="{ name: 'Home' }">
+            Home
+          </router-link>
+          <router-link class="link" :to="{ name: 'Teams' }">
+            Teams
+          </router-link>
+          <router-link class="link" :to="{ name: 'CreateTeam' }"
+                       v-if="show">
+            Create Team
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditTeams' }"
+                       v-if="show">
+            Edit Teams
+          </router-link>
+          <router-link class="link" :to="{ name: 'AddEmployee' }"
+                       v-if="show">
+            Add Employee
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditEmployees' }"
+                       v-if="show">
+            Edit Employees
+          </router-link>
+          <router-link class="link" :to="{ name: 'Clients' }">
+            Clients
+          </router-link>
+          <router-link class="link" :to="{ name: 'CreateClient' }"
+                       v-if="show">
+            Add Client
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditClients' }"
+                       v-if="show">
+            Edit Clients
+          </router-link>
+          <router-link class="link" :to="{ name: 'Projects' }">
+            Projects
+          </router-link>
+          <router-link class="link" :to="{ name: 'CreateProject' }"
+                       v-if="show">
+            Create Project
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditProjects' }"
+                       v-if="show">
+            EditProjects
+          </router-link>
+          <router-link class="link" :to="{ name: 'Login' }"
+                       v-if="!show">
+            Login
+          </router-link>
+          <li class="link" :to="{ name: 'Home' }"
+                       @click="logout"
+                       v-if="show">
+            Logout
+          </li>
         </ul>
       </div>
     </nav>
     <MenuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
     <transition name="mobile-nav">
       <ul class="mobile-nav" v-show="mobileNav" @click="toggleMobileNav">
-        <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-        <router-link class="link" :to="{ name: 'Teams' }">Teams</router-link>
-          <router-link class="link" :to="{ name: 'CreateTeam' }">Create Team</router-link>
-          <router-link class="link" :to="{ name: 'EditTeams' }">Edit Teams</router-link>
-          <router-link class="link" :to="{ name: 'AddEmployee' }">Add Employee</router-link>
-          <router-link class="link" :to="{ name: 'EditEmployees' }">Edit Employees</router-link>
-          <router-link class="link" :to="{ name: 'Clients' }">Clients</router-link>
-          <router-link class="link" :to="{ name: 'CreateClient' }">Add Client</router-link>
-          <router-link class="link" :to="{ name: 'EditClients' }">Edit Clients</router-link>
-          <router-link class="link" :to="{ name: 'Projects' }">Projects</router-link>
-          <router-link class="link" :to="{ name: 'CreateProject' }">Create Project</router-link>
-          <router-link class="link" :to="{ name: 'EditProjects' }">Edit Projects</router-link>
-        <router-link class="link" :to="{ name: 'Login' }">Login</router-link>
+          <router-link class="link" :to="{ name: 'Home' }">
+            Home
+          </router-link>
+          <router-link class="link" :to="{ name: 'Teams' }">
+            Teams
+          </router-link>
+          <router-link class="link" :to="{ name: 'CreateTeam' }"
+                       v-if="show">
+            Create Team
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditTeams' }"
+                       v-if="show">
+            Edit Teams
+          </router-link>
+          <router-link class="link" :to="{ name: 'AddEmployee' }"
+                       v-if="show">
+            Add Employee
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditEmployees' }"
+                       v-if="show">
+            Edit Employees
+          </router-link>
+          <router-link class="link" :to="{ name: 'Clients' }">
+            Clients
+          </router-link>
+          <router-link class="link" :to="{ name: 'CreateClient' }"
+                       v-if="show">
+            Add Client
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditClients' }"
+                       v-if="show">
+            Edit Clients
+          </router-link>
+          <router-link class="link" :to="{ name: 'Projects' }">
+            Projects
+          </router-link>
+          <router-link class="link" :to="{ name: 'CreateProject' }"
+                       v-if="show">
+            Create Project
+          </router-link>
+          <router-link class="link" :to="{ name: 'EditProjects' }"
+                       v-if="show">
+            EditProjects
+          </router-link>
+          <router-link class="link" :to="{ name: 'Login' }"
+                       v-if="!show">
+            Login
+          </router-link>
+          <li class="link" :to="{ name: 'Home' }"
+                       @click="logout"
+                       v-if="show">
+            Logout
+          </li>
       </ul>
     </transition>
   </header>
 </template>
 
 <script>
+import { isLoggedIn } from '../../router/index.js'
 import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
 
 export default {
@@ -51,16 +132,20 @@ export default {
   components: {
     MenuIcon
   },
-  data() {
+  data () {
     return {
       mobile: null,
       mobileNav: null,
       windowWidth: null,
+      show: false
     }
   },
-  created() {
+  created () {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
+  },
+  mounted () {
+    this.show = isLoggedIn()
   },
   computed: {
     navHeader () {
@@ -80,9 +165,14 @@ export default {
       this.mobileNav = false;
       return;
     },
-
     toggleMobileNav() {
       this.mobileNav = !this.mobileNav;
+    },
+    logout () {
+      // privremeno
+      window.localStorage.removeItem('badinTeamsStorage')
+      if (this.$route.path !== '/') this.$router.push({path:'/'})
+      location.reload()
     }
   }
 }
@@ -166,6 +256,7 @@ header {
     .link {
       padding: 15px 0;
       color: #fff;
+      list-style-type: none;
     }
   }
 

@@ -4,6 +4,7 @@
          v-click-outside="handleOutsideClick">
       <input :type="type"
              :value="value"
+             ref="baseInput"
              @input="updateValue($event.target.value)"
              @focus="riseLabel"
              @blur="lowerLabel"
@@ -11,12 +12,13 @@
       <input v-else
              :type="type"
              :value="value[name]"
+             ref="baseInput"
              readonly="true"
-             @input="updateValue($event.target.value)"
              @focus="riseLabel"
-             @blur="lowerLabel">
+             @blur="lowerLabel"
+             @input="updateValue($event.target.value)">
       <span class="placeholder"
-            :class="{'placeholder-label': placeholderLabel}"
+            :class="{'placeholder-label': labelPosition || placeholderLabel}"
             @click="riseLabel">
         {{customPlaceholder}}
       </span>
@@ -95,11 +97,6 @@ export default {
       }
     }
   },
-  watch: {
-    value () {
-      if (this.value) this.placeholderLabel = true
-    }
-  },
   computed: {
     selectOptions () {
       const arr = []
@@ -120,12 +117,16 @@ export default {
         else return this.placeholder
       }
       else return this.placeholder
+    },
+    labelPosition () {
+      if (this.value) return true
+      else return false
     }
   },
   methods: {
     setOption (option) {
       this.$emit('input', option)
-      this.placeholderLabel = true
+      // this.placeholderLabel = true
       this.selectIsOpen = false
     },
     updateValue: function (value) {

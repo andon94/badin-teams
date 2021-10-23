@@ -24,6 +24,9 @@ const routes = [
     meta: {
       title: 'TeamProfile',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/create-team",
@@ -43,6 +46,9 @@ const routes = [
     meta: {
       title: 'EditTeams',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/team/:id",
@@ -51,6 +57,9 @@ const routes = [
     meta: {
       title: 'EditTeam',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
 ]
 

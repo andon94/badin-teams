@@ -1,3 +1,4 @@
+import { canNavigate } from '../index'
 import Clients from '../../views/Clients.vue'
 import CreateClient from "../../views/ClientCreate.vue";
 import EditClients from '../../views/ClientsEdit.vue'
@@ -12,6 +13,9 @@ const routes = [
     meta: {
       title: 'Clients',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/clients",
@@ -20,6 +24,9 @@ const routes = [
     meta: {
       title: 'EditClients',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/edit/client/:id",
@@ -28,6 +35,9 @@ const routes = [
     meta: {
       title: 'EditClient',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/create-client",
@@ -36,6 +46,9 @@ const routes = [
     meta: {
       title: 'CreateClient',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/client-profile/:id",
@@ -44,6 +57,9 @@ const routes = [
     meta: {
       title: 'ClientProfile',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
 ]
 

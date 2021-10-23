@@ -13,18 +13,18 @@
                  v-model="email"/>
       <BaseInput :placeholder="'Position'"
                  v-model="position"/>
-      <BaseInput :placeholder="'Team'"
-                 :name="'name'"
-                 :selectArr="teams"
-                 v-model="team"/>
-      <BaseInput :placeholder="'Client'"
-                 name="name"
-                 :selectArr="clients"
-                 v-model="client"/>
-      <BaseInput :placeholder="'Project'"
-                 name="name"
-                 :selectArr="projects"
-                 v-model="project"/>
+      <BaseArrayInput :selectArr="teams"
+                      name="name"
+                      placeholder="Team"
+                      @finalArr="handleTeam"/>
+      <BaseArrayInput :selectArr="clients"
+                      name="name"
+                      placeholder="Client"
+                      @finalArr="handleClient"/>
+      <BaseArrayInput :selectArr="projects"
+                      name="name"
+                      placeholder="Project"
+                      @finalArr="handleProject"/>
       <BaseInput :placeholder="'Seniority'"
                  :selectArr="seniorities"
                  v-model="seniority"/>
@@ -48,6 +48,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import { employeesApi } from '../services/employees.js'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
+import BaseArrayInput from '../components/BaseComponents/BaseArrayInput.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'
 
@@ -55,6 +56,7 @@ export default {
   name: 'AddEmployee',
   components: {
     BaseInput,
+    BaseArrayInput,
     PhotoInput,
     BaseButton
   },
@@ -75,7 +77,10 @@ export default {
       lead: '',
       leads: ['Tech Lead', 'Product owner', 'People manager'],
       mainTech: '',
-      project: ''
+      project: '',
+      employeeTeams: [],
+      employeeClients: [],
+      employeeProjects: []
     }
   },
   mounted () {
@@ -88,7 +93,23 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTeams', 'fetchClients', 'fetchProjects']),
+    handleTeam (val) {
+      this.employeeTeams = [...val]
+    },
+    handleClient (val) {
+      this.employeeClients = [...val]
+    },
+    handleProject (val) {
+      this.employeeProjects = [...val]
+    },
     addNewEmployee() {
+
+      this.employeeTeams = this.employeeTeams.map(team => team.id)
+      // privremeno badin tim id '66dfcc5e-7dbe-4e3b-b979-e10a2c6f2c51'
+      this.employeeTeams.push('66dfcc5e-7dbe-4e3b-b979-e10a2c6f2c51')
+      this.employeeClients = this.employeeClients.map(client => client.id)
+      this.employeeProjects = this.employeeProjects.map(project => project.id)
+
       const data = {
         email: this.email,
         firstName: this.firstName,
@@ -100,9 +121,9 @@ export default {
         mainTechnology: this.mainTech,
         workingArea: this.workArea,
         lead: this.lead,
-        teams: [this.team.id],
-        clients: [this.client.id],
-        projects: [this.project.id]
+        teams: this.employeeTeams,
+        clients: this.employeeClients,
+        projects: this.employeeProjects
       }
 
       employeesApi.createEmployee(data)

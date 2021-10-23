@@ -1,3 +1,4 @@
+import { canNavigate } from '../index'
 import Login from "../../views/AuthLogin.vue";
 import ForgotPass from "../../views/AuthForgotPass.vue";
 
@@ -9,6 +10,9 @@ const routes = [
     meta: {
       title: 'Login',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   },
   {
     path: "/forgot-pass",
@@ -17,6 +21,9 @@ const routes = [
     meta: {
       title: 'ForgotPass',
     },
+    beforeEnter (to, from, next) {
+      canNavigate(to.name, next)
+    }
   }
 ]
 

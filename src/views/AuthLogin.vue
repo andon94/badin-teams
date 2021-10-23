@@ -56,7 +56,6 @@ export default {
         .then(res => {
           localStorage.setItem('badinTeamsStorage', JSON.stringify(res))
           this.$router.push({path:'/'})
-          console.log(res)
         })
         .catch(err => {
           console.log(err)
