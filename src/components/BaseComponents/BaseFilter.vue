@@ -87,6 +87,7 @@ export default {
     font-size: 14px;
     margin-top: -10px;
     .filters {
+      margin-left: 10px;
       display: flex;
       flex-wrap: wrap;
       .filter {

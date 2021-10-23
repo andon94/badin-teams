@@ -59,6 +59,9 @@ export default {
     .bubbles, .list {
       min-width: 100vw;
     }
+    .bubbles {
+      margin-top: 40px;
+    }
   }
 }
 </style>
