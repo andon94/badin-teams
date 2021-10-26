@@ -1,4 +1,4 @@
-import { projectsApi } from '../../services/projects.js'
+import { projectsApi } from '../../services/api/projects.js'
 
 const state = {
   projects: [],

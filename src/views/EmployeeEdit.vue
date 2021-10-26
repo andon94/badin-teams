@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { employeesApi } from '../services/employees.js'
+import { employeesApi } from '../services/api/employees.js'
 import { mapActions, mapGetters } from 'vuex'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'

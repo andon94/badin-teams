@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import { teamsApi } from '../../services/teams.js'
-import { employeesApi } from '../../services/employees.js'
-import { projectsApi } from '../../services/projects.js'
-import { clientsApi } from '../../services/clients.js'
+import { teamsApi } from '../../services/api/teams.js'
+import { employeesApi } from '../../services/api/employees.js'
+import { projectsApi } from '../../services/api/projects.js'
+import { clientsApi } from '../../services/api/clients.js'
 import BaseButton from '../BaseComponents/BaseButton.vue'
 
 export default {

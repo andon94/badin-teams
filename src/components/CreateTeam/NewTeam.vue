@@ -23,7 +23,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { teamsApi } from '../../services/teams'
+import { teamsApi } from '../../services/api/teams'
 import PhotoInput from '../BaseComponents/PhotoInput.vue'
 import BaseInput from '../BaseComponents/BaseInput.vue'
 import TextareaInput from '../BaseComponents/TextareaInput.vue'

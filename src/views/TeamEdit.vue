@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { teamsApi } from '../services/teams.js'
+import { teamsApi } from '../services/api/teams.js'
 import { mapActions, mapGetters } from 'vuex'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'

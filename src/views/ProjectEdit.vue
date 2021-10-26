@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {projectsApi} from '../services/projects.js'
+import {projectsApi} from '../services/api/projects.js'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import TextareaInput from '../components/BaseComponents/TextareaInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'

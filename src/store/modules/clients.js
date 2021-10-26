@@ -1,4 +1,4 @@
-import { clientsApi } from '../../services/clients.js'
+import { clientsApi } from '../../services/api/clients.js'
 
 const state = {
   clients: [],

@@ -26,7 +26,8 @@ export default {
   created() {
     this.checkRoute();
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     checkRoute() {
       if (this.$route.name === "Login" || this.$route.name === "ForgotPass") {
