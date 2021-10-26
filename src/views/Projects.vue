@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { projectsApi } from '../services/projects.js'
+import { projectsApi } from '../services/api/projects.js'
 import BaseFilter from '../components/BaseComponents/BaseFilter.vue'
 import Project from '../components/Projects/Project.vue'
 

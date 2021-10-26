@@ -1,4 +1,4 @@
-import { employeesApi } from '../../services/employees.js'
+import { employeesApi } from '../../services/api/employees.js'
 
 const state = {
   employees: [],

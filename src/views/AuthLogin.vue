@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import { authAPI } from '../services/login.js'
+import { authAPI } from '../services/api/login.js'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'
+import {mapActions} from "vuex";
+import * as Roles from "../services/authorization/permissions";
 
-// import email from "../assets/images/Icons/envelope-regular.svg";
-// import password from "../assets/images/Icons/lock-alt-solid.svg";
 
 export default {
   name: "Login",
@@ -46,6 +46,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setPermissions']),
     handleLogin () {
       const data = {
         username: this.email,
@@ -54,7 +55,14 @@ export default {
 
       authAPI.login(data)
         .then(res => {
+          if(res.roles.includes('ADMIN')) {
+            this.$store.dispatch('setPermissions', Roles.ADMIN);
+          } else {
+            this.$store.dispatch('setPermissions', Roles.UNAUTHORIZED);
+          }
+          // Ovo mora bolje
           localStorage.setItem('badinTeamsStorage', JSON.stringify(res))
+
           this.$router.push({path:'/'})
         })
         .catch(err => {

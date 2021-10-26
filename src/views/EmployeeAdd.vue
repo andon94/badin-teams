@@ -46,7 +46,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { employeesApi } from '../services/employees.js'
+import { employeesApi } from '../services/api/employees.js'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseArrayInput from '../components/BaseComponents/BaseArrayInput.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'

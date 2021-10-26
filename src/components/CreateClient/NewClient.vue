@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { clientsApi } from '../../services/clients'
+import { clientsApi } from '../../services/api/clients'
 import PhotoInput from '../BaseComponents/PhotoInput.vue'
 import BaseInput from '../BaseComponents/BaseInput.vue'
 import TextareaInput from '../BaseComponents/TextareaInput.vue'

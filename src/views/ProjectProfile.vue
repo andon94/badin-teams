@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { projectsApi } from '../services/projects'
+import { projectsApi } from '../services/api/projects'
 
 export default {
   name: 'ProjectProfile',

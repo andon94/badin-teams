@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { clientsApi } from '../services/clients'
+import { clientsApi } from '../services/api/clients'
 
 export default {
   name: 'ClientProfile',

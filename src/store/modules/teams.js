@@ -1,4 +1,4 @@
-import { teamsApi } from '../../services/teams.js'
+import { teamsApi } from '../../services/api/teams.js'
 
 
 const state = {

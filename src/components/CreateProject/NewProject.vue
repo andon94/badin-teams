@@ -17,7 +17,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { projectsApi } from '../../services/projects.js'
+import { projectsApi } from '../../services/api/projects.js'
 import BaseInput from '../BaseComponents/BaseInput.vue'
 import TextareaInput from '../BaseComponents/TextareaInput.vue'
 import BaseButton from '../BaseComponents/BaseButton.vue'
