@@ -1,6 +1,6 @@
 import { canNavigate } from '../index'
 import Login from "../../views/AuthLogin.vue";
-import ForgotPass from "../../views/AuthForgotPass.vue";
+import ForgotPassword from "../../views/AuthForgotPassword.vue";
 
 const routes = [
   {
@@ -16,11 +16,11 @@ const routes = [
     }
   },
   {
-    path: "/forgot-pass",
-    name: "ForgotPass",
-    component: ForgotPass,
+    path: "/forgot-password",
+    name: "ForgotPassword",
+    component: ForgotPassword,
     meta: {
-      title: 'ForgotPass',
+      title: 'ForgotPassword',
       requireAuth: false
     },
     beforeEnter (to, from, next) {

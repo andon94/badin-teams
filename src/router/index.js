@@ -40,6 +40,7 @@ export const isLoggedIn = () => {
 }
 
 export const canNavigate = (meta, next) => {
+  isLoggedIn()
   if (meta.requireAuth) {
     const permissions = store.getters.permissions
     if (permissions) {
