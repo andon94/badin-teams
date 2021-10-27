@@ -44,7 +44,7 @@ const getAdminUserPermissions = () => {
     return rules;
 }
 
-const ADMIN_PERMISSIONS = getAdminUserPermissions()
+export const ROLE_ADMIN = getAdminUserPermissions()
 
-export const ADMIN = new Ability(ADMIN_PERMISSIONS);
+// export const ROLE_ADMIN = new Ability(ADMIN_PERMISSIONS);
 

@@ -33,10 +33,11 @@
 
 <script>
 import { authAPI } from '../services/api/login.js'
+import Storage from '../services/storage'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'
 import {mapActions} from "vuex";
-import * as Roles from "../services/authorization/permissions";
+import {setUserRoles} from "../utils/auth";
 
 
 export default {
@@ -70,12 +71,10 @@ export default {
 
       authAPI.login(data)
         .then(res => {
-          if(res.roles.includes('ROLE_ADMIN')) {
-            this.$store.commit('setPermissions', Roles.ADMIN)
-            this.$store.commit('setLoginStatus', true)
-          }
+          this.$store.commit('setPermissions', setUserRoles(res.roles))
+          this.$store.commit('setLoginStatus', true)
 
-          localStorage.setItem('badinTeamsStorage', JSON.stringify(res))
+          Storage.setItem('storage', res)
           this.$router.push({path:'/'})
         })
         .catch(err => {
