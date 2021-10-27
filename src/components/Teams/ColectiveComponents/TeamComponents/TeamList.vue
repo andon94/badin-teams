@@ -1,5 +1,6 @@
 <template>
-  <div class="team-list">
+  <Loader v-if="!teams.length"/>
+  <div class="team-list" v-else>
     <ul>
       <BaseFilter placeholder="Filter teams"
                   :dataArr="this.teams"
@@ -14,12 +15,14 @@
 </template>
 
 <script>
+import Loader from '../../../BaseComponents/Loader.vue'
 import BaseFilter from '../../../BaseComponents/BaseFilter.vue'
 import Team from './Team.vue'
 
 export default {
   name: 'TeamList',
   components: {
+    Loader,
     BaseFilter,
     Team
   },
@@ -32,6 +35,11 @@ export default {
   data () {
     return {
       filteredData: []
+    }
+  },
+  watch: {
+    teams () {
+      this.filteredData = this.teams
     }
   },
   methods: {

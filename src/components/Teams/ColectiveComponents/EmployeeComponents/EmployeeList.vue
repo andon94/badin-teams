@@ -1,7 +1,8 @@
 <template>
-  <div class="employee-list">
+  <Loader v-if="!employees.length"/>
+  <div class="employee-list"
+       v-else>
     <ul class="employee-list-container">
-      <!-- trenutno samo po imenu -->
       <BaseFilter placeholder="Filter employees"
                   :dataArr="this.employees"
                   :filterProperties="['firstName', 'lastName', 'nickname']"
@@ -15,12 +16,14 @@
 </template>
 
 <script>
+import Loader from '../../../BaseComponents/Loader.vue'
 import BaseFilter from '../../../BaseComponents/BaseFilter.vue'
 import Employee from './Employee.vue'
 
 export default {
   name: 'EmployeeList',
   components: {
+    Loader,
     BaseFilter,
     Employee
   },
@@ -33,6 +36,11 @@ export default {
   data () {
     return {
       filteredData: []
+    }
+  },
+  watch: {
+    employees () {
+      this.filteredData = this.employees
     }
   },
   methods: {

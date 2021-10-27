@@ -1,7 +1,7 @@
 <template>
   <div class="reset-pass">
       <Modal v-if="modalActive" v-on:close-modal="closeModal" />
-      <Loading v-if="loading" />
+      <Loader v-if="loading" />
       <div class="form-wrap">
         <form class="reset">
           <h2>Reset Password</h2>
@@ -23,7 +23,7 @@
 <script>
 import email from "../assets/images/Icons/envelope-regular.svg";
 import Modal from "../components/BaseComponents/Modal";
-import Loading from "../components/BaseComponents/Loading";
+import Loader from "../components/BaseComponents/Loader";
 export default {
 name: "ForgtoPass",
     data() {
@@ -37,7 +37,7 @@ name: "ForgtoPass",
     components: {
         email,
         Modal,
-        Loading
+        Loader
     },
     methods: {
         closeModal() {

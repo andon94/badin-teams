@@ -1,17 +1,17 @@
 <template>
-  <div class="loading">
+  <div class="loader">
     <span></span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Loading'
+  name: 'Loader'
 }
 </script>
 
 <style lang="scss" scoped>
-.loading {
+.loader {
   top: 0;
   z-index: 101;
   height: 100%;

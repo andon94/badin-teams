@@ -1,5 +1,7 @@
 <template>
-  <div class="edit-projects">
+  <Loader v-if="!projects.length"/>
+  <div class="edit-projects"
+       v-else>
     <BaseFilter  placeholder="Filter projects"
                  :dataArr="this.projects"
                  :filterProperties="['name']"
@@ -16,12 +18,14 @@
 
 <script>
 import { projectsApi } from '../services/api/projects.js'
+import Loader from '../components/BaseComponents/Loader.vue'
 import BaseFilter from '../components/BaseComponents/BaseFilter.vue'
 import Project from '../components/Projects/Project.vue'
 
 export default {
   name: 'Projects',
   components: {
+    Loader,
     BaseFilter,
     Project
   },
@@ -33,6 +37,11 @@ export default {
   },
   mounted () {
     this.fetchProjects()
+  },
+  watch: {
+    projects () {
+      this.filteredData = this.projects
+    }
   },
   methods: {
     fetchProjects () {

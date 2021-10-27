@@ -1,5 +1,7 @@
 <template>
+  <Loader v-if="!name"/>
   <form class="edit-team"
+        v-else
         @submit.prevent="editClient">
     <PhotoInput />
     <BaseInput :placeholder="'Client name'"
@@ -16,6 +18,7 @@
 
 <script>
 import { clientsApi } from '../services/api/clients.js'
+import Loader from '../components/BaseComponents/Loader.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import TextareaInput from '../components/BaseComponents/TextareaInput.vue'
@@ -25,6 +28,7 @@ import DeleteUnit from '../components/DeleteUnit/DeleteUnit.vue'
 export default {
   name: 'EditClient',
   components: {
+    Loader,
     PhotoInput,
     BaseInput,
     TextareaInput,

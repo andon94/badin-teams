@@ -1,5 +1,7 @@
 <template>
+  <Loader v-if="!name"/>
   <form class="edit-team"
+        v-else
         @submit.prevent="editProject">
     <BaseInput :placeholder="'Team name'"
                 v-model="name"/>
@@ -15,6 +17,7 @@
 
 <script>
 import {projectsApi} from '../services/api/projects.js'
+import Loader from '../components/BaseComponents/Loader.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import TextareaInput from '../components/BaseComponents/TextareaInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'
@@ -23,6 +26,7 @@ import DeleteUnit from '../components/DeleteUnit/DeleteUnit.vue'
 export default {
   name: 'EditTeam',
   components: {
+    Loader,
     BaseInput,
     TextareaInput,
     BaseButton,

@@ -1,6 +1,8 @@
 <template>
+  <Loader v-if="Object.keys(team).length === 0"/>
   <form class="edit-team"
-        @submit.prevent="editTeam">
+        @submit.prevent="editTeam"
+        v-else>
     <PhotoInput />
     <BaseInput :placeholder="'Team name'"
                 v-model="team.name"/>
@@ -27,6 +29,7 @@
 <script>
 import { teamsApi } from '../services/api/teams.js'
 import { mapActions, mapGetters } from 'vuex'
+import Loader from '../components/BaseComponents/Loader.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseArrayInput from '../components/BaseComponents/BaseArrayInput.vue'
@@ -37,6 +40,7 @@ import DeleteUnit from '../components/DeleteUnit/DeleteUnit.vue'
 export default {
   name: 'EditTeam',
   components: {
+    Loader,
     PhotoInput,
     BaseInput,
     BaseArrayInput,
@@ -53,6 +57,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.team)
     this.fetchTeam(this.$route.query.id)
     this.fetchTeamProjects(this.$route.query.id)
     this.fetchTeamClients(this.$route.query.id)

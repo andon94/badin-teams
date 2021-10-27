@@ -48,7 +48,7 @@
           </router-link>
           <router-link class="link" :to="{ name: 'EditProjects' }"
                        v-if="loginStatus">
-            EditProjects
+            Edit Projects
           </router-link>
           <router-link class="link" :to="{ name: 'Login' }"
                        v-if="!loginStatus">
@@ -107,7 +107,7 @@
           </router-link>
           <router-link class="link admin" :to="{ name: 'EditProjects' }"
                        v-if="loginStatus">
-            EditProjects
+            Edit Projects
           </router-link>
           <router-link class="link" :to="{ name: 'Login' }"
                        v-if="!loginStatus">

@@ -1,7 +1,8 @@
 <template>
+  <Loader v-if="Object.keys(employee).length === 0"/>
   <form class="edit-employee"
         @submit.prevent="editEmployee"
-        v-if="employee">
+        v-else>
     <PhotoInput />
     <BaseInput :placeholder="'First name'"
                 v-model="employee.firstName"/>
@@ -47,6 +48,7 @@
 <script>
 import { employeesApi } from '../services/api/employees.js'
 import { mapActions, mapGetters } from 'vuex'
+import Loader from '../components/BaseComponents/Loader.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseArrayInput from '../components/BaseComponents/BaseArrayInput.vue'
@@ -57,6 +59,7 @@ import DeleteUnit from '../components/DeleteUnit/DeleteUnit.vue'
 export default {
   name: 'EditEmployee',
   components: {
+    Loader,
     PhotoInput,
     BaseInput,
     BaseArrayInput,
