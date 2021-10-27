@@ -9,9 +9,10 @@ const routes = [
     component: Login,
     meta: {
       title: 'Login',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -20,9 +21,10 @@ const routes = [
     component: ForgotPass,
     meta: {
       title: 'ForgotPass',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   }
 ]

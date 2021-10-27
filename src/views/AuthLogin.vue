@@ -55,14 +55,13 @@ export default {
 
       authAPI.login(data)
         .then(res => {
-          if(res.roles.includes('ADMIN')) {
-            this.$store.dispatch('setPermissions', Roles.ADMIN);
-          } else {
-            this.$store.dispatch('setPermissions', Roles.UNAUTHORIZED);
+          console.log(res)
+          if(res.roles.includes('ROLE_ADMIN')) {
+            this.$store.commit('setPermissions', Roles.ADMIN)
+            this.$store.commit('setLoginStatus', true)
           }
-          // Ovo mora bolje
-          localStorage.setItem('badinTeamsStorage', JSON.stringify(res))
 
+          localStorage.setItem('badinTeamsStorage', JSON.stringify(res))
           this.$router.push({path:'/'})
         })
         .catch(err => {

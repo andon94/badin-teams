@@ -12,9 +12,10 @@ const routes = [
     component: Projects,
     meta: {
       title: 'Projects',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -23,9 +24,10 @@ const routes = [
     component: ProjectProfile,
     meta: {
       title: 'ProjectProfile',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -34,9 +36,10 @@ const routes = [
     component: EditProjects,
     meta: {
       title: 'EditProjects',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -45,9 +48,10 @@ const routes = [
     component: CreateProject,
     meta: {
       title: 'CreateProject',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -56,9 +60,10 @@ const routes = [
     component: EditProject,
     meta: {
       title: 'EditProject',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   }
 ]

@@ -12,9 +12,10 @@ const routes = [
     component: Clients,
     meta: {
       title: 'Clients',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -23,9 +24,10 @@ const routes = [
     component: EditClients,
     meta: {
       title: 'EditClients',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -34,9 +36,10 @@ const routes = [
     component: EditClient,
     meta: {
       title: 'EditClient',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -45,9 +48,10 @@ const routes = [
     component: CreateClient,
     meta: {
       title: 'CreateClient',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -56,9 +60,10 @@ const routes = [
     component: ClientProfile,
     meta: {
       title: 'ClientProfile',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
 ]

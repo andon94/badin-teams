@@ -12,11 +12,8 @@ export const ADMIN_ALLOWED_PAGES = [
     'EditProject',
     'AddEmployee',
     'EditEmployees',
-    'EditEmployee'
-]
-
-export const UNAUTHORIZED_PAGES =  [
-    'HOME',
+    'EditEmployee',
+    'Home',
     'Teams',
     'Clients',
     'Projects',
@@ -25,7 +22,9 @@ export const UNAUTHORIZED_PAGES =  [
     'ClientProfile',
     'ProjectProfile',
     'EmployeeProfile',
-];
+    'Login',
+    'ForgetPass'
+]
 
 export const CAN_SEE_PAGE_ABILITY = 'see'
 
@@ -38,34 +37,15 @@ function setPermissionForPage(can) {
     }
 }
 
-
-const getUnauthroizedUserPermissions = () => {
-    const {can, rules } = new AbilityBuilder(Ability);
-    const setPermissions = setPermissionForPage(can);
-
-    setPermissions(UNAUTHORIZED_PAGES)
-
-    return rules;
-
-};
-
 const getAdminUserPermissions = () => {
     const {can, rules } = new AbilityBuilder(Ability);
     const setPermissions = setPermissionForPage(can);
 
     setPermissions(ADMIN_ALLOWED_PAGES)
-
     return rules;
+}
 
-};
+const ADMIN_PERMISSIONS = getAdminUserPermissions()
 
-
-const UNAUTHORIZED_USER_PERMISSIONS = getUnauthroizedUserPermissions();
-const ADMIN_PERMISSIONS = getAdminUserPermissions().concat(UNAUTHORIZED_USER_PERMISSIONS);
-
-
-
-
-export const UNAUTHORIZED = new Ability(UNAUTHORIZED_USER_PERMISSIONS)
 export const ADMIN = new Ability(ADMIN_PERMISSIONS);
 

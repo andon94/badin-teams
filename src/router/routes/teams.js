@@ -12,9 +12,10 @@ const routes = [
     component: Teams,
     meta: {
       title: 'Teams',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -23,9 +24,10 @@ const routes = [
     component: TeamProfile,
     meta: {
       title: 'TeamProfile',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -34,9 +36,10 @@ const routes = [
     component: CreateTeam,
     meta: {
       title: 'Create Teams',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -45,9 +48,10 @@ const routes = [
     component: EditTeams,
     meta: {
       title: 'EditTeams',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -56,9 +60,10 @@ const routes = [
     component: EditTeam,
     meta: {
       title: 'EditTeam',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
 ]

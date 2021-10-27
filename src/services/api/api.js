@@ -20,7 +20,6 @@ class BaseFetcher {
 					return config
 				},
 				(error) => {
-					console.log('ayy')
 					return Promise.reject(error)
 				}
 			)

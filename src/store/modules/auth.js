@@ -1,10 +1,14 @@
 const state = {
-  permissions: null
+  permissions: null,
+  loginStatus: false
 }
 
 const getters = {
   permissions(state) {
     return state.permissions
+  },
+  loginStatus(state) {
+    return state.loginStatus
   }
 }
 
@@ -17,6 +21,9 @@ const actions = {
 const mutations = {
   setPermissions(state, permissions){
     state.permissions = permissions;
+  },
+  setLoginStatus(state, boolean) {
+    state.loginStatus = boolean
   }
 }
 

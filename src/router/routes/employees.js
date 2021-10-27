@@ -12,9 +12,10 @@ const routes = [
     component: Employees,
     meta: {
       title: 'Employees',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -23,9 +24,10 @@ const routes = [
     component: EmployeeProfile,
     meta: {
       title: 'EmployeeProfile',
+      requireAuth: false
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -34,9 +36,10 @@ const routes = [
     component: AddEmployee,
     meta: {
       title: 'AddEmployee',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -45,9 +48,10 @@ const routes = [
     component: EditEmployees,
     meta: {
       title: 'EditEmployees',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   },
   {
@@ -56,9 +60,10 @@ const routes = [
     component: EditEmployee,
     meta: {
       title: 'EditEmployee',
+      requireAuth: true
     },
     beforeEnter (to, from, next) {
-      canNavigate(to.name, next)
+      canNavigate(to.meta, next)
     }
   }
 ]

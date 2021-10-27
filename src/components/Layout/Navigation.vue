@@ -13,50 +13,50 @@
             Teams
           </router-link>
           <router-link class="link" :to="{ name: 'CreateTeam' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Create Team
           </router-link>
           <router-link class="link" :to="{ name: 'EditTeams' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Edit Teams
           </router-link>
           <router-link class="link" :to="{ name: 'AddEmployee' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Add Employee
           </router-link>
           <router-link class="link" :to="{ name: 'EditEmployees' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Edit Employees
           </router-link>
           <router-link class="link" :to="{ name: 'Clients' }">
             Clients
           </router-link>
           <router-link class="link" :to="{ name: 'CreateClient' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Add Client
           </router-link>
           <router-link class="link" :to="{ name: 'EditClients' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Edit Clients
           </router-link>
           <router-link class="link" :to="{ name: 'Projects' }">
             Projects
           </router-link>
           <router-link class="link" :to="{ name: 'CreateProject' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Create Project
           </router-link>
           <router-link class="link" :to="{ name: 'EditProjects' }"
-                       v-if="show">
+                       v-if="loginStatus">
             EditProjects
           </router-link>
           <router-link class="link" :to="{ name: 'Login' }"
-                       v-if="!show">
+                       v-if="!loginStatus">
             Login
           </router-link>
           <li class="link" :to="{ name: 'Home' }"
                        @click="logout"
-                       v-if="show">
+                       v-if="loginStatus">
             Logout
           </li>
         </ul>
@@ -72,50 +72,50 @@
             Teams
           </router-link>
           <router-link class="link admin" :to="{ name: 'CreateTeam' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Create Team
           </router-link>
           <router-link class="link admin" :to="{ name: 'EditTeams' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Edit Teams
           </router-link>
           <router-link class="link admin" :to="{ name: 'AddEmployee' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Add Employee
           </router-link>
           <router-link class="link admin" :to="{ name: 'EditEmployees' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Edit Employees
           </router-link>
           <router-link class="link" :to="{ name: 'Clients' }">
             Clients
           </router-link>
           <router-link class="link admin" :to="{ name: 'CreateClient' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Add Client
           </router-link>
           <router-link class="link admin" :to="{ name: 'EditClients' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Edit Clients
           </router-link>
           <router-link class="link" :to="{ name: 'Projects' }">
             Projects
           </router-link>
           <router-link class="link admin" :to="{ name: 'CreateProject' }"
-                       v-if="show">
+                       v-if="loginStatus">
             Create Project
           </router-link>
           <router-link class="link admin" :to="{ name: 'EditProjects' }"
-                       v-if="show">
+                       v-if="loginStatus">
             EditProjects
           </router-link>
           <router-link class="link" :to="{ name: 'Login' }"
-                       v-if="!show">
+                       v-if="!loginStatus">
             Login
           </router-link>
           <li class="link logout" :to="{ name: 'Home' }"
                        @click="logout"
-                       v-if="show">
+                       v-if="loginStatus">
             Logout
           </li>
       </ul>
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import { isLoggedIn } from '../../router/index.js'
+import { mapGetters } from 'vuex'
 import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
 
 export default {
@@ -136,23 +136,20 @@ export default {
     return {
       mobile: null,
       mobileNav: null,
-      windowWidth: null,
-      show: false
+      windowWidth: null
     }
   },
   created () {
     window.addEventListener('resize', this.checkScreen);
     this.checkScreen();
   },
-  mounted () {
-    this.show = isLoggedIn()
-  },
   computed: {
+    ...mapGetters(['loginStatus']),
     navHeader () {
       let routeName = this.$route.name
       if (routeName) routeName = routeName.replace( /([a-z])([A-Z])/g, "$1 $2");
       return routeName || ''
-    }
+    },
   },
   methods: {
     checkScreen() {
@@ -169,10 +166,9 @@ export default {
       this.mobileNav = !this.mobileNav;
     },
     logout () {
-      // privremeno
       window.localStorage.removeItem('badinTeamsStorage')
-      if (this.$route.path !== '/') this.$router.push({path:'/'})
-      location.reload()
+      this.$store.commit('setLoginStatus', false)
+      this.$router.push({path:'/login'})
     }
   }
 }

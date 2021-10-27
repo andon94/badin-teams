@@ -40,7 +40,7 @@ const actions = {
 
   fetchEmployeeTeams ({commit}, id) {
     employeesApi.fetchEmployeeTeams(id)
-      .then(res => {
+    .then(res => {
         commit('setEmployeeTeams', res)
       })
       .catch(err => {
