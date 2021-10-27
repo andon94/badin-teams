@@ -1,7 +1,8 @@
 <template>
   <button :type="type"
           class="base-button"
-          @click="$emit('click')">
+          @click="$emit('click')"
+          :disabled="disabled">
     {{text}}
   </button>
 </template>
@@ -17,6 +18,10 @@ export default {
     type: {
       type: String,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -32,5 +37,8 @@ export default {
   padding: 10px 20px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
+  &:disabled {
+    opacity: 0.7;
+  }
 }
 </style>

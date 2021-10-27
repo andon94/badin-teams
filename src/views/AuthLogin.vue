@@ -1,24 +1,30 @@
 <template>
   <div class="form-wrap">
-    <form @submit.prevent
-          class="login">
-      <h2>Login to Badin Teams</h2>
-      <BaseInput :placeholder="'Email'"
-                 v-model="email"/>
+    <ValidationObserver ref="loginForm"
+                    v-slot="{ invalid }">
+      <form @submit.prevent
+            class="login">
+        <h2>Login to Badin Teams</h2>
+        <BaseInput :placeholder="'Email'"
+                   v-model="email"
+                   rules="required|email"/>
 
-      <BaseInput :placeholder="'Password'"
-                 type="password"
-                 v-model="password"/>
+        <BaseInput :placeholder="'Password'"
+                   type="password"
+                   v-model="password"
+                   rules="required"/>
 
-      <!-- <router-link class="forgot-password"
-                   :to="{ name: 'ForgotPass' }">
-        Forgot your password?
-      </router-link> -->
-      <BaseButton text="Create"
-                  type="submit"
-                  @click="handleLogin"/>
-      <div class="angle"></div>
-    </form>
+        <!-- <router-link class="forgot-password"
+                    :to="{ name: 'ForgotPass' }">
+          Forgot your password?
+        </router-link> -->
+        <BaseButton text="Create"
+                    type="submit"
+                    :disabled="invalid"
+                    @click="handleLogin"/>
+        <div class="angle"></div>
+      </form>
+    </ValidationObserver>
     <div class="background"></div>
   </div>
 </template>
@@ -48,6 +54,15 @@ export default {
   methods: {
     ...mapActions(['setPermissions']),
     handleLogin () {
+      this.$refs.loginForm.validate().then(success => {
+        if (!success) {
+          return
+        } else {
+          this.login()
+        }
+      })
+    },
+    login () {
       const data = {
         username: this.email,
         password: this.password
@@ -78,7 +93,7 @@ export default {
   display: flex;
   height: 100vh;
   justify-content: center;
-  align-self: center;
+  align-items: center;
   margin: 0 auto;
   width: 90%;
   @media (min-width: 900px) {

@@ -2,21 +2,28 @@
   <div class="base-input">
     <div class="input-container"
          v-click-outside="handleOutsideClick">
-      <input :type="type"
-             :value="value"
-             ref="baseInput"
-             @input="updateValue($event.target.value)"
-             @focus="riseLabel"
-             @blur="lowerLabel"
-             v-if="!name">
-      <input v-else
-             :type="type"
-             :value="value[name]"
-             ref="baseInput"
-             readonly="true"
-             @focus="riseLabel"
-             @blur="lowerLabel"
-             @input="updateValue($event.target.value)">
+      <ValidationProvider v-slot="{ errors }"
+                          :rules="rules"
+                          :name="name">
+        <input :type="type"
+              :value="value"
+              ref="baseInput"
+              @input="updateValue($event.target.value)"
+              @focus="riseLabel"
+              @blur="lowerLabel"
+              v-if="!name">
+        <input v-else
+              :type="type"
+              :value="value[name]"
+              ref="baseInput"
+              readonly="true"
+              @focus="riseLabel"
+              @blur="lowerLabel"
+              @input="updateValue($event.target.value)">
+        <span class="error">
+          {{errors[0]}}
+        </span>
+      </ValidationProvider>
       <span class="placeholder"
             :class="{'placeholder-label': labelPosition || placeholderLabel}"
             @click="riseLabel">
@@ -85,7 +92,11 @@ export default {
     name: {
       type: String,
       default: ''
-    }
+    },
+    rules: {
+      type: String,
+      default: ''
+    },
   },
   data() {
     return {
@@ -158,10 +169,11 @@ export default {
 
 <style scoped lang="scss">
 .base-input {
-  margin: 20px 0;
+  margin: 20px 0 10px;
   position: relative;
   .input-container {
     position: relative;
+    padding-bottom: 20px;
 
     display: flex;
 
@@ -173,6 +185,13 @@ export default {
       border-top-right-radius: 10px;
       outline: none;
       padding-right: 25px;
+      font-weight: bold;
+    }
+
+    .error {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       font-weight: bold;
     }
 
