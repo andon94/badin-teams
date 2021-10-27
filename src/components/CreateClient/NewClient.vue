@@ -1,15 +1,20 @@
 <template>
   <div class="new-client">
-    <form @submit.prevent>
-      <PhotoInput label="Add a photo"
-                  photoPath=""/>
-      <BaseInput :placeholder="'Client name'"
-                 v-model="clientName"/>
-      <TextareaInput placeholder="About client"
-                     v-model="about"/>
-      <BaseButton text="Create"
-                  @click="createClient"/>
-    </form>
+    <ValidationObserver ref="createClientForm"
+                        v-slot="{ invalid }">
+      <form @submit.prevent>
+        <PhotoInput label="Add a photo"
+                    photoPath=""/>
+        <BaseInput :placeholder="'Client name'"
+                  v-model="clientName"
+                  rules="required"/>
+        <TextareaInput placeholder="About client"
+                      v-model="about"/>
+        <BaseButton text="Create"
+                    :disabled="invalid"
+                    @click="handleCreate"/>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -35,6 +40,15 @@ export default {
     }
   },
   methods: {
+    handleCreate () {
+      this.$refs.createClientForm.validate().then(success => {
+        if (!success) {
+          return
+        } else {
+          this.createClient()
+        }
+      })
+    },
     createClient () {
       const data = {
         name: this.clientName,

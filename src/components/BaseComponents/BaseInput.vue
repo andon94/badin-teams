@@ -4,7 +4,7 @@
          v-click-outside="handleOutsideClick">
       <ValidationProvider v-slot="{ errors }"
                           :rules="rules"
-                          :name="name">
+                          class="validator">
         <input :type="type"
               :value="value"
               ref="baseInput"
@@ -176,6 +176,10 @@ export default {
     padding-bottom: 20px;
 
     display: flex;
+
+    .validator {
+      width: 100%;
+    }
 
     input {
       width: 100%;

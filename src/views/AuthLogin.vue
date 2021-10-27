@@ -7,8 +7,9 @@
         <h2>Login to Badin Teams</h2>
         <BaseInput :placeholder="'Email'"
                    v-model="email"
-                   rules="required|email"/>
-
+                   rules="required"/>
+                   <!-- dodati: required|email
+                        trenutno je jedini korisnik admin, tako da ne moze da prodje proveru -->
         <BaseInput :placeholder="'Password'"
                    type="password"
                    v-model="password"

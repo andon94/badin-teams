@@ -1,17 +1,23 @@
 <template>
   <div class="new-project">
-    <form @submit.prevent>
-      <BaseInput :placeholder="'Project name'"
-                 v-model="projectName"/>
-      <BaseInput :placeholder="'Client'"
-                  name="name"
-                  :selectArr="clients"
-                  v-model="client"/>
-      <TextareaInput placeholder="About project"
-                     v-model="about"/>
-      <BaseButton text="Create"
-                  @click="createProject"/>
-    </form>
+    <ValidationObserver ref="createProjectForm"
+                        v-slot="{ invalid }">
+      <form @submit.prevent>
+        <BaseInput :placeholder="'Project name'"
+                   v-model="projectName"
+                   rules="required"/>
+        <BaseInput :placeholder="'Client'"
+                   name="name"
+                   :selectArr="clients"
+                   rules="required"
+                   v-model="client"/>
+        <TextareaInput placeholder="About project"
+                       v-model="about"/>
+        <BaseButton text="Create"
+                    :disabled="invalid"
+                    @click="handleCreate"/>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -44,6 +50,15 @@ export default {
   },
   methods: {
     ...mapActions(['fetchClients']),
+    handleCreate () {
+      this.$refs.createProjectForm.validate().then(success => {
+        if (!success) {
+          return
+        } else {
+          this.createProject()
+        }
+      })
+    },
     createProject () {
       const data = {
         name: this.projectName,
@@ -53,7 +68,6 @@ export default {
 
       projectsApi.createProject(data)
         .then(res => {
-          console.log(res)
           this.$router.push({path:'/project-profile/:id', query:{id: res.id}})
         })
         .catch(err => {

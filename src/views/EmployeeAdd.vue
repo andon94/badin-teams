@@ -1,46 +1,54 @@
 <template>
   <div class="add-employee">
-    <form @submit.prevent>
-      <PhotoInput label="Add a profile photo:"
-                  photoPath=""/>
-      <BaseInput :placeholder="'First name'"
-                 v-model="firstName"/>
-      <BaseInput :placeholder="'Last name'"
-                 v-model="lastName"/>
-      <BaseInput :placeholder="'Nickname'"
-                 v-model="nickName"/>
-      <BaseInput :placeholder="'Email'"
-                 v-model="email"/>
-      <BaseInput :placeholder="'Position'"
-                 v-model="position"/>
-      <BaseArrayInput :selectArr="teams"
-                      name="name"
-                      placeholder="Team"
-                      @finalArr="handleTeam"/>
-      <BaseArrayInput :selectArr="clients"
-                      name="name"
-                      placeholder="Client"
-                      @finalArr="handleClient"/>
-      <BaseArrayInput :selectArr="projects"
-                      name="name"
-                      placeholder="Project"
-                      @finalArr="handleProject"/>
-      <BaseInput :placeholder="'Seniority'"
-                 :selectArr="seniorities"
-                 v-model="seniority"/>
-      <BaseInput :placeholder="'Main tech'"
-                 v-model="mainTech"/>
-      <BaseInput :placeholder="'Work area'"
-                 :selectArr="workAreas"
-                 v-model="workArea"/>
-      <BaseInput :placeholder="'Lead'"
-                 :selectArr="leads"
-                 v-model="lead"/>
-      <BaseButton type="submit"
-                  text="Create"
-                  @click="addNewEmployee"
-                  class="submit-button"/>
-    </form>
+    <ValidationObserver ref="createEmployeeForm"
+                        v-slot="{ invalid }">
+      <form @submit.prevent>
+        <PhotoInput label="Add a profile photo:"
+                    photoPath=""/>
+        <BaseInput :placeholder="'First name'"
+                   v-model="firstName"
+                   rules="required"/>
+        <BaseInput :placeholder="'Last name'"
+                   v-model="lastName"
+                   rules="required"/>
+        <BaseInput :placeholder="'Nickname'"
+                   v-model="nickName"/>
+        <BaseInput :placeholder="'Email'"
+                   v-model="email"
+                   rules="required|email"/>
+        <BaseInput :placeholder="'Position'"
+                   v-model="position"
+                   rules="required"/>
+        <BaseArrayInput :selectArr="teams"
+                        name="name"
+                        placeholder="Team"
+                        @finalArr="handleTeam"/>
+        <BaseArrayInput :selectArr="clients"
+                        name="name"
+                        placeholder="Client"
+                        @finalArr="handleClient"/>
+        <BaseArrayInput :selectArr="projects"
+                        name="name"
+                        placeholder="Project"
+                        @finalArr="handleProject"/>
+        <BaseInput :placeholder="'Seniority'"
+                   :selectArr="seniorities"
+                   v-model="seniority"/>
+        <BaseInput :placeholder="'Main tech'"
+                   v-model="mainTech"/>
+        <BaseInput :placeholder="'Work area'"
+                   :selectArr="workAreas"
+                   v-model="workArea"/>
+        <BaseInput :placeholder="'Lead'"
+                   :selectArr="leads"
+                   v-model="lead"/>
+        <BaseButton type="submit"
+                    text="Create"
+                    :disabled="invalid"
+                    @click="handleCreate"
+                    class="submit-button"/>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -101,6 +109,15 @@ export default {
     },
     handleProject (val) {
       this.employeeProjects = [...val]
+    },
+    handleCreate () {
+      this.$refs.createEmployeeForm.validate().then(success => {
+        if (!success) {
+          return
+        } else {
+          this.addNewEmployee()
+        }
+      })
     },
     addNewEmployee() {
 

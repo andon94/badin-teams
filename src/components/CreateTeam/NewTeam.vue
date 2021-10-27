@@ -1,23 +1,28 @@
 <template>
   <div class="new-team">
-    <form @submit.prevent>
-      <PhotoInput label="Add a photo"
-                  photoPath=""/>
-      <BaseInput :placeholder="'Team name'"
-                 v-model="teamName"/>
-      <BaseInput :placeholder="'Client'"
-                 :selectArr="clients"
-                 v-model="client"
-                 name="name"/>
-      <BaseInput :placeholder="'Project'"
-                 :selectArr="projects"
-                 v-model="project"
-                 name="name"/>
-      <TextareaInput placeholder="About team"
-                     v-model="about"/>
-      <BaseButton text="Create"
-                  @click="createNewTeam"/>
-    </form>
+    <ValidationObserver ref="createTeamForm"
+                        v-slot="{ invalid }">
+      <form @submit.prevent>
+        <PhotoInput label="Add a photo"
+                    photoPath=""/>
+        <BaseInput :placeholder="'Team name'"
+                   v-model="teamName"
+                   rules="required"/>
+        <BaseInput :placeholder="'Client'"
+                   :selectArr="clients"
+                   v-model="client"
+                   name="name"/>
+        <BaseInput :placeholder="'Project'"
+                   :selectArr="projects"
+                   v-model="project"
+                   name="name"/>
+        <TextareaInput placeholder="About team"
+                       v-model="about"/>
+        <BaseButton text="Create"
+                    :disabled="invalid"
+                    @click="handleCreate"/>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -55,7 +60,16 @@ export default {
   },
   methods: {
     ...mapActions(['fetchClients', 'fetchProjects']),
-    createNewTeam() {
+    handleCreate () {
+      this.$refs.createTeamForm.validate().then(success => {
+        if (!success) {
+          return
+        } else {
+          this.createNewTeam()
+        }
+      })
+    },
+    createNewTeam () {
       const clientsArr = []
       if (this.client.id) clientsArr.push(this.client.id)
 
