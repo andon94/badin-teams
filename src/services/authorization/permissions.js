@@ -28,7 +28,6 @@ export const ADMIN_ALLOWED_PAGES = [
 
 export const CAN_SEE_PAGE_ABILITY = 'see'
 
-
 function setPermissionForPage(can) {
     return function loopAndSet(pages) {
         pages.forEach((page) => {

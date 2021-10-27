@@ -35,7 +35,7 @@ const routes = [
     name: "CreateTeam",
     component: CreateTeam,
     meta: {
-      title: 'Create Teams',
+      title: 'CreateTeam',
       requireAuth: true
     },
     beforeEnter (to, from, next) {
