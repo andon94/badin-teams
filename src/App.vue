@@ -28,7 +28,7 @@ export default {
     this.checkRoute();
   },
   mounted() {
-    if (isLoggedIn()) this.$store.commit('setLoginStatus', true)
+    isLoggedIn()
   },
   methods: {
     checkRoute() {

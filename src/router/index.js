@@ -25,7 +25,10 @@ export const isLoggedIn = () => {
 
       if(isLoggedIn) {
         // ubaci proveru za expiration
-        if(parsedStorage.roles.includes('ROLE_ADMIN')) store.commit('setPermissions', Roles.ADMIN)
+        if(parsedStorage.roles.includes('ROLE_ADMIN')) {
+          store.commit('setPermissions', Roles.ADMIN)
+          store.commit('setLoginStatus', true)
+        }
         return isLoggedIn;
       }
       return false
