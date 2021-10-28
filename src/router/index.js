@@ -11,42 +11,17 @@ import clients from './routes/clients.js'
 
 import store from "../store"
 import {CAN_SEE_PAGE_ABILITY} from "../services/authorization/permissions";
-import * as Roles from "../services/authorization/permissions";
 
 Vue.use(VueRouter);
 
-export const isLoggedIn = () => {
-  try {
-    const badinTeamsStorage = localStorage.getItem('badinTeamsStorage')
-
-    if(badinTeamsStorage) {
-      const parsedStorage = JSON.parse(badinTeamsStorage)
-      const isLoggedIn = Boolean(parsedStorage.token)
-
-      if(isLoggedIn) {
-        // ubaci proveru za expiration
-        if(parsedStorage.roles.includes('ROLE_ADMIN')) {
-          store.commit('setPermissions', Roles.ADMIN)
-          store.commit('setLoginStatus', true)
-        }
-        return isLoggedIn;
-      }
-      return false
-    }
-    return false
-  } catch (e) {
-    return false
-  }
-}
-
 export const canNavigate = (meta, next) => {
-  isLoggedIn()
   if (meta.requireAuth) {
     const permissions = store.getters.permissions
-    if (permissions) {
-      if(typeof permissions.can === 'function' && permissions.can(CAN_SEE_PAGE_ABILITY, meta.title)) next()
-      else next('/404');
-    } else next('/404')
+    if(permissions.can(CAN_SEE_PAGE_ABILITY, meta.title)) {
+      next()
+    } else {
+      next('/404')
+    }
   } else next()
 }
 
@@ -72,8 +47,7 @@ const routes = [
   ...teams,
   ...employees,
   ...projects,
-  ...clients,
-
+  ...clients
 ];
 
 const router = new VueRouter({

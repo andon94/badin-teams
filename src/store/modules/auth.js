@@ -1,6 +1,11 @@
+import Storage from '../../services/storage'
+import {isAuthenticated, setRolesIfUserIsAuthenticated} from "../../utils/auth";
+
+const storage = Storage.getItem('storage')
+
 const state = {
-  permissions: null,
-  loginStatus: false
+  permissions: setRolesIfUserIsAuthenticated(storage),
+  loginStatus: isAuthenticated(storage)
 }
 
 const getters = {

@@ -11,7 +11,6 @@
 <script>
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
-import { isLoggedIn } from './router/index'
 
 export default {
   name: "app",
@@ -24,11 +23,9 @@ export default {
       navigationDisabled: null,
     };
   },
-  created() {
-    this.checkRoute();
-  },
   mounted() {
-    isLoggedIn()
+    this.checkRoute();
+    // checkAuthState()
   },
   methods: {
     checkRoute() {
