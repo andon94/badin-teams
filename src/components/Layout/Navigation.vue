@@ -125,6 +125,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Storage from '../../services/storage'
 import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
 
 export default {
@@ -166,7 +167,7 @@ export default {
       this.mobileNav = !this.mobileNav;
     },
     logout () {
-      window.localStorage.removeItem('badinTeamsStorage')
+      Storage.removeItem('storage')
       this.$store.commit('setLoginStatus', false)
       this.$router.push({path:'/login'})
     }

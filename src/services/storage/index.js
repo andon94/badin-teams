@@ -7,7 +7,7 @@ class Storage {
 
     getItem(key) {
         try {
-            const data = this.storage.getItem(key);
+            const data = this.storage.getItem(`${this.prefix}${key}`);
             return JSON.parse(data);
         } catch (e) {
             return null;
@@ -15,11 +15,11 @@ class Storage {
     }
 
     setItem(key, value) {
-        this.storage.setItem(key, JSON.stringify(value));
+        this.storage.setItem(`${this.prefix}${key}`, JSON.stringify(value));
     }
 
     removeItem(key) {
-        this.storage.removeItem(key);
+        this.storage.removeItem(`${this.prefix}${key}`);
     }
 
 }

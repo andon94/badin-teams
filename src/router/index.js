@@ -47,8 +47,7 @@ const routes = [
   ...teams,
   ...employees,
   ...projects,
-  ...clients,
-
+  ...clients
 ];
 
 const router = new VueRouter({

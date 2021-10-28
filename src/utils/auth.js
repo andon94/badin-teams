@@ -22,11 +22,12 @@ export function setUserRoles(roles = []) {
 
 
 export function setRolesIfUserIsAuthenticated(storage) {
-    if(!storage) return null;
+    const emptyAbility = new Ability()
+    if(!storage) return emptyAbility
 
     if(isAuthenticated(storage)) {
         return setUserRoles(storage.roles);
     }
 
-    return null;
+    return emptyAbility
 }
