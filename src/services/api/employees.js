@@ -13,6 +13,12 @@ class EmployeesAPI {
 		return this.baseFetcher.get("/users")
   }
 
+	createEmployeePhoto (id, data) {
+		return this.baseFetcher.post(`/users/${id}/image`,
+																	data,
+																	{ headers: {'Content-Type':'multipart/form-data'} })
+	}
+
 	fetchEmployee (id) {
 		return this.baseFetcher.get(`/users/${id}`)
   }

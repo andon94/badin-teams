@@ -20,28 +20,27 @@
 
 <script>
 import BaseInput from './BaseInput.vue'
+
+const EMPTY_ARR = {
+  type: Array,
+  default: () => []
+}
+
+const EMPTY_STRING = {
+  type: String,
+  default: ''
+}
+
 export default {
   name: 'ArrayInput',
   components: {
     BaseInput
   },
   props: {
-    dataArr: {
-      type: Array,
-      default: () => []
-    },
-    selectArr: {
-      type: Array,
-      default: () => []
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    name: {
-      type: String,
-      default: ''
-    }
+    dataArr: EMPTY_ARR,
+    selectArr: EMPTY_ARR,
+    placeholder: EMPTY_STRING,
+    name: EMPTY_STRING
   },
   data () {
     return {

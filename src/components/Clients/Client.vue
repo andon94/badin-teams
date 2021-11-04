@@ -12,14 +12,11 @@
         </div>
       </div>
     </div>
-    <div class="img-container">
-      <!-- <div @click="openRemoveModal"> -->
-      <div>
-        <!-- <div v-if="$route.name === 'EditTeam' && imgClicked"
-            @click="removeEmployeeFromTeam">
-          remove
-        </div> -->
-      </div>
+    <div class="client-image">
+      <img v-if="client.imageViewPath"
+           :src="`${baseUrl}/${client.imageViewPath}`">
+      <div v-else
+           class="client-image-placeholder"></div>
     </div>
   </li>
 </template>
@@ -31,6 +28,11 @@ export default {
     client: {
       type: Object,
       default: null
+    }
+  },
+  data() {
+    return {
+      baseUrl: process.env.VUE_APP_API_BASE_URL
     }
   }
 }
@@ -75,26 +77,18 @@ export default {
     }
   }
 
-  .img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & > div {
-      width: 70px;
-      height: 70px;
+  .client-image {
+    img {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background-color: pink;
+    }
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      & > div {
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        padding: 5px;
-
-      }
+    &-placeholder {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: pink;
     }
   }
 }

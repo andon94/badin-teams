@@ -8,8 +8,11 @@
         {{client.about}}
       </div>
     </div>
-    <div class="img-container">
-      <div></div>
+    <div class="client-image">
+      <img v-if="client.imageViewPath"
+           :src="`${baseUrl}/${client.imageViewPath}`">
+      <div v-else
+           class="client-image-placeholder"></div>
     </div>
   </div>
 </template>
@@ -21,7 +24,8 @@ export default {
   name: 'ClientProfile',
   data () {
     return {
-      client: {}
+      client: {},
+      baseUrl: process.env.VUE_APP_API_BASE_URL
     }
   },
   mounted () {
@@ -44,6 +48,11 @@ export default {
 <style scoped lang="scss">
 .client-profile {
   margin: 20px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
   &-container {
     .client-name {
       font-weight: bold;
@@ -51,6 +60,22 @@ export default {
     }
     .client-about {
       color: gray;
+    }
+  }
+
+  .client-image {
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    &-placeholder {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: pink;
+      margin-bottom: 20px;
     }
   }
 }

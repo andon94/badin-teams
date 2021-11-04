@@ -17,6 +17,12 @@ class ClientsAPI {
 		return this.baseFetcher.get(`/clients/${id}`)
 	}
 
+	createClientPhoto (id, data) {
+		return this.baseFetcher.post(`/clients/${id}/image`,
+																	data,
+																	{ headers: {'Content-Type':'multipart/form-data'} })
+	}
+
 	editClient (id, data) {
 		return this.baseFetcher.put(`/clients/${id}`, data)
 	}

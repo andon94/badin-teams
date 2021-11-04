@@ -25,14 +25,11 @@
         </div>
       </div>
     </div>
-    <div class="img-container">
-      <!-- <div @click="openRemoveModal"> -->
-      <div>
-        <!-- <div v-if="$route.name === 'EditTeam' && imgClicked"
-            @click="removeEmployeeFromTeam">
-          remove
-        </div> -->
-      </div>
+    <div class="employee-image">
+      <img v-if="employee.imageViewPath"
+           :src="`${baseUrl}/${employee.imageViewPath}`">
+      <div v-else
+           class="employee-image-placeholder"></div>
     </div>
   </li>
 </template>
@@ -48,7 +45,8 @@ export default {
   },
   data() {
     return {
-      imgClicked: false
+      imgClicked: false,
+      baseUrl: process.env.VUE_APP_API_BASE_URL
     }
   }
 }
@@ -95,26 +93,18 @@ export default {
     }
   }
 
-  .img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & > div {
-      width: 70px;
-      height: 70px;
+  .employee-image {
+    img {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background-color: pink;
+    }
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      & > div {
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        padding: 5px;
-
-      }
+    &-placeholder {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: pink;
     }
   }
 }

@@ -17,6 +17,12 @@ class TeamsAPI {
 		return this.baseFetcher.get(`/teams/${id}`)
 	}
 
+	createTeamPhoto (id, data) {
+		return this.baseFetcher.post(`/teams/${id}/image`, data, {headers:{
+			'Content-Type':'multipart/form-data'
+		}})
+	}
+
 	fetchTeamMembers (id) {
 		return this.baseFetcher.get(`/teams/${id}/members`)
 	}

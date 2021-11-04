@@ -4,7 +4,7 @@
                         v-slot="{ invalid }">
       <form @submit.prevent>
         <PhotoInput label="Add a photo"
-                    photoPath=""/>
+                    @fileSelected="setImage"/>
         <BaseInput :placeholder="'Client name'"
                   v-model="clientName"
                   rules="required"/>
@@ -40,6 +40,9 @@ export default {
     }
   },
   methods: {
+    setImage (val) {
+      this.image = val
+    },
     handleCreate () {
       this.$refs.createClientForm.validate().then(success => {
         if (!success) {
@@ -58,12 +61,24 @@ export default {
 
       clientsApi.createClient(data)
         .then(res => {
-          this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+
+          const bodyFormData = new FormData();
+          bodyFormData.append('file', this.image);
+
+          if (this.image) {
+            clientsApi.createClientPhoto(res.id, bodyFormData)
+              .then(() => {
+                this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+
         })
         .catch(err => {
           console.log(err)
         })
-
     }
   }
 }

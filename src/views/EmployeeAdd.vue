@@ -3,8 +3,8 @@
     <ValidationObserver ref="createEmployeeForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
-        <PhotoInput label="Add a profile photo:"
-                    photoPath=""/>
+        <PhotoInput label="Add a profile photo"
+                    @fileSelected="setImage"/>
         <BaseInput :placeholder="'First name'"
                    v-model="firstName"
                    rules="required"/>
@@ -101,6 +101,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTeams', 'fetchClients', 'fetchProjects']),
+    setImage (val) {
+      this.image = val
+    },
     handleTeam (val) {
       this.employeeTeams = [...val]
     },
@@ -145,7 +148,19 @@ export default {
 
       employeesApi.createEmployee(data)
         .then(res => {
-          this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+          const bodyFormData = new FormData();
+          bodyFormData.append('file', this.image);
+
+          if (this.image) {
+            employeesApi.createEmployeePhoto(res.id, bodyFormData)
+              .then(() => {
+                this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+
         })
         .catch(err => {
           console.log(err)

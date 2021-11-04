@@ -10,10 +10,10 @@ class BaseFetcher {
 	}
 
 	checkLoginStatus() {
-		if (localStorage.badinTeamsStorage) {
+		if (localStorage.badin_teams_storage) {
 			this.fetcher.interceptors.request.use(
 				(config) => {
-					const storage = JSON.parse(localStorage.badinTeamsStorage) || null
+					const storage = JSON.parse(localStorage.badin_teams_storage) || null
 					if (storage.token) {
 						config.headers.authorization = storage.token
 					}

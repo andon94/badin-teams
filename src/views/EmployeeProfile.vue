@@ -1,8 +1,11 @@
 <template>
   <div class="employee-profile"
        v-if="employee">
-    <div class="img-container">
-      <div></div>
+    <div class="employee-image">
+      <img v-if="employee.imageViewPath"
+           :src="`${baseUrl}/${employee.imageViewPath}`">
+      <div v-else
+           class="employee-image-placeholder"></div>
     </div>
     <ul class="employee-details">
       <section class="employee-details-name">
@@ -64,6 +67,11 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'EmployeeProfile',
+  data () {
+    return {
+      baseUrl: process.env.VUE_APP_API_BASE_URL
+    }
+  },
   mounted () {
     this.fetchEmployee(this.$route.query.id)
     this.fetchEmployeeTeams(this.$route.query.id)
@@ -83,14 +91,21 @@ export default {
 .employee-profile {
   margin: 30px 20px;
 
-  .img-container {
-    width: fit-content;
-    margin: 0 auto 30px;
-    & > div {
+  .employee-image {
+    text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    &-placeholder {
+      margin: auto;
       width: 100px;
       height: 100px;
       border-radius: 50%;
       background: pink;
+      margin-bottom: 20px;
     }
   }
 
