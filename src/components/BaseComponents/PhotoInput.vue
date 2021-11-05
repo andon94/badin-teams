@@ -1,13 +1,13 @@
 <template>
   <div class="photo-container">
-    <div class="input-container">
+    <div class="input-container"
+         v-if="!uploaded">
       <label>{{label}}</label>
       <input type="file"
              @input="onInput">
     </div>
     <div class="img-container">
-      <img v-if="!photoPath"
-           :src="photoPath">
+      <img :src="photoPath || uploaded">
     </div>
   </div>
 </template>
@@ -25,9 +25,15 @@ export default {
       default: ''
     }
   },
+  data () {
+    return {
+      uploaded: null
+    }
+  },
   methods: {
     onInput (e) {
       this.$emit('fileSelected', e.target.files[0])
+      this.uploaded = URL.createObjectURL(e.target.files[0])
     }
   }
 }
@@ -65,6 +71,7 @@ export default {
       height: 100px;
       border-radius: 50%;
       z-index: 1;
+      opacity: 0;
       &::-webkit-file-upload-button {
         display: none;
       }
@@ -80,6 +87,11 @@ export default {
     border-radius: 50%;
     overflow: hidden;
     background-color: pink;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
   }
 }
 </style>
