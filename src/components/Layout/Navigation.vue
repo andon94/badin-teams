@@ -1,121 +1,76 @@
 <template>
   <header>
-    <nav class="container">
-      <div class="branding">
-        <router-link class="header" :to="{ name: 'Home' }">{{navHeader}}</router-link>
-      </div>
-      <div class="nav-links">
-        <ul v-show="!mobile">
-          <router-link class="link" :to="{ name: 'Home' }">
-            Home
-          </router-link>
-          <router-link class="link" :to="{ name: 'Teams' }">
-            Teams
-          </router-link>
-          <router-link class="link" :to="{ name: 'CreateTeam' }"
-                       v-if="loginStatus">
-            Create Team
-          </router-link>
-          <router-link class="link" :to="{ name: 'EditTeams' }"
-                       v-if="loginStatus">
-            Edit Teams
-          </router-link>
-          <router-link class="link" :to="{ name: 'AddEmployee' }"
-                       v-if="loginStatus">
-            Add Employee
-          </router-link>
-          <router-link class="link" :to="{ name: 'EditEmployees' }"
-                       v-if="loginStatus">
-            Edit Employees
-          </router-link>
-          <router-link class="link" :to="{ name: 'Clients' }">
-            Clients
-          </router-link>
-          <router-link class="link" :to="{ name: 'CreateClient' }"
-                       v-if="loginStatus">
-            Add Client
-          </router-link>
-          <router-link class="link" :to="{ name: 'EditClients' }"
-                       v-if="loginStatus">
-            Edit Clients
-          </router-link>
-          <router-link class="link" :to="{ name: 'Projects' }">
-            Projects
-          </router-link>
-          <router-link class="link" :to="{ name: 'CreateProject' }"
-                       v-if="loginStatus">
-            Create Project
-          </router-link>
-          <router-link class="link" :to="{ name: 'EditProjects' }"
-                       v-if="loginStatus">
-            Edit Projects
-          </router-link>
-          <router-link class="link" :to="{ name: 'Login' }"
-                       v-if="!loginStatus">
-            Login
-          </router-link>
-          <li class="link" :to="{ name: 'Home' }"
-                       @click="logout"
-                       v-if="loginStatus">
-            Logout
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <MenuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
+    <MenuIcon @click="toggleNav"
+              class="menu-icon"/>
     <transition name="mobile-nav">
-      <ul class="mobile-nav" v-show="mobileNav" @click="toggleMobileNav">
-          <router-link class="link" :to="{ name: 'Home' }">
+      <ul class="mobile-nav"
+          v-if="mobileNav"
+          @click="toggleNav">
+          <router-link class="link"
+                       :to="{ name: 'Home' }">
             Home
           </router-link>
-          <router-link class="link" :to="{ name: 'Teams' }">
+          <router-link class="link"
+                       :to="{ name: 'Teams' }">
             Teams
           </router-link>
-          <router-link class="link admin" :to="{ name: 'CreateTeam' }"
+          <router-link class="link admin"
+                       :to="{ name: 'CreateTeam' }"
                        v-if="loginStatus">
             Create Team
           </router-link>
-          <router-link class="link admin" :to="{ name: 'EditTeams' }"
+          <router-link class="link admin"
+                       :to="{ name: 'EditTeams' }"
                        v-if="loginStatus">
             Edit Teams
           </router-link>
-          <router-link class="link admin" :to="{ name: 'AddEmployee' }"
+          <router-link class="link admin"
+                       :to="{ name: 'AddEmployee' }"
                        v-if="loginStatus">
             Add Employee
           </router-link>
-          <router-link class="link admin" :to="{ name: 'EditEmployees' }"
+          <router-link class="link admin"
+                       :to="{ name: 'EditEmployees' }"
                        v-if="loginStatus">
             Edit Employees
           </router-link>
-          <router-link class="link" :to="{ name: 'Clients' }">
+          <router-link class="link"
+                       :to="{ name: 'Clients' }">
             Clients
           </router-link>
-          <router-link class="link admin" :to="{ name: 'CreateClient' }"
+          <router-link class="link admin"
+                       :to="{ name: 'CreateClient' }"
                        v-if="loginStatus">
             Add Client
           </router-link>
-          <router-link class="link admin" :to="{ name: 'EditClients' }"
+          <router-link class="link admin"
+                       :to="{ name: 'EditClients' }"
                        v-if="loginStatus">
             Edit Clients
           </router-link>
-          <router-link class="link" :to="{ name: 'Projects' }">
+          <router-link class="link"
+                       :to="{ name: 'Projects' }">
             Projects
           </router-link>
-          <router-link class="link admin" :to="{ name: 'CreateProject' }"
+          <router-link class="link admin"
+                       :to="{ name: 'CreateProject' }"
                        v-if="loginStatus">
             Create Project
           </router-link>
-          <router-link class="link admin" :to="{ name: 'EditProjects' }"
+          <router-link class="link admin"
+                       :to="{ name: 'EditProjects' }"
                        v-if="loginStatus">
             Edit Projects
           </router-link>
-          <router-link class="link" :to="{ name: 'Login' }"
+          <router-link class="link"
+                       :to="{ name: 'Login' }"
                        v-if="!loginStatus">
             Login
           </router-link>
-          <li class="link logout" :to="{ name: 'Home' }"
-                       @click="logout"
-                       v-if="loginStatus">
+          <li class="link logout"
+              :to="{ name: 'Home' }"
+              @click="logout"
+              v-if="loginStatus">
             Logout
           </li>
       </ul>
@@ -135,35 +90,14 @@ export default {
   },
   data () {
     return {
-      mobile: null,
       mobileNav: null,
-      windowWidth: null
     }
   },
-  created () {
-    window.addEventListener('resize', this.checkScreen);
-    this.checkScreen();
-  },
   computed: {
-    ...mapGetters(['loginStatus']),
-    navHeader () {
-      let routeName = this.$route.name
-      if (routeName) routeName = routeName.replace( /([a-z])([A-Z])/g, "$1 $2");
-      return routeName || ''
-    },
+    ...mapGetters(['loginStatus'])
   },
   methods: {
-    checkScreen() {
-      this.windowWidth = window.innerWidth;
-      if (this.windowWidth <= 750) {
-        this.mobile = true;
-        return;
-      }
-      this.mobile = false;
-      this.mobileNav = false;
-      return;
-    },
-    toggleMobileNav() {
+    toggleNav() {
       this.mobileNav = !this.mobileNav;
     },
     logout () {
@@ -180,7 +114,7 @@ header {
   background-color: #fff;
   padding: 0 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  z-index: 99;
+  z-index: 100;
 
   .link {
     font-weight: 500;
@@ -192,43 +126,6 @@ header {
     }
   }
 
-  nav {
-    display: flex;
-    padding: 15px 0;
-
-    .branding {
-      display: flex;
-      align-items: center;
-
-      .header {
-        font-weight: 600;
-        font-size: 24px;
-        color: #000;
-        text-decoration: none;
-      }
-    }
-
-    .nav-links {
-      position: relative;
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: flex-end;
-
-      ul {
-        margin: 30px;
-
-        .link {
-          margin-right: 30px;
-        }
-
-        .link:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-
   .menu-icon {
     cursor: pointer;
     position: absolute;
@@ -236,6 +133,7 @@ header {
     right: 10px;
     height: 20px;
     width: auto;
+    // visibility: hidden;
   }
 
   .mobile-nav {
@@ -249,6 +147,7 @@ header {
     background-color: #303030;
     top: 0;
     left: 0;
+    z-index: 100;
 
     .link {
       padding: 15px 0;

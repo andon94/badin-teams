@@ -221,7 +221,7 @@ export default {
 
     .dropdown-button {
       position: absolute;
-      top: 20%;
+      top: 15%;
       right: 5px;
       svg {
         &.rotate-180 {

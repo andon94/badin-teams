@@ -44,13 +44,19 @@ export default {
   text-align: center;
 
   padding: 10px;
-  background: white;
+  background: $light;
+  color: $dark;
   border-radius: 50%;
-  color: #16161d;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   overflow: hidden;
 
+  font-weight: bold;
+
   transition: all ease-in 0.2s;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
 }
 </style>

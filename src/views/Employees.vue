@@ -5,9 +5,10 @@
          :style="{'margin-left': position}">
       <div class="bubbles">
         <div class="team-name"
-             v-if="team"
              @click="handleTeamClick">
-          {{team.name}}
+          <div v-if="team">
+            {{team.name}}
+          </div>
         </div>
         <BubbleContainer :employees="teamMembers"/>
       </div>
@@ -75,12 +76,15 @@ export default {
       .team-name {
         width: 100%;
         font-weight: bold;
-        margin: 20px 0;
+        padding: 30px 0 20px;
       }
     }
     .bubbles {
       .team-name {
+        height: 75px;
         text-align: center;
+        color: $light;
+        font-size: 20px;
       }
     }
     .list {

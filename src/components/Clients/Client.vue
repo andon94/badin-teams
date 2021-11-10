@@ -1,5 +1,5 @@
 <template>
-  <li class="client">
+  <div class="client">
     <div class="client-container">
       <div class="client-container-name">
         <div>
@@ -18,7 +18,7 @@
       <div v-else
            class="client-image-placeholder"></div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>

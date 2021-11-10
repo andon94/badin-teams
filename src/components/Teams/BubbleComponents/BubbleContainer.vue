@@ -5,6 +5,8 @@
       <Bubble v-for="(bubble, i) in bubbleArr" :key="i"
               :bubble="bubble"/>
     </div>
+    <div class="heading">Badinsoft</div>
+    <div class="caption">Teams</div>
   </div>
 </template>
 
@@ -242,16 +244,35 @@ export default {
 
 <style scoped lang="scss">
 .bubble-wrap {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   .bubble-container {
     position: relative;
     width: 300px;
     height: 300px;
 
     margin: 5vh auto 5vh;
-    background: rgba(pink, 0.8);
+    background: rgba($badin-color, 0.8);
     border-radius: 50%;
 
     transition: all ease-in 0.2s;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+  }
+  .heading, .caption {
+    color: $light;
+    font-size: 40px;
+    text-align: center;
+  }
+  .heading {
+    margin-top: 30px;
+  }
+  .caption {
+    font-size: 30px;
   }
 }
 </style>

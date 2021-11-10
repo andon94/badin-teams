@@ -60,7 +60,7 @@ export default {
       min-width: 100vw;
     }
     .bubbles {
-      margin-top: 40px;
+      margin-top: 75px;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <li class="employee">
+  <div class="employee">
     <div class="employee-container">
       <div class="employee-container-name">
         <div>
@@ -31,7 +31,7 @@
       <div v-else
            class="employee-image-placeholder"></div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>

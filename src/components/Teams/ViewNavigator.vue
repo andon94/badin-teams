@@ -42,9 +42,10 @@ export default {
     padding: 10px 20px;
     font-weight: bold;
     font-size: 16px;
+    color: $light;
 
     &.active {
-      color: pink;
+      color: $active;
     }
   }
 }
