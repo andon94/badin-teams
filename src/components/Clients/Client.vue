@@ -1,22 +1,22 @@
 <template>
-  <div class="client">
-    <div class="client-container">
-      <div class="client-container-name">
+  <div class="item">
+    <div class="item-info">
+      <div class="item-info-name">
         <div>
           {{client.name}}
         </div>
       </div>
-      <div class="client-container-about">
+      <div class="item-info-about">
         <div>
           {{client.about}}
         </div>
       </div>
     </div>
-    <div class="client-image">
+    <div class="item-image">
       <img v-if="client.imageViewPath"
            :src="`${baseUrl}/${client.imageViewPath}`">
       <div v-else
-           class="client-image-placeholder"></div>
+           class="item-image-placeholder"></div>
     </div>
   </div>
 </template>
@@ -39,57 +39,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.client {
-  list-style-type: none;
-  width: 100%;
-  margin: 20px 0;
-  padding: 0 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  &-container {
-    margin-right: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
-    &-name, &-about {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    &-name {
-      margin-bottom: 15px;
-      font-weight: bold;
-      & > div {
-        margin-right: 5px;
-      }
-    }
-
-    &-about {
-      margin: 5px 0;
-      & > div {
-        color: gray;
-        font-weight: normal;
-      }
-    }
-  }
-
-  .client-image {
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-    }
-
-    &-placeholder {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: pink;
-    }
-  }
-}
+@import '@/assets/css/list-item.scss';
 </style>

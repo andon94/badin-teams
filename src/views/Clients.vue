@@ -1,14 +1,13 @@
 <template>
   <Loader v-if="!clients.length"/>
-  <div class="clients"
+  <div class="item-list"
        v-else>
-    <BaseFilter  placeholder="Filter clients"
-                 :dataArr="this.clients"
-                 :filterProperties="['name']"
-                 @filteredData="setFilteredData"/>
-    <div class="clients-container">
-      <div class="client"
-          v-for="(client, i) in filteredData" :key="i"
+    <div class="item-list-container">
+      <BaseFilter placeholder="Filter clients"
+                  :dataArr="this.clients"
+                  :filterProperties="['name']"
+                  @filteredData="setFilteredData"/>
+      <div v-for="(client, i) in filteredData" :key="i"
           @click="handleClientClick(client.id)">
         <Client :client="client" />
       </div>
@@ -58,7 +57,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .clients {
-    margin: 20px 10px;
-  }
+@import '@/assets/css/list-container.scss';
 </style>

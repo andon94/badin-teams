@@ -82,26 +82,24 @@ export default {
 
 <style scoped lang="scss">
 .filter {
+  margin-bottom: 10px;
   &-container {
     display: flex;
     font-size: 14px;
     margin-top: -10px;
     .filters {
-      margin-left: 10px;
       display: flex;
       flex-wrap: wrap;
       .filter {
         margin-right: 15px;
-        font-weight: bold;
+        // font-weight: bold;
+        color: $light;
         &.active {
-          color: pink;
+          color: $active;
+          font-weight: bold;
         }
       }
     }
-  }
-
-  &-input {
-    width: calc(100% - 20px);
   }
 }
 </style>

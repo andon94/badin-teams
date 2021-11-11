@@ -1,5 +1,5 @@
 <template>
-  <div class="team-profile">
+  <div class="profile">
     <Team :team="team"/>
     <BaseArrayViewer label="Members"
                      path="employee"
@@ -43,10 +43,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.team-profile {
-  .team-member, .team-project, .team-client {
-    margin: 10px;
-    font-weight: bold;
-  }
-}
+@import '@/assets/css/profile.scss';
 </style>

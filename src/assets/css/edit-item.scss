@@ -1,0 +1,10 @@
+.edit {
+  padding: 0 10px 20px;
+  &.project {
+    padding-top: 20px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

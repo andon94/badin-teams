@@ -1,27 +1,18 @@
 <template>
-  <div class="client-profile">
-    <div class="client-profile-container">
-      <div class="client-name">
-        {{client.name}}
-      </div>
-      <div class="client-about">
-        {{client.about}}
-      </div>
-    </div>
-    <div class="client-image">
-      <img v-if="client.imageViewPath"
-           :src="`${baseUrl}/${client.imageViewPath}`">
-      <div v-else
-           class="client-image-placeholder"></div>
-    </div>
+  <div class="profile client">
+    <Client :client="client"/>
   </div>
 </template>
 
 <script>
 import { clientsApi } from '../services/api/clients'
+import Client from '../components/Clients/Client.vue'
 
 export default {
   name: 'ClientProfile',
+  components: {
+    Client
+  },
   data () {
     return {
       client: {},
@@ -46,37 +37,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.client-profile {
-  margin: 20px 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  &-container {
-    .client-name {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    .client-about {
-      color: gray;
-    }
-  }
-
-  .client-image {
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-    }
-
-    &-placeholder {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: pink;
-      margin-bottom: 20px;
-    }
-  }
-}
+@import '@/assets/css/profile.scss';
 </style>

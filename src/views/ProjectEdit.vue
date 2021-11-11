@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="!name"/>
-  <form class="edit-team"
+  <form class="edit project"
         v-else
         @submit.prevent="editProject">
     <BaseInput :placeholder="'Team name'"
@@ -24,7 +24,7 @@ import BaseButton from '../components/BaseComponents/BaseButton.vue'
 import DeleteUnit from '../components/DeleteUnit/DeleteUnit.vue'
 
 export default {
-  name: 'EditTeam',
+  name: 'EditProject',
   components: {
     Loader,
     BaseInput,
@@ -76,13 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.edit-team {
-  margin: 20px 10px;
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-}
+@import '@/assets/css/edit-item.scss';
 </style>
 
 

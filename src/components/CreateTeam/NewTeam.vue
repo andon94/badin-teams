@@ -1,5 +1,5 @@
 <template>
-  <div class="new-team">
+  <div class="new-item">
     <ValidationObserver ref="createTeamForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
@@ -110,14 +110,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.new-team {
-  margin: 35px 10px;
-
-  form {
-    .input-container {
-      display: flex;
-      margin-top: 20px;
-    }
-  }
-}
+@import '@/assets/css/create-item.scss';
 </style>

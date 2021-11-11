@@ -1,29 +1,28 @@
 <template>
-  <div class="project-profile">
-    <div class="project-profile-container"
-         v-if="project">
-      <div class="project-name">
-        {{project.name}}
-      </div>
-      <div class="project-about">
-        {{project.about}}
-      </div>
-      <div class="project-client"
-           v-if="project.client">
-        <span>Klijent:</span>
-        <router-link class="link" :to="{path:'/client-profile/:id', query:{id: project.client.id}}">
-          {{project.client.name}}
-        </router-link>
-      </div>
-    </div>
+  <div class="profile project">
+    <Project :project="project" />
+    <ul class="profile-details project"
+        v-if="project.client">
+      <li>
+        <div>
+          <router-link class="link" :to="{path:'/client-profile/:id', query:{id: project.client.id}}">
+            {{project.client.name}}
+          </router-link>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { projectsApi } from '../services/api/projects'
+import Project from '../components/Projects/Project.vue'
 
 export default {
   name: 'ProjectProfile',
+  components: {
+    Project
+  },
   data () {
     return {
       project: {}
@@ -47,27 +46,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.project-profile {
-  &-container {
-    margin: 20px 10px;
-
-    .project-name {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .project-about {
-      color: gray;
-      margin: 10px 0;
-    }
-
-    .project-clilent {
-      font-weight: bold;
-      span {
-        font-weight: normal;
-      }
-    }
-  }
-}
+@import '@/assets/css/profile.scss';
 </style>

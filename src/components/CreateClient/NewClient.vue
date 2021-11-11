@@ -1,5 +1,5 @@
 <template>
-  <div class="new-client">
+  <div class="new-item">
     <ValidationObserver ref="createClientForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
@@ -85,14 +85,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.new-client {
-  margin: 35px 10px;
-
-  form {
-    .input-container {
-      display: flex;
-      margin-top: 20px;
-    }
-  }
-}
+@import '@/assets/css/create-item.scss';
 </style>

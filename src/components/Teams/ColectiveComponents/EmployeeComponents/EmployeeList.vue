@@ -1,17 +1,17 @@
 <template>
   <Loader v-if="!employees.length"/>
-  <div class="employee-list"
+  <div class="item-list"
        v-else>
-    <ul class="employee-list-container">
+    <div class="item-list-container">
       <BaseFilter placeholder="Filter employees"
                   :dataArr="this.employees"
                   :filterProperties="['firstName', 'lastName', 'nickname']"
                   @filteredData="setFilteredData"/>
-      <li v-for="(employee, i) in filteredData" :key="i"
+      <div v-for="(employee, i) in filteredData" :key="i"
           @click="handleEmployeeClick(employee.id)">
         <Employee :employee="employee" />
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,12 +55,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.employee-list {
-  &-container {
-    position: relative;
-    li {
-      list-style: none;
-    }
-  }
-}
+@import '@/assets/css/list-container.scss';
 </style>

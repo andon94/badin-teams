@@ -1,7 +1,7 @@
 <template>
-  <div class="teams">
+  <div class="colective">
     <ViewNavigator @setPosition="setPosition"/>
-    <div class="teams-content"
+    <div class="colective-content"
          :style="{'margin-left': position}">
       <div class="bubbles">
         <div class="team-name"
@@ -62,37 +62,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.teams {
-  overflow: hidden;
-  min-height: 100vh;
-
-  &-content {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    transition: all linear 0.2s;
-    .bubbles, .list {
-      min-width: 100vw;
-      .team-name {
-        width: 100%;
-        font-weight: bold;
-        padding: 30px 0 20px;
-      }
-    }
-    .bubbles {
-      .team-name {
-        height: 75px;
-        text-align: center;
-        color: $light;
-        font-size: 20px;
-      }
-    }
-    .list {
-      padding-left: 10px;
-      .team-name {
-        padding-left: 10px;
-      }
-    }
-  }
-}
+@import '@/assets/css/bubble-pages.scss';
 </style>

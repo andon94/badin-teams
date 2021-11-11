@@ -75,7 +75,7 @@ export default {
 .array-input {
   &-elements {
     min-height: 18px;
-    margin-bottom: -5px;
+    // margin-bottom: -5px;
 
     display: flex;
     flex-direction: row;
@@ -83,9 +83,15 @@ export default {
 
     .array-input-element, .placeholder{
       cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 12px;
       margin: 5px 15px 5px 0;
+      color: $light;
+      transform: translateY(15px);
+    }
+
+    .array-input-element {
+      font-weight: bold;
+      font-size: 14px;
     }
   }
 }

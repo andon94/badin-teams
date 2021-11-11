@@ -169,12 +169,11 @@ export default {
 
 <style scoped lang="scss">
 .base-input {
-  margin: 20px 0 10px;
   position: relative;
+  margin-top: 15px;
   .input-container {
     position: relative;
     padding-bottom: 20px;
-
     display: flex;
 
     .validator {
@@ -184,12 +183,13 @@ export default {
     input {
       width: 100%;
       padding: 10px 15px;
-      border: 3px solid black;
-      border-bottom-left-radius: 10px;
-      border-top-right-radius: 10px;
       outline: none;
       padding-right: 25px;
       font-weight: bold;
+      background: transparent;
+      border: none;
+      border-bottom: $light 1px solid;
+      color: $light;
     }
 
     .error {
@@ -197,24 +197,24 @@ export default {
       bottom: 0;
       left: 0;
       font-weight: bold;
+      color: $error;
     }
 
     .placeholder {
       position: absolute;
       padding-top: 12px;
-      padding-left: 10px;
       opacity: 0.8;
       transition: all linear 0.1s;
       touch-action: none;
       font-size: 14px;
       pointer-events: none;
+      color: $light;
 
       &.placeholder-label {
-        transform: translate(10px, -10px);
+        transform: translate(0, -15px);
         padding: 3px;
         opacity: 1;
         z-index: 10;
-        background: white;
         font-size: 12px;
       }
     }
@@ -224,6 +224,7 @@ export default {
       top: 15%;
       right: 5px;
       svg {
+        color: $light;
         &.rotate-180 {
           transform: rotate(-180deg);
         }
@@ -232,37 +233,31 @@ export default {
 
     .trash-button {
       position: absolute;
-      top: 20%;
+      color: $light;
+      // top: 20%;
+      top: 9px;
       right: 30px;
-    }
-
-    .input-button {
-      background: black;
-      outline: none;
-      border: none;
-      color: white;
-      font-weight: bold;
-      padding: 0 10px;
+      transform: scale(0.9);
     }
 
   }
 
   .select-container {
-    width: 100%;
     padding: 10px 15px;
-    border: 3px solid black;
     border-radius: 10px;
-    margin-top: 10px;
+    width: 100%;
+    margin-top: -10px;
     position: absolute;
-    background: white;
-    z-index: 11;
-
+    background: $light;
+    z-index: 10;
+    box-shadow: $select-shadow;
     ul {
       li {
         list-style-type: none;
         margin: 5px 0;
         padding: 5px 0;
         font-weight: bold;
+        color: $dark;
       }
     }
   }

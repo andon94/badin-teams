@@ -1,11 +1,15 @@
 <template>
   <header>
     <MenuIcon @click="toggleNav"
-              class="menu-icon"/>
+              class="menu-icon"
+              v-show="!mobileNav"/>
     <transition name="mobile-nav">
       <ul class="mobile-nav"
           v-if="mobileNav"
           @click="toggleNav">
+          <div class="close-icon">
+              <svg-icon type="mdi" :path="path.close"></svg-icon>
+          </div>
           <router-link class="link"
                        :to="{ name: 'Home' }">
             Home
@@ -79,6 +83,8 @@
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiClose } from '@mdi/js'
 import { mapGetters } from 'vuex'
 import Storage from '../../services/storage'
 import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
@@ -86,11 +92,15 @@ import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
 export default {
   name: 'Navigation',
   components: {
+    SvgIcon,
     MenuIcon
   },
   data () {
     return {
       mobileNav: null,
+      path: {
+        close: mdiClose,
+      }
     }
   },
   computed: {
@@ -126,42 +136,49 @@ header {
     }
   }
 
-  .menu-icon {
+  .menu-icon, .close-icon {
     cursor: pointer;
     position: absolute;
     top: 20px;
     right: 10px;
-    height: 20px;
+    height: 25px;
     width: auto;
-    // visibility: hidden;
+    color: $light;
+  }
+
+  .close-icon {
+    transform: scale(1.4);
   }
 
   .mobile-nav {
     padding: 20px;
-    width: 70%;
+    width: 100%;
     height: 100%;
-    max-width: 250px;
+    // width: 70%;
+    // max-width: 250px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    background-color: #303030;
+    background-color: $dark;
     top: 0;
     left: 0;
     z-index: 100;
 
     .link {
       padding: 15px 0;
-      color: #fff;
+      color: $light;
       list-style-type: none;
 
       &.admin {
-        padding-left: 10px;
+        // padding-left: 10px;
         font-size: 15px;
         color: gray;
       }
 
       &.logout {
-        color: darkred;
+        color: $error;
       }
     }
   }
@@ -172,7 +189,7 @@ header {
   }
 
   .mobile-nav-enter {
-    transform: translateX(-250px);
+    transform: translateX(-100%);
   }
 
   .mobile-nav-enter-to {
@@ -180,7 +197,7 @@ header {
   }
 
   .mobile-nav-leave-to {
-    transform: translateX(-250px);
+    transform: translateX(-100%);
   }
 }
 

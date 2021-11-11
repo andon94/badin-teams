@@ -29,14 +29,13 @@ export default {
 
 <style scoped lang="scss">
 .base-button {
-  background: black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background: $badin-color;
+  color: $light;
   outline: none;
   border: none;
-  color: white;
   font-weight: bold;
-  padding: 10px 20px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
   &:disabled {
     opacity: 0.7;
   }

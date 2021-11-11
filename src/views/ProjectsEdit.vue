@@ -1,12 +1,12 @@
 <template>
   <Loader v-if="!projects.length"/>
-  <div class="edit-projects"
+  <div class="item-list"
        v-else>
-    <BaseFilter  placeholder="Filter projects"
-                 :dataArr="this.projects"
-                 :filterProperties="['name']"
-                 @filteredData="setFilteredData"/>
-    <div class="projects-container">
+    <div class="item-list-container">
+      <BaseFilter  placeholder="Filter projects"
+                  :dataArr="this.projects"
+                  :filterProperties="['name']"
+                  @filteredData="setFilteredData"/>
       <div class="project"
           v-for="(project, i) in filteredData" :key="i"
           @click="handleProjectClick(project.id)">
@@ -23,7 +23,7 @@ import BaseFilter from '../components/BaseComponents/BaseFilter.vue'
 import Project from '../components/Projects/Project.vue'
 
 export default {
-  name: 'Projects',
+  name: 'EditProjects',
   components: {
     Loader,
     BaseFilter,
@@ -64,7 +64,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.edit-projects {
-  margin: 20px 10px;
-}
+@import '@/assets/css/list-container.scss';
 </style>

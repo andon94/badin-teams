@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="Object.keys(employee).length === 0"/>
-  <form class="edit-employee"
+  <form class="edit"
         @submit.prevent="editEmployee"
         v-else>
     <PhotoInput />
@@ -131,11 +131,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.edit-employee {
-  margin: 20px 10px;
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-}
+@import '@/assets/css/edit-item.scss';
 </style>

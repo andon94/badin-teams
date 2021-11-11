@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="!name"/>
-  <form class="edit-team"
+  <form class="edit"
         v-else
         @submit.prevent="editClient">
     <PhotoInput />
@@ -80,13 +80,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.edit-team {
-  margin: 20px 10px;
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-}
+@import '@/assets/css/edit-item.scss';
 </style>
 
 

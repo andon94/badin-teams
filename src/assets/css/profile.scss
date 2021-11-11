@@ -1,0 +1,74 @@
+.profile {
+  padding: 10px;
+
+  &.client, &.project {
+    /deep/ .item {
+      flex-direction: column-reverse;
+      margin: 20px 0 10px;
+
+      &-image {
+        margin-bottom: 20px;
+      }
+
+      &-info {
+        padding-right: 0;
+        text-align: center;
+        &-name {
+          font-size: 20px;
+          margin-bottom: 20px;
+          & > div {
+            margin-right: 0;
+          }
+        }
+        &-about {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  /deep/ .item {
+    flex-direction: column-reverse;
+    margin: 20px 0 10px;
+
+    &-image {
+      margin-bottom: 20px;
+    }
+
+    &-info {
+      padding-right: 0;
+      width: 100%;
+      align-self: flex-start;
+      &-name {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 20px;
+        & > div {
+          margin-right: 0;
+        }
+      }
+      &-about {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &-details {
+    &.project {
+      li {
+        & > div {
+
+          text-align: center;
+          a {
+            color: $light;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    li {
+      margin: 10px 0;
+      color: $light;
+    }
+  }
+}

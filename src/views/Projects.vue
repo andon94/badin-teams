@@ -1,14 +1,13 @@
 <template>
   <Loader v-if="!projects.length"/>
-  <div class="projects"
+  <div class="item-list"
        v-else>
-    <BaseFilter  placeholder="Filter projects"
-                  :dataArr="this.projects"
-                  :filterProperties="['name']"
-                  @filteredData="setFilteredData"/>
-    <div class="projects-container">
-      <div class="project"
-          v-for="(project, i) in filteredData" :key="i"
+    <div class="item-list-container">
+      <BaseFilter  placeholder="Filter projects"
+                   :dataArr="this.projects"
+                   :filterProperties="['name']"
+                   @filteredData="setFilteredData"/>
+      <div v-for="(project, i) in filteredData" :key="i"
           @click="handleProjectClick(project.id)">
         <Project :project="project"/>
       </div>
@@ -64,7 +63,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.projects {
-  margin: 20px 10px;
-}
+@import '@/assets/css/list-container.scss';
 </style>

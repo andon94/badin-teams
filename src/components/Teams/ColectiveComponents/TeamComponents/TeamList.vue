@@ -1,16 +1,17 @@
 <template>
   <Loader v-if="!teams.length"/>
-  <div class="team-list" v-else>
-    <ul>
+  <div class="item-list"
+       v-else>
+    <div class="item-list-container">
       <BaseFilter placeholder="Filter teams"
                   :dataArr="this.teams"
                   :filterProperties="['name']"
                   @filteredData="setFilteredData"/>
-      <li v-for="(team, i) in filteredData" :key="i"
+      <div v-for="(team, i) in filteredData" :key="i"
           @click="handleTeamClick(team.id)">
         <Team :team="team"/>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,17 +56,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.team-list {
-  margin: 20px 10px;
-
-  ul {
-    width: 100%;
-    .filter-input {
-      width: calc(100% - 20px);
-    }
-    li {
-      list-style: none;
-    }
-  }
-}
+@import '@/assets/css/list-container.scss';
 </style>

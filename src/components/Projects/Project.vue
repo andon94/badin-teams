@@ -1,10 +1,16 @@
 <template>
-  <div class="project">
-    <div class="project-name">
-      {{project.name}}
-    </div>
-    <div class="project-about">
-      {{project.about}}
+  <div class="item">
+    <div class="item-info">
+      <div class="item-info-name">
+        <div>
+          {{project.name}}
+        </div>
+      </div>
+      <div class="item-info-about">
+        <div>
+          {{project.about}}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,14 +28,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.project {
-  margin: 10px 0;
-  &-name {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  &-about {
-    color: gray;
-  }
-}
+@import '@/assets/css/list-item.scss';
 </style>

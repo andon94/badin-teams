@@ -42,7 +42,7 @@ export default {
 <style scoped lang="scss">
 .photo-container {
   position: relative;
-  margin: 20px 0 30px;
+  // margin: 20px 0 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -52,7 +52,7 @@ export default {
     label {
       position: absolute;
       transform: translateX(-50%);
-      padding-top: 55px;
+      padding-top: 60px;
       z-index: 2;
       font-size: 14px;
       font-weight: bold;
@@ -60,6 +60,7 @@ export default {
       pointer-events: none;
       width: 100px;
       text-align: center;
+      color: $light;
     }
 
     input {
@@ -79,18 +80,21 @@ export default {
   }
   .img-container {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     top: 20px;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: pink;
+    background-color: $badin-color;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 100px;
       height: 100px;
+      transform: scale(1.1);
     }
   }
 }

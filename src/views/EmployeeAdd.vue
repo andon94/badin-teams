@@ -1,5 +1,5 @@
 <template>
-  <div class="add-employee">
+  <div class="new-item">
     <ValidationObserver ref="createEmployeeForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
@@ -171,13 +171,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.add-employee {
-  margin: 15px 10px;
-
-  form {
-    .submit-button {
-      margin-top: 0;
-    }
-  }
-}
+@import '@/assets/css/create-item.scss';
 </style>

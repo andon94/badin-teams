@@ -36,10 +36,13 @@ export default {
   textarea {
     max-width: 100%;
     min-width: 100%;
-    border: 3px solid black;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
+    background: $light;
+    border-radius: 5px;
     padding: 10px;
+    &:focus {
+      outline: none;
+      border: none;
+    }
   }
 }
 </style>

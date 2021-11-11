@@ -33,8 +33,7 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 20px;
-
+  margin: 20px auto;
   button {
     border: none;
     background: none;

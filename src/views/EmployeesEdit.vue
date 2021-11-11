@@ -27,7 +27,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.edit-employees {
-  margin: 20px 10px;
-}
+
 </style>

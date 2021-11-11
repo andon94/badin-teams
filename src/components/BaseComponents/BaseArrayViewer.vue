@@ -37,13 +37,18 @@ export default {
 
 <style lang="scss">
 .array-viewer {
+  margin: 20px 0;
   .label {
-    margin-left: 10px;
     font-size: 14px;
+    color: $light;
+    font-weight: bold;
   }
   &-element{
-    margin: 10px;
-    font-weight: bold;
+    margin: 10px 0;
+
+    a {
+      color: $light;
+    }
   }
 }
 </style>

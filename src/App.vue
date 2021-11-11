@@ -55,26 +55,9 @@ export default {
 }
 
 .app {
-  // display: flex;
-  // flex-direction: column;
   min-height: 100vh;
-  // background-color: $background;
-background: rgb(39,41,50);
-background: linear-gradient(183deg, rgba(39,41,50,1) 46%, rgba(79,134,198,1) 100%);
-
-//   animation-name: example;
-//   animation-duration: 1s;
-//   animation-iteration-count: infinite;
-// animation-timing-function: linear;
-
-// @keyframes example {
-//   0% {background: linear-gradient(183deg, rgba(39,41,50,1) 46%, rgba(79,134,198,1) 100%);}
-//   25% {background: linear-gradient(183deg, rgba(39,41,50,1) 65%, rgba(79,134,198,1) 100%);}
-//   50% {background: linear-gradient(183deg, rgba(39,41,50,1) 16%, rgba(79,134,198,1) 100%);}
-//   75% {background: linear-gradient(183deg, rgba(39,41,50,1) 65%, rgba(79,134,198,1) 100%);}
-//   100% {background: linear-gradient(183deg, rgba(39,41,50,1) 46%, rgba(79,134,198,1) 100%);}
-
-// }
+  background: rgb(39,41,50);
+  background: linear-gradient(183deg, rgba(39,41,50,1) 46%, rgba(79,134,198,1) 100%);
 }
 
 
@@ -90,7 +73,7 @@ background: linear-gradient(183deg, rgba(39,41,50,1) 46%, rgba(79,134,198,1) 100
 .link {
   cursor: pointer;
   text-decoration: none;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   color: black;
 }
 
