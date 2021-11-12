@@ -125,6 +125,7 @@ header {
   padding: 0 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 100;
+  position: relative;
 
   .link {
     font-weight: 500;
@@ -140,7 +141,7 @@ header {
     cursor: pointer;
     position: absolute;
     top: 20px;
-    right: 10px;
+    right: 20px;
     height: 25px;
     width: auto;
     color: $light;

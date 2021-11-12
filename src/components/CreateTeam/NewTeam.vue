@@ -3,7 +3,7 @@
     <ValidationObserver ref="createTeamForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
-        <PhotoInput label="Add a photo"
+        <PhotoInput label="Add photo"
                     @fileSelected="setImage"/>
         <BaseInput :placeholder="'Team name'"
                    v-model="teamName"
@@ -93,13 +93,17 @@ export default {
           const bodyFormData = new FormData();
           bodyFormData.append('file', this.image);
 
-          teamsApi.createTeamPhoto(res.id, bodyFormData)
-            .then(() => {
-              this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
-            })
-            .catch(err => {
-              console.log(err)
-            })
+          if (this.image) {
+            teamsApi.createTeamPhoto(res.id, bodyFormData)
+              .then(() => {
+                this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else {
+            this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+          }
         })
         .catch(err => {
           console.log(err)

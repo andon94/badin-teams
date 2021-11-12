@@ -3,7 +3,7 @@
     <ValidationObserver ref="createClientForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
-        <PhotoInput label="Add a photo"
+        <PhotoInput label="Add photo"
                     @fileSelected="setImage"/>
         <BaseInput :placeholder="'Client name'"
                   v-model="clientName"

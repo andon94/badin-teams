@@ -1,41 +1,47 @@
 <template>
   <div class="home">
-    <div class="title">BADINSOFT</div>
-    <div class="container">
-      <div class="drops">
-        <div class="drop-container container-1">
-          <router-link :to="{ name: 'Teams' }">
-            <div class="drop drop-1">
-              <!-- <svg-icon type="mdi" :path="path.teams.karate"></svg-icon>
-              <svg-icon type="mdi" :path="path.teams.female"></svg-icon>
-              <svg-icon type="mdi" :path="path.teams.lifter"></svg-icon> -->
-              <svg-icon type="mdi" :path="path.teams.team"></svg-icon>
-            </div>
-            <div class="caption main">
-              Teams
-            </div>
-          </router-link>
-        </div>
-        <div class="drop-container container-2">
-          <router-link :to="{ name: 'Clients' }">
-            <div class="drop drop-2">
-              <svg-icon type="mdi" :path="path.clients"></svg-icon>
-            </div>
-            <div class="caption">
-              Clients
-            </div>
-          </router-link>
-        </div>
-        <div class="drop-container container-3">
-          <router-link :to="{ name: 'Projects' }">
-            <div class="drop drop-3">
-              <svg-icon type="mdi" :path="path.projects"></svg-icon>
-            </div>
-            <div class="caption">
-              Projects
-            </div>
-          </router-link>
-        </div>
+    <div class="logo">
+      <img src="../assets/images/logo/logo-white.png" alt="">
+    </div>
+    <div class="title">
+      <span class="before">Dobrodosli u</span>
+      BADINSOFT
+      <span class="after">Timove</span>
+    </div>
+    <div class="content">
+      <p>
+        <span>
+          Ovo je nasa aplikacija <br> za prikaz
+          <router-link :to="{ name: 'Teams' }">timova</router-link>
+          i njihovih clanova.
+        </span>
+        <span>
+          Kao i informacije o
+          <router-link :to="{ name: 'Clients' }">klijentima</router-link>
+          i
+          <router-link :to="{ name: 'Projects' }">projektima</router-link>
+          na kojima timovi rade.
+        </span>
+      </p>
+    </div>
+    <div class="social">
+      <div>
+        <a href="https://www.facebook.com/badinsoft/"
+           target="_blank">
+          <svg-icon type="mdi" :path="path.fb"></svg-icon>
+        </a>
+      </div>
+      <div>
+        <a href="https://www.linkedin.com/company/badin-soft/mycompany/"
+           target="_blank">
+          <svg-icon type="mdi" :path="path.li"></svg-icon>
+        </a>
+      </div>
+      <div>
+        <a href="https://www.instagram.com/badin.soft/?hl=en"
+           target="_blank">
+          <svg-icon type="mdi" :path="path.ig"></svg-icon>
+        </a>
       </div>
     </div>
   </div>
@@ -43,24 +49,19 @@
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiHandshake, mdiElectronFramework, mdiHumanFemale, mdiKarate, mdiWeightLifter, mdiAccountGroup } from '@mdi/js'
+import { mdiFacebook, mdiInstagram, mdiLinkedin } from '@mdi/js'
 
 export default {
   name: "Home",
   components: {
     SvgIcon,
   },
-    data () {
+  data () {
     return {
       path: {
-        clients: mdiHandshake,
-        projects: mdiElectronFramework, //mdi-palette
-        teams: {
-          female: mdiHumanFemale,
-          karate: mdiKarate,
-          lifter: mdiWeightLifter,
-          team: mdiAccountGroup
-        }
+        fb: mdiFacebook,
+        ig: mdiInstagram,
+        li: mdiLinkedin
       }
     }
   }
@@ -68,128 +69,89 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
-
-.title {
-  // font-family: 'Fira Sans', sans-serif;
-  color: $light;
-  font-size: 50px;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  text-align: center;
-}
-
-.container {
-  margin-top: 20px;
-}
-
-.drops {
+.home {
+  position: relative;
   display: flex;
+  height: 100vh;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  padding: 150px 20px 50px;
 
-  .drop-container {
+  & > div {
+    margin: 30px 0;
+  }
+
+  .logo {
+    position: absolute;
+    top: -22px;
+    left: -60px;
+    margin: 0;
+    overflow: hidden;
+    max-height: 100px;
+    transform: scale(0.5);
+  }
+
+  .title {
     position: relative;
+    color: $light;
+    font-size: 50px;
+    letter-spacing: 4px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    a {
-      text-align: center;
-      text-decoration: none;
+    .before, .after {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      color: $badin-color;
+      font-size: 18px;
     }
 
-    &.container-1 {
-      a {
-        .drop-1 {
-          height: 170px;
-          width: 170px;
-
-          svg {
-            position: absolute;
-            color: $light;
-            // &:nth-child(1) {
-            //   transform: translate(-160%, -40%) scale(3);
-            // }
-
-            // &:nth-child(2) {
-            //   transform: translateY(100%) scale(4);
-            // }
-
-            // &:nth-child(3) {
-            //   transform: translate(160%, -40%) scale(3);
-            // }
-          }
-        }
-      }
-
-    }
-
-    &.container-2 {
-      a {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        .drop-2 {
-          height: 150px;
-          width: 150px;
-        }
-        .caption {
-          margin-right: 25px;
-        }
-      }
-    }
-
-    &.container-3 {
-      .drop-3 {
-        height: 130px;
-        width: 130px;
-      }
-    }
-
-    &.container-1, &.container-3 {
-      a {
-        display: flex;
-        align-items: center;
-        .caption {
-          margin-left: 25px;
-        }
-      }
-    }
-
-    .caption {
-      color: $light;
-      font-family: 'Fira Sans', sans-serif;
-      margin: 10px auto 20px;
-      font-size: 20px;
-      &.main {
-        font-size: 30px;
-      }
+    .after {
+      top: unset;
+      left: unset;
+      bottom: -20px;
+      right: 0;
     }
   }
-}
+  .content {
+    margin-top: 0;
+    color: $light;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 300;
 
-.drop {
-  background: rgba(255,255,255, 0.06);
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-radius: 50%;
+    span {
+      display: block;
+      line-height: 1.2;
 
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+      &:last-child {
+        margin: 30px 0 0;
+        text-align: right;
+      }
+    }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    a {
+      color: $badin-color;
+      text-decoration: none;
+      font-size: 25px;
+      text-transform: capitalize;
+      padding: 20px 0;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+    }
+  }
+  .social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  svg {
-    color: $white;
-    transform: scale(4);
+    & > div {
+      padding: 0 20px;
+      transform: scale(1.5);
+      a {
+        color: $light;
+      }
+    }
   }
 }
 </style>

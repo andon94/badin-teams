@@ -3,7 +3,7 @@
     <ValidationObserver ref="createEmployeeForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
-        <PhotoInput label="Add a profile photo"
+        <PhotoInput label="Add photo"
                     @fileSelected="setImage"/>
         <BaseInput :placeholder="'First name'"
                    v-model="firstName"

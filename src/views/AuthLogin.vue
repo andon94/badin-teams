@@ -4,30 +4,21 @@
                     v-slot="{ invalid }">
       <form @submit.prevent
             class="login">
-        <h2>Login to Badin Teams</h2>
+        <p>Login to Badin Teams</p>
         <BaseInput :placeholder="'Email'"
                    v-model="email"
                    rules="required"/>
-                   <!-- dodati: required|email
-                        trenutno je jedini korisnik admin, tako da ne moze da prodje proveru -->
         <BaseInput :placeholder="'Password'"
                    type="password"
                    v-model="password"
                    rules="required"/>
-
-        <!-- <router-link class="forgot-password"
-                    :to="{ name: 'ForgotPassword' }">
-          Forgot your password?
-        </router-link> -->
-
         <BaseButton text="Create"
                     type="submit"
                     :disabled="invalid"
-                    @click="handleLogin"/>
-        <div class="angle"></div>
+                    @click="handleLogin"
+                    class="login-button"/>
       </form>
     </ValidationObserver>
-    <div class="background"></div>
   </div>
 </template>
 

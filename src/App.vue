@@ -57,9 +57,8 @@ export default {
 .app {
   min-height: 100vh;
   background: rgb(39,41,50);
-  background: linear-gradient(183deg, rgba(39,41,50,1) 46%, rgba(79,134,198,1) 100%);
+  background: linear-gradient(180deg, rgba(39,41,50,1) 15%, rgba(43,85,139,1) 50%, rgba(39,41,50,1) 85%);
 }
-
 
 .home {
   min-height: 90vh;

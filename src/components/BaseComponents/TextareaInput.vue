@@ -4,7 +4,8 @@
     <textarea cols="30" rows="10"
               :placeholder="placeholder"
               :value="value"
-              @input="updateValue($event.target.value)">
+              @input="updateValue($event.target.value)"
+              :spellcheck="false">
     </textarea>
   </div>
 </template>
@@ -36,12 +37,17 @@ export default {
   textarea {
     max-width: 100%;
     min-width: 100%;
-    background: $light;
+    background: transparent;
+    border: 1px solid $light;
     border-radius: 5px;
     padding: 10px;
+    color: $light;
+    &::placeholder {
+      color: $light;
+    }
     &:focus {
       outline: none;
-      border: none;
+      border: 1px solid $light;
     }
   }
 }

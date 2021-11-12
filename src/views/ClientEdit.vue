@@ -3,7 +3,7 @@
   <form class="edit"
         v-else
         @submit.prevent="editClient">
-    <PhotoInput />
+    <PhotoInput label="Edit photo"/>
     <BaseInput :placeholder="'Client name'"
                 v-model="name"/>
     <TextareaInput placeholder="About client"

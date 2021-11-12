@@ -3,9 +3,9 @@
   <form class="edit project"
         v-else
         @submit.prevent="editProject">
-    <BaseInput :placeholder="'Team name'"
+    <BaseInput :placeholder="'Project name'"
                 v-model="name"/>
-    <TextareaInput placeholder="About team"
+    <TextareaInput placeholder="About project"
                    v-model="about"/>
     <div class="button-container">
       <BaseButton type="submit"

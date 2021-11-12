@@ -3,7 +3,7 @@
   <form class="edit"
         @submit.prevent="editEmployee"
         v-else>
-    <PhotoInput />
+    <PhotoInput label="Edit photo"/>
     <BaseInput :placeholder="'First name'"
                 v-model="employee.firstName"/>
     <BaseInput :placeholder="'Last name'"

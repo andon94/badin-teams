@@ -13,13 +13,11 @@
         </div>
       </div>
       <div class="item-info-about">
-        <!-- <label>Working area: </label> -->
         <div>
           {{employee.workingArea}}
         </div>
       </div>
       <div class="item-info-about">
-        <!-- <label>Seniority: </label> -->
         <div>
           {{employee.seniority}}
         </div>

@@ -3,7 +3,7 @@
   <form class="edit"
         @submit.prevent="editTeam"
         v-else>
-    <PhotoInput />
+    <PhotoInput label="Edit photo"/>
     <BaseInput :placeholder="'Team name'"
                 v-model="team.name"/>
     <BaseArrayInput :dataArr="teamClients"
