@@ -81,6 +81,6 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/css/create-item.scss';
 .project {
-  padding-top: 20px;
+  padding-top: 55px;
 }
 </style>
