@@ -9,12 +9,23 @@
     <div class="img-container">
       <img :src="photoPath || uploaded">
     </div>
+    <div class="remove-img"
+         v-if="uploaded "
+         @click="removeImage">
+      <svg-icon type="mdi" :path="path.close"></svg-icon>
+    </div>
   </div>
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiClose } from '@mdi/js'
+
 export default {
   name: 'PhotoInput',
+  components: {
+    SvgIcon
+  },
   props: {
     label: {
       type: String,
@@ -27,13 +38,20 @@ export default {
   },
   data () {
     return {
-      uploaded: null
+      uploaded: null,
+      path: {
+        close: mdiClose,
+      }
     }
   },
   methods: {
     onInput (e) {
       this.$emit('fileSelected', e.target.files[0])
       this.uploaded = URL.createObjectURL(e.target.files[0])
+    },
+    removeImage () {
+      this.uploaded = null
+      this.$emit('fileSelected', null)
     }
   }
 }
@@ -96,6 +114,14 @@ export default {
       height: 100px;
       transform: scale(1.1);
     }
+  }
+
+  .remove-img {
+    position: absolute;
+    color: $light;
+    top: 100px;
+    right: 80px;
+    z-index: 10;
   }
 }
 </style>

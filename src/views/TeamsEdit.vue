@@ -1,7 +1,8 @@
 <template>
   <div class="edit-teams">
     <TeamList :teams="teams"
-              :teamsFilter="true"/>
+              :teamsFilter="true"
+              :loader="loader"/>
   </div>
 </template>
 
@@ -14,9 +15,20 @@ export default {
   components: {
     TeamList
   },
+  data () {
+    return {
+      loader: true
+    }
+  },
   mounted () {
     this.fetchTeams()
-    // .then
+      .then(() => {
+        this.loader = false
+      })
+      .catch(err => {
+        this.loader = false
+        console.log(err)
+      })
   },
   computed: {
     ...mapGetters(['teams'])

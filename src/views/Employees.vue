@@ -19,7 +19,8 @@
              @click="handleTeamClick">
           {{team.name}}
         </div>
-        <EmployeeList :employees="teamMembers"/>
+        <EmployeeList :employees="teamMembers"
+                      :loader="loader"/>
       </div>
     </div>
   </div>
@@ -40,12 +41,20 @@ export default {
   },
   data () {
     return {
-      position: 0
+      position: 0,
+      loader: true
     }
   },
   mounted () {
     this.fetchTeam(this.$route.query.id)
     this.fetchTeamMembers(this.$route.query.id)
+      .then(() => {
+        this.loader = false
+      })
+      .catch(err => {
+        this.loader = false
+        console.log(err)
+      })
   },
   computed: {
     ...mapGetters(['team', 'teamMembers']),

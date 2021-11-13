@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="!projects.length"/>
+  <Loader v-if="loader"/>
   <div class="item-list projects"
        v-else>
     <div class="item-list-container">
@@ -31,7 +31,8 @@ export default {
   data () {
     return {
       projects: [],
-      filteredData: []
+      filteredData: [],
+      loader: true
     }
   },
   mounted () {
@@ -47,9 +48,11 @@ export default {
       projectsApi.fetchProjects()
         .then(res => {
           this.projects = [...res]
+          this.loader = false
         })
         .catch(err => {
           console.log(err)
+          this.loader = false
         })
     },
     setFilteredData (val) {

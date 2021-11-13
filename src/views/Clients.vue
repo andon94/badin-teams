@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="!clients.length"/>
+  <Loader v-if="loader"/>
   <div class="item-list clients"
        v-else>
     <div class="item-list-container">
@@ -30,11 +30,19 @@ export default {
   },
   data () {
     return {
-      filteredData: []
+      filteredData: [],
+      loader: true
     }
   },
   mounted () {
     this.fetchClients()
+      .then(() => {
+        this.loader = false
+      })
+      .catch(err => {
+        this.loader = false
+        console.log(err)
+      })
   },
   computed: {
     ...mapGetters(['clients'])

@@ -1,6 +1,7 @@
 <template>
   <div class="edit-employees">
-    <EmployeeList :employees="employees"/>
+    <EmployeeList :employees="employees"
+                  :loader="loader"/>
   </div>
 </template>
 
@@ -13,9 +14,20 @@ export default {
   components: {
     EmployeeList
   },
+  data () {
+    return {
+      loader: true
+    }
+  },
   mounted () {
     this.fetchEmployees()
-    // .then
+      .then(() => {
+        this.loader = false
+      })
+      .catch(err => {
+        this.loader = false
+        console.log(err)
+      })
   },
   computed: {
     ...mapGetters(['employees'])

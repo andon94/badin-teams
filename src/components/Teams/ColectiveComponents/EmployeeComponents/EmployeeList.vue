@@ -1,5 +1,5 @@
 <template>
-  <Loader v-if="!employees.length"/>
+  <Loader v-if="loader"/>
   <div class="item-list"
        v-else>
     <div class="item-list-container">
@@ -31,6 +31,10 @@ export default {
     employees: {
       type: Array,
       default: () => []
+    },
+    loader: {
+      type: Boolean,
+      default: true
     }
   },
   data () {

@@ -8,6 +8,7 @@
                        class="bubbles"/>
       <TeamList :teams="teams"
                 :teamsFilter="true"
+                :loader="loader"
                 class="list"/>
     </div>
   </div>
@@ -29,11 +30,19 @@ export default {
   },
   data () {
     return {
-      position: 0
+      position: 0,
+      loader: true
     }
   },
   mounted () {
     this.fetchTeams()
+      .then(() => {
+        this.loader = false
+      })
+      .catch(err => {
+        this.loader = false
+        console.log(err)
+      })
   },
   computed: {
     ...mapGetters(['teams'])
