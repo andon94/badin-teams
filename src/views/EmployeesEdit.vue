@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.edit-employees {
+  padding-top: 40px;
+}
 </style>

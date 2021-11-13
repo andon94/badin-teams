@@ -1,5 +1,10 @@
 <template>
   <div class="app-wrapper">
+    <div class="logo">
+      <router-link to="/">
+        <img src="./assets/images/logo/logo-white.png" alt="">
+      </router-link>
+    </div>
     <div class="app">
       <Navigation  v-if="!navigationDisabled" />
       <router-view />
@@ -52,6 +57,19 @@ export default {
   box-sizing: border-box;
   font-family: "Quicksand", sans-serif;
   scroll-behavior: smooth;
+}
+
+.app-wrapper {
+  position: relative;
+  .logo {
+    position: absolute;
+    top: -22px;
+    left: -60px;
+    margin: 0;
+    overflow: hidden;
+    max-height: 100px;
+    transform: scale(0.5);
+  }
 }
 
 .app {

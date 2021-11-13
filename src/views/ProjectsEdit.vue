@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="!projects.length"/>
-  <div class="item-list"
+  <div class="item-list projects"
        v-else>
     <div class="item-list-container">
       <BaseFilter  placeholder="Filter projects"

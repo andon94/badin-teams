@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="!clients.length"/>
-  <div class="item-list"
+  <div class="item-list clients"
        v-else>
     <div class="item-list-container">
       <BaseFilter  placeholder="Filter clients"

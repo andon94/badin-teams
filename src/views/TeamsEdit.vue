@@ -26,3 +26,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.edit-teams {
+  padding-top: 40px;
+}
+</style>

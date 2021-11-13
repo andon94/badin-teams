@@ -80,6 +80,7 @@ export default {
                 this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
               })
               .catch(err => {
+                this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
                 console.log(err)
               })
           } else {

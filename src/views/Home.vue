@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <div class="logo">
-      <img src="../assets/images/logo/logo-white.png" alt="">
-    </div>
     <div class="title">
       <span class="before">Dobrodosli u</span>
       BADINSOFT
