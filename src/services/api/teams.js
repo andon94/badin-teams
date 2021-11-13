@@ -40,7 +40,6 @@ class TeamsAPI {
 	}
 
 	deleteTeam (id) {
-		console.log(id)
 		return this.baseFetcher.delete(`/teams/${id}`)
 	}
 }

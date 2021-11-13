@@ -3,7 +3,8 @@
   <form class="edit"
         @submit.prevent="editEmployee"
         v-else>
-    <PhotoInput label="Edit photo"/>
+    <PhotoInput label="Edit photo"
+                @fileSelected="setImage"/>
     <BaseInput :placeholder="'First name'"
                 v-model="employee.firstName"/>
     <BaseInput :placeholder="'Last name'"
@@ -70,7 +71,8 @@ export default {
     return {
       currentTeams: null,
       currentClients: null,
-      currentProjects: null
+      currentProjects: null,
+      image: null
     }
   },
   mounted() {
@@ -96,6 +98,9 @@ export default {
     handleProject (val) {
       this.currentProjects = [...val]
     },
+    setImage (val) {
+      this.image = val
+    },
     editEmployee () {
       const teamIds = this.currentTeams.map(team => team.id)
       const clientIds = this.currentClients.map(client => client.id)
@@ -107,7 +112,7 @@ export default {
         lastName: this.employee.lastName,
         nickname: this.employee.nickname,
         position: this.employee.position,
-        image: this.employee.image,
+        image: null,
         seniority: this.employee.seniority,
         mainTechnology: this.employee.mainTechnology,
         workingArea: this.employee.mainArea,
@@ -116,11 +121,25 @@ export default {
         clients: clientIds,
         projects: projectIds
       }
-      // bug na be, nema responsa
+
       employeesApi.editEmployee(this.$route.query.id, data)
         .then(res => {
-          this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
-          console.log(res)
+          const bodyFormData = new FormData();
+          bodyFormData.append('file', this.image);
+
+          if (this.image) {
+            employeesApi.createEmployeePhoto(res.id, bodyFormData)
+              .then(() => {
+                this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else {
+            this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+          }
+
+
         })
         .catch(err => {
           console.log(err)

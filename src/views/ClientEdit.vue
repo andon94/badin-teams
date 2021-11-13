@@ -3,7 +3,8 @@
   <form class="edit"
         v-else
         @submit.prevent="editClient">
-    <PhotoInput label="Edit photo"/>
+    <PhotoInput label="Edit photo"
+                @fileSelected="setImage"/>
     <BaseInput :placeholder="'Client name'"
                 v-model="name"/>
     <TextareaInput placeholder="About client"
@@ -47,6 +48,9 @@ export default {
     this.fetchClient()
   },
   methods: {
+    setImage (val) {
+      this.image = val
+    },
     fetchClient () {
       clientsApi.fetchClient(this.$route.query.id)
         .then(res => {
@@ -64,12 +68,23 @@ export default {
         about: this.about,
         logo:  this.logo
       }
-      console.log(data, this.$route.query.id)
-      // bug na be, nema responsa
+
       clientsApi.editClient(this.$route.query.id, data)
         .then(res => {
-          console.log(res)
-          this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+          const bodyFormData = new FormData();
+          bodyFormData.append('file', this.image);
+
+          if (this.image) {
+            clientsApi.createClientPhoto(res.id, bodyFormData)
+              .then(() => {
+                this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else {
+            this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+          }
         })
         .catch(err => {
           console.log(err)

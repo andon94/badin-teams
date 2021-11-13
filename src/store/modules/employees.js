@@ -19,7 +19,7 @@ const getters = {
 const actions = {
 
   fetchEmployees({commit}) {
-    employeesApi.fetchEmployees()
+    return employeesApi.fetchEmployees()
       .then(res => {
         commit('setEmployees', res)
       })
@@ -29,7 +29,7 @@ const actions = {
   },
 
   fetchEmployee ({commit}, id) {
-    employeesApi.fetchEmployee(id)
+    return employeesApi.fetchEmployee(id)
     .then(res => {
       commit('setEmployee', res)
     })
@@ -39,7 +39,7 @@ const actions = {
   },
 
   fetchEmployeeTeams ({commit}, id) {
-    employeesApi.fetchEmployeeTeams(id)
+    return employeesApi.fetchEmployeeTeams(id)
     .then(res => {
         commit('setEmployeeTeams', res)
       })
@@ -49,7 +49,7 @@ const actions = {
   },
 
   fetchEmployeeProjects ({commit}, id) {
-    employeesApi.fetchEmployeeProjects(id)
+    return employeesApi.fetchEmployeeProjects(id)
       .then(res => {
         commit('setEmployeeProjects', res)
       })
@@ -59,7 +59,7 @@ const actions = {
   },
 
   fetchEmployeeClients ({commit}, id) {
-    employeesApi.fetchEmployeeClients(id)
+    return employeesApi.fetchEmployeeClients(id)
       .then(res => {
         commit('setEmployeeClients', res)
       })

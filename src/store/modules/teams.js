@@ -20,7 +20,7 @@ const getters = {
 const actions = {
 
   fetchTeams({commit}) {
-    teamsApi.fetchTeams()
+    return teamsApi.fetchTeams()
       .then(res => {
         commit('setTeams', res)
       })
@@ -30,7 +30,7 @@ const actions = {
   },
 
   fetchTeam ({commit}, id) {
-    teamsApi.fetchTeam(id)
+    return teamsApi.fetchTeam(id)
       .then(res => {
         commit('setTeam', res)
       })
@@ -40,7 +40,7 @@ const actions = {
   },
 
   fetchTeamMembers ({commit}, id) {
-    teamsApi.fetchTeamMembers(id)
+    return teamsApi.fetchTeamMembers(id)
       .then(res => {
         commit('setTeamMembers', res)
       })
@@ -50,7 +50,7 @@ const actions = {
   },
 
   fetchTeamProjects ({commit}, id) {
-    teamsApi.fetchTeamProjects(id)
+    return teamsApi.fetchTeamProjects(id)
       .then(res => {
         commit('setTeamProjects', res)
       })
@@ -60,7 +60,7 @@ const actions = {
   },
 
   fetchTeamClients ({commit}, id) {
-    teamsApi.fetchTeamClients(id)
+    return teamsApi.fetchTeamClients(id)
       .then(res => {
         commit('setTeamClients', res)
       })

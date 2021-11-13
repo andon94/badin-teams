@@ -1,4 +1,4 @@
-import {Ability, AbilityBuilder} from "@casl/ability";
+import { Ability, AbilityBuilder } from "@casl/ability";
 
 export const ADMIN_ALLOWED_PAGES = [
     'CreateTeam',
@@ -45,6 +45,4 @@ const getAdminUserPermissions = () => {
 }
 
 export const ROLE_ADMIN = getAdminUserPermissions()
-
-// export const ROLE_ADMIN = new Ability(ADMIN_PERMISSIONS);
 

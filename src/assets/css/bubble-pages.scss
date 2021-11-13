@@ -2,11 +2,17 @@
   overflow: hidden;
   min-height: 100vh;
 
+  &.no-scroll {
+    max-height: 100vh;
+  }
+
   &-content {
     display: flex;
     flex-direction: row;
     align-content: center;
     transition: all linear 0.2s;
+
+
     .bubbles, .list {
       min-width: 100vw;
     }

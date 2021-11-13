@@ -11,7 +11,7 @@ const getters = {
 const actions = {
 
   fetchProjects({commit}) {
-    projectsApi.fetchProjects()
+    return projectsApi.fetchProjects()
       .then(res => {
         commit('setProjects', res)
       })

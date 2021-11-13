@@ -1,4 +1,5 @@
 import fetcher from 'axios'
+import Storage from '../storage/index'
 
 class BaseFetcher {
 	constructor (fetcher, options = {}) {
@@ -10,10 +11,10 @@ class BaseFetcher {
 	}
 
 	checkLoginStatus() {
-		if (localStorage.badin_teams_storage) {
+		if (Storage.getItem('storage')) {
 			this.fetcher.interceptors.request.use(
 				(config) => {
-					const storage = JSON.parse(localStorage.badin_teams_storage) || null
+					const storage = Storage.getItem('storage') || null
 					if (storage.token) {
 						config.headers.authorization = storage.token
 					}

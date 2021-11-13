@@ -23,12 +23,13 @@
 </template>
 
 <script>
+import { baseFetcher } from '../services/api/api'
 import { authAPI } from '../services/api/login.js'
 import Storage from '../services/storage'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'
-import {mapActions} from "vuex";
-import {setUserRoles} from "../utils/auth";
+import { mapActions, mapMutations } from "vuex";
+import { setUserRoles } from "../utils/auth";
 
 
 export default {
@@ -45,6 +46,7 @@ export default {
   },
   methods: {
     ...mapActions(['setPermissions']),
+    ...mapMutations(['setPermissions', 'setLoginStatus']),
     handleLogin () {
       this.$refs.loginForm.validate().then(success => {
         if (!success) {
@@ -62,10 +64,10 @@ export default {
 
       authAPI.login(data)
         .then(res => {
-          this.$store.commit('setPermissions', setUserRoles(res.roles))
-          this.$store.commit('setLoginStatus', true)
-
+          this.setPermissions(setUserRoles(res.roles))
+          this.setLoginStatus(true)
           Storage.setItem('storage', res)
+          baseFetcher.checkLoginStatus()
           this.$router.push({path:'/'})
         })
         .catch(err => {

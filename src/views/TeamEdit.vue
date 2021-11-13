@@ -3,7 +3,8 @@
   <form class="edit"
         @submit.prevent="editTeam"
         v-else>
-    <PhotoInput label="Edit photo"/>
+    <PhotoInput label="Edit photo"
+                @fileSelected="setImage"/>
     <BaseInput :placeholder="'Team name'"
                 v-model="team.name"/>
     <BaseArrayInput :dataArr="teamClients"
@@ -53,11 +54,11 @@ export default {
       client: '',
       project: '',
       currentClients: [],
-      currentProjects: []
+      currentProjects: [],
+      image: null
     }
   },
   mounted() {
-    console.log(this.team)
     this.fetchTeam(this.$route.query.id)
     this.fetchTeamProjects(this.$route.query.id)
     this.fetchTeamClients(this.$route.query.id)
@@ -75,6 +76,9 @@ export default {
     handleProject (val) {
       this.currentProjects = [...val]
     },
+    setImage (val) {
+      this.image = val
+    },
     editTeam () {
       const clientIds = this.currentClients.map(client => client.id)
       const projectIds = this.currentProjects.map(project => project.id)
@@ -87,11 +91,22 @@ export default {
         projects: projectIds
       }
 
-      // bug na be, nema responsa
       teamsApi.editTeam(this.$route.query.id, data)
         .then(res => {
-          console.log(res)
-          this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+          const bodyFormData = new FormData();
+          bodyFormData.append('file', this.image);
+
+          if (this.image) {
+            teamsApi.createTeamPhoto(res.id, bodyFormData)
+              .then(() => {
+                this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          } else {
+            this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+          }
         })
         .catch(err => {
           console.log(err)

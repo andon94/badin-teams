@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     handleButtonClick () {
-      // bug na be, vraca errror 500
       if (this.label === 'team') this.deleteTeam()
       if (this.label === 'employee') this.deleteEmployee()
       if (this.label === 'project') this.deleteProject()
@@ -33,7 +32,7 @@ export default {
     deleteTeam () {
       teamsApi.deleteTeam(this.$route.query.id)
         .then(() => {
-          this.$router.push({path:'/'})
+          this.$router.push({path:'/edit/teams'})
         })
         .catch(err => {
           console.log(err)
@@ -42,7 +41,7 @@ export default {
     deleteEmployee () {
       employeesApi.deleteEmployee(this.$route.query.id)
         .then(() => {
-          this.$router.push({path:'/'})
+          this.$router.push({path:'/edit/employees'})
         })
         .catch(err => {
           console.log(err)
@@ -51,7 +50,7 @@ export default {
     deleteProject () {
       projectsApi.deleteProject(this.$route.query.id)
         .then(() => {
-          this.$router.push({path:'/'})
+          this.$router.push({path:'/edit/projects'})
         })
         .catch(err => {
           console.log(err)
@@ -60,7 +59,7 @@ export default {
     deleteClient () {
       clientsApi.deleteClient(this.$route.query.id)
         .then(() => {
-          this.$router.push({path:'/'})
+          this.$router.push({path:'/edit/clients'})
         })
         .catch(err => {
           console.log(err)

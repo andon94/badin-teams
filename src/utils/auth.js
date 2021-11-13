@@ -16,7 +16,6 @@ export function setUserRoles(roles = []) {
     const allPermissions = roles.reduce((acc,curr) => {
         return acc.concat(Roles[curr])
     },[]);
-
     return new Ability(allPermissions);
 }
 
@@ -28,6 +27,5 @@ export function setRolesIfUserIsAuthenticated(storage) {
     if(isAuthenticated(storage)) {
         return setUserRoles(storage.roles);
     }
-
     return emptyAbility
 }
