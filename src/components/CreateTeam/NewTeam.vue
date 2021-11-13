@@ -52,8 +52,8 @@ export default {
     }
   },
   mounted () {
-    if (!this.clients.length) this.fetchClients()
-    if (!this.projects.length) this.fetchProjects()
+    this.fetchClients()
+    this.fetchProjects()
   },
   computed: {
     ...mapGetters(['clients', 'projects']),

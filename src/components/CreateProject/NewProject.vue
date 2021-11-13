@@ -43,7 +43,7 @@ export default {
     }
   },
   mounted () {
-    if (!this.clients.length) this.fetchClients()
+    this.fetchClients()
   },
   computed: {
     ...mapGetters(['clients'])

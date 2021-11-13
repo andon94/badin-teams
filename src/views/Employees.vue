@@ -1,5 +1,6 @@
 <template>
-  <div class="colective">
+  <div class="colective"
+       :class="{'no-scroll': !position}">
     <ViewNavigator @setPosition="setPosition"/>
     <div class="colective-content"
          :style="{'margin-left': position}">

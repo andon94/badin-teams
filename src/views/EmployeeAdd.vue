@@ -92,9 +92,9 @@ export default {
     }
   },
   mounted () {
-    if (!this.teams.length) this.fetchTeams()
-    if (!this.clients.length) this.fetchClients()
-    if (!this.projects.length) this.fetchProjects()
+    this.fetchTeams()
+    this.fetchClients()
+    this.fetchProjects()
   },
   computed: {
     ...mapGetters(['teams', 'clients', 'projects']),
@@ -125,8 +125,8 @@ export default {
     addNewEmployee() {
 
       this.employeeTeams = this.employeeTeams.map(team => team.id)
-      // privremeno badin tim id '66dfcc5e-7dbe-4e3b-b979-e10a2c6f2c51'
-      this.employeeTeams.push('66dfcc5e-7dbe-4e3b-b979-e10a2c6f2c51')
+      // privremeno badin tim id
+      this.employeeTeams.push('70def012-6947-4b3c-a3b2-207eca2232dd')
       this.employeeClients = this.employeeClients.map(client => client.id)
       this.employeeProjects = this.employeeProjects.map(project => project.id)
 
