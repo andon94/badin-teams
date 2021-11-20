@@ -67,8 +67,8 @@ export default {
           this.setPermissions(setUserRoles(res.roles))
           this.setLoginStatus(true)
           Storage.setItem('storage', res)
-          baseFetcher.checkLoginStatus()
           this.$router.push({path:'/'})
+          baseFetcher.setOptions({'Authorization': res.token})
         })
         .catch(err => {
           console.log(err)

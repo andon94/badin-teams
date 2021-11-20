@@ -1,5 +1,4 @@
 import fetcher from 'axios'
-import Storage from '../storage/index'
 
 class BaseFetcher {
 	constructor (fetcher, options = {}) {
@@ -7,24 +6,6 @@ class BaseFetcher {
 			throw new Error('Please add fetcher!')
 		}
 		this.fetcher = fetcher.create(options);
-		this.checkLoginStatus()
-	}
-
-	checkLoginStatus() {
-		if (Storage.getItem('storage')) {
-			this.fetcher.interceptors.request.use(
-				(config) => {
-					const storage = Storage.getItem('storage') || null
-					if (storage.token) {
-						config.headers.authorization = storage.token
-					}
-					return config
-				},
-				(error) => {
-					return Promise.reject(error)
-				}
-			)
-		}
 	}
 
 	post(...options) {
@@ -41,6 +22,13 @@ class BaseFetcher {
 
 	delete (...options) {
 		return this.fetcher.delete(...options).then(res => res.data);
+	}
+
+	setOptions (options) {
+		this.fetcher.defaults.headers.common = {
+			...this.fetcher.defaults.headers.common,
+			...options
+		}
 	}
 }
 

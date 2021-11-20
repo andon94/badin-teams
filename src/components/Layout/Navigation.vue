@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import { baseFetcher } from '../../services/api/api'
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiClose } from '@mdi/js'
 import { mapGetters } from 'vuex'
@@ -114,6 +115,7 @@ export default {
       Storage.removeItem('storage')
       this.$store.commit('setLoginStatus', false)
       this.$router.push({path:'/login'})
+      baseFetcher.setOptions({'Authorization': null})
     }
   }
 }

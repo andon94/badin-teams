@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { baseFetcher } from './services/api/api'
+// import Storage from './services/storage'
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
 
@@ -26,10 +28,30 @@ export default {
   data() {
     return {
       navigationDisabled: null,
-    };
+      interceptor: null
+    }
   },
   mounted() {
     this.checkRoute();
+    this.interceptor = baseFetcher.fetcher.interceptors.request.use(
+      (config) => {
+
+        // ubaci uslov za expiration tokena
+
+        // Storage.removeItem('storage')
+        // this.$store.commit('setLoginStatus', false)
+        // this.$router.push({path:'/login'})
+        // baseFetcher.setOptions({'Authorization': null})
+
+        return config
+      },
+      (error) => {
+        return Promise.reject(error)
+      }
+    )
+  },
+  destroyed() {
+    baseFetcher.fetcher.interceptors.request.eject(this.interceptor);
   },
   methods: {
     checkRoute() {
