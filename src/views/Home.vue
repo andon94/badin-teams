@@ -1,24 +1,24 @@
 <template>
   <div class="home">
     <div class="title">
-      <span class="before">Dobrodosli u</span>
+      <span class="before">Welcome to</span>
       BADINSOFT
-      <span class="after">Timove</span>
+      <span class="after">Teams</span>
     </div>
     <div class="content">
       <p>
-        <span class="small-text">Aplikacija za prikaz</span>
+        <span class="small-text">Application displays</span>
         <span>
-          <router-link :to="{ name: 'Teams' }">Timova</router-link>
-          i njihovih clanova.
+          <router-link :to="{ name: 'Teams' }">Teams</router-link>
+          and their members.
         </span>
         <span class="right-text">
-          Informacije o
-          <router-link :to="{ name: 'Clients' }">Klijentima</router-link>.
+          Information about
+          <router-link :to="{ name: 'Clients' }">Clients</router-link>.
         </span>
         <span>
-          <router-link :to="{ name: 'Projects' }">Projekta</router-link>
-          na kojima rade.
+          <router-link :to="{ name: 'Projects' }">Projects</router-link>
+          on which they work.
         </span>
       </p>
     </div>
