@@ -7,17 +7,18 @@
     </div>
     <div class="content">
       <p>
+        <span class="small-text">Aplikacija za prikaz</span>
         <span>
-          Ovo je nasa aplikacija <br> za prikaz
-          <router-link :to="{ name: 'Teams' }">timova</router-link>
+          <router-link :to="{ name: 'Teams' }">Timova</router-link>
           i njihovih clanova.
         </span>
+        <span class="right-text">
+          Informacije o
+          <router-link :to="{ name: 'Clients' }">Klijentima</router-link>.
+        </span>
         <span>
-          Kao i informacije o
-          <router-link :to="{ name: 'Clients' }">klijentima</router-link>
-          i
-          <router-link :to="{ name: 'Projects' }">projektima</router-link>
-          na kojima timovi rade.
+          <router-link :to="{ name: 'Projects' }">Projekta</router-link>
+          na kojima rade.
         </span>
       </p>
     </div>
@@ -93,12 +94,13 @@ export default {
     position: relative;
     color: $light;
     font-size: 50px;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
+    font-weight: 900;
 
     .before, .after {
       position: absolute;
       top: -20px;
-      left: 0;
+      left: 3px;
       color: $badin-color;
       font-size: 18px;
     }
@@ -107,23 +109,48 @@ export default {
       top: unset;
       left: unset;
       bottom: -20px;
-      right: 0;
+      right: 3px;
     }
   }
   .content {
     margin-top: 0;
     color: $light;
-    text-align: left;
+    width: 100%;
     font-size: 20px;
     font-weight: 300;
 
     span {
-      display: block;
+      display: inline-flex;
+      align-items: center;
       line-height: 1.2;
+      background-color: #ffffff26;
+      border-radius: 5px; 
+      clear: both;
+      font-size: 18px;
+      
+        &:not(.small-text) {
+          padding: 10px;
+        }
 
-      &:last-child {
-        margin: 30px 0 0;
-        text-align: right;
+        &:not(.right-text) {
+          a {
+            margin-right: 5px;
+          }
+        }
+
+      &.small-text {
+        font-size: 10px;
+        letter-spacing: 4px;
+        background-color: transparent;
+      }
+
+      &.right-text {
+        margin: 30px 0;
+        float: right;
+
+        a {
+          margin-left: 5px;
+        }
       }
     }
 
@@ -132,7 +159,6 @@ export default {
       text-decoration: none;
       font-size: 25px;
       text-transform: capitalize;
-      padding: 20px 0;
       letter-spacing: 1.5px;
       font-weight: 800;
     }
