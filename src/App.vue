@@ -6,6 +6,7 @@
       </router-link>
     </div>
     <div class="app">
+      <BaseBreadcrumb />
       <Navigation  v-if="!navigationDisabled" />
       <router-view />
     </div>
@@ -18,10 +19,12 @@ import { baseFetcher } from './services/api/api'
 // import Storage from './services/storage'
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
+import BaseBreadcrumb from './components/BaseComponents/BaseBreadcrumb';
 
 export default {
   name: "app",
   components: {
+    BaseBreadcrumb,
     Navigation,
     Footer
   },
