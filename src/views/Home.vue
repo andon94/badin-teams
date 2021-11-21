@@ -10,11 +10,11 @@
         <span>
           <span class="small-text">It's all about people</span>
           <router-link :to="{ name: 'Teams' }">Teams</router-link>
-          and their members.
+          and relationships.
         </span>
         <span class="right-text">
           <span class="small-text">Here we share</span>
-          Information about
+          Informations about
           <router-link :to="{ name: 'Clients' }">Clients</router-link>.
         </span>
         <span>
@@ -76,11 +76,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 100px 20px 20px;
-
-  & > div {
-    margin: 30px 0;
-  }
+  padding: 120px 20px 30px;
 
   .logo {
     position: absolute;
@@ -113,13 +109,15 @@ export default {
       }
     }
 
+    .before {
+      color: $white;
+    }
 
     .before, .after {
-      color: $badin-color !important;
+      // color: $badin-color;
       position: absolute;
       top: -20px;
       left: 3px;
-      color: $white;
       font-size: 18px;
     }
 
@@ -128,6 +126,7 @@ export default {
       left: unset;
       bottom: -20px;
       right: 3px;
+      color: $badin-color;
     }
   }
   .content {
