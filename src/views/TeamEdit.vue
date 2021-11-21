@@ -29,7 +29,7 @@
 
 <script>
 import { teamsApi } from '../services/api/teams.js'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import Loader from '../components/BaseComponents/Loader.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
@@ -69,6 +69,7 @@ export default {
     ...mapGetters(['team', 'teamMembers', 'teamProjects', 'teamClients', 'projects', 'clients']),
   },
   methods: {
+    ...mapMutations(['setError']),
     ...mapActions(['fetchTeam', 'fetchTeamMembers', 'fetchTeamProjects', 'fetchTeamClients', 'fetchProjects', 'fetchClients']),
     handleClient (val) {
       this.currentClients = [...val]
@@ -103,14 +104,14 @@ export default {
               })
               .catch(err => {
                 this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
-                console.log(err)
+                this.setError(err)
               })
           } else {
             this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
           }
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

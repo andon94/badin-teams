@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { employeesApi } from '../services/api/employees.js'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseArrayInput from '../components/BaseComponents/BaseArrayInput.vue'
@@ -101,6 +101,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTeams', 'fetchClients', 'fetchProjects']),
+    ...mapMutations(['setError']),
     setImage (val) {
       this.image = val
     },
@@ -164,7 +165,7 @@ export default {
 
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
       }
   }

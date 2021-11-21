@@ -20,6 +20,11 @@ export default {
   components: {
     SvgIcon
   },
+  mounted () {
+    setTimeout(() => {
+      this.clear()
+    }, 5000)
+  },
   computed: {
     ...mapGetters(['error']),
     errorMessage () {
@@ -28,7 +33,7 @@ export default {
         const error = this.error
         console.log(error.response, error.message);
 
-        if (error.response) return error.response.data.errorMessage
+        if (error.response) return error.response.data.errorMessage || error.message
         else return error.message
       } else return null
     }
@@ -49,9 +54,9 @@ export default {
 
 <style scoped lang="scss">
 .error {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  bottom: 0;
+  top: calc(100vh - 85px);
   padding: 40px 10px 30px 10px;
   background: $dark;
   border-top: 1px white solid;

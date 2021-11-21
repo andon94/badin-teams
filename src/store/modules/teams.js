@@ -36,7 +36,6 @@ const actions = {
       })
       .catch(err => {
         commit('setError', err)
-        console.log(err)
       })
   },
 
@@ -47,7 +46,6 @@ const actions = {
       })
       .catch(err => {
         commit('setError', err)
-        console.log(err)
       })
   },
 
@@ -58,7 +56,6 @@ const actions = {
       })
       .catch(err => {
         commit('setError', err)
-        console.log(err)
       })
   },
 
@@ -69,7 +66,6 @@ const actions = {
       })
       .catch(err => {
         commit('setError', err)
-        console.log(err)
       })
   }
 

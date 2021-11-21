@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { projectsApi } from '../services/api/projects'
 import Project from '../components/Projects/Project.vue'
 
@@ -32,13 +33,14 @@ export default {
     this.fetchProject()
   },
   methods: {
+    ...mapMutations(['setError']),
     fetchProject () {
       projectsApi.fetchProject(this.$route.query.id)
         .then(res => {
           this.project = {...res}
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
       }
   }

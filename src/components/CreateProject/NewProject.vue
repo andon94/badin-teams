@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { projectsApi } from '../../services/api/projects.js'
 import BaseInput from '../BaseComponents/BaseInput.vue'
 import TextareaInput from '../BaseComponents/TextareaInput.vue'
@@ -49,6 +49,7 @@ export default {
     ...mapGetters(['clients'])
   },
   methods: {
+    ...mapMutations(['setError']),
     ...mapActions(['fetchClients']),
     handleCreate () {
       this.$refs.createProjectForm.validate().then(success => {
@@ -71,7 +72,7 @@ export default {
           this.$router.push({path:'/project-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

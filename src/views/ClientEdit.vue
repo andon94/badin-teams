@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { clientsApi } from '../services/api/clients.js'
 import Loader from '../components/BaseComponents/Loader.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
@@ -48,6 +49,7 @@ export default {
     this.fetchClient()
   },
   methods: {
+    ...mapMutations(['setError']),
     setImage (val) {
       this.image = val
     },
@@ -59,7 +61,7 @@ export default {
           this.id = res.id
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     },
     editClient () {
@@ -81,14 +83,14 @@ export default {
               })
               .catch(err => {
                 this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
-                console.log(err)
+                this.setError(err)
               })
           } else {
             this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
           }
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

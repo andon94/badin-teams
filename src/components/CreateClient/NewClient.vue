@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { clientsApi } from '../../services/api/clients'
 import PhotoInput from '../BaseComponents/PhotoInput.vue'
 import BaseInput from '../BaseComponents/BaseInput.vue'
@@ -40,6 +41,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setError']),
     setImage (val) {
       this.image = val
     },
@@ -72,13 +74,13 @@ export default {
               })
               .catch(err => {
                 this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
-                console.log(err)
+                this.setError(err)
               })
           } else this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
 
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

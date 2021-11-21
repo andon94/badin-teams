@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import TeamList from '../components/Teams/ColectiveComponents/TeamComponents/TeamList.vue'
 
 export default {
@@ -27,13 +27,14 @@ export default {
       })
       .catch(err => {
         this.loader = false
-        console.log(err)
+        this.setError(err)
       })
   },
   computed: {
     ...mapGetters(['teams'])
   },
   methods: {
+    ...mapMutations(['setError']),
     ...mapActions(['fetchTeams'])
   }
 }

@@ -48,7 +48,7 @@
 
 <script>
 import { employeesApi } from '../services/api/employees.js'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import Loader from '../components/BaseComponents/Loader.vue'
 import PhotoInput from '../components/BaseComponents/PhotoInput.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
@@ -89,6 +89,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchEmployee', 'fetchEmployeeTeams', 'fetchEmployeeProjects', 'fetchEmployeeClients', 'fetchTeams', 'fetchProjects', 'fetchClients']),
+    ...mapMutations(['setError']),
     handleTeam (val) {
       this.currentTeams = [...val]
     },
@@ -139,11 +140,9 @@ export default {
           } else {
             this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
           }
-
-
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

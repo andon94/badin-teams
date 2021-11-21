@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { clientsApi } from '../services/api/clients'
 import Client from '../components/Clients/Client.vue'
 
@@ -23,13 +24,14 @@ export default {
     this.fetchClient()
   },
   methods: {
+    ...mapMutations(['setError']),
     fetchClient () {
       clientsApi.fetchClient(this.$route.query.id)
         .then(res => {
           this.client = {...res}
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

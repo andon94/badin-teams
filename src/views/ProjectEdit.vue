@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import {projectsApi} from '../services/api/projects.js'
 import Loader from '../components/BaseComponents/Loader.vue'
 import BaseInput from '../components/BaseComponents/BaseInput.vue'
@@ -43,6 +44,7 @@ export default {
     this.fetchProject()
   },
   methods: {
+    ...mapMutations(['setError']),
     fetchProject () {
       projectsApi.fetchProject(this.$route.query.id)
         .then(res => {
@@ -51,7 +53,7 @@ export default {
           this.clientId = res.id
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     },
     editProject () {
@@ -68,7 +70,7 @@ export default {
           this.$router.push({path:'/project-profile/:id', query:{id: res.id}})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

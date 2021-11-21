@@ -53,7 +53,6 @@ export default {
           this.loader = false
         })
         .catch(err => {
-          console.log(err)
           this.loader = false
           this.setError(err)
         })

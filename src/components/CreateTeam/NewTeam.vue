@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { teamsApi } from '../../services/api/teams'
 import PhotoInput from '../BaseComponents/PhotoInput.vue'
 import BaseInput from '../BaseComponents/BaseInput.vue'
@@ -59,6 +59,7 @@ export default {
     ...mapGetters(['clients', 'projects']),
   },
   methods: {
+    ...mapMutations(['setError']),
     ...mapActions(['fetchClients', 'fetchProjects']),
     setImage (val) {
       this.image = val
@@ -107,7 +108,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

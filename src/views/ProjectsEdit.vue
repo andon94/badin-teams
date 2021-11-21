@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { projectsApi } from '../services/api/projects.js'
 import Loader from '../components/BaseComponents/Loader.vue'
 import BaseFilter from '../components/BaseComponents/BaseFilter.vue'
@@ -45,6 +46,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setError']),
     fetchProjects () {
       projectsApi.fetchProjects()
         .then(res => {
@@ -52,8 +54,8 @@ export default {
           this.loader = false
         })
         .catch(err => {
-          console.log(err)
           this.loader = false
+          this.setError(err)
         })
     },
     setFilteredData (val) {

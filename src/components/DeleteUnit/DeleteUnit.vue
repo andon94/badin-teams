@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import { teamsApi } from '../../services/api/teams.js'
 import { employeesApi } from '../../services/api/employees.js'
 import { projectsApi } from '../../services/api/projects.js'
@@ -23,6 +24,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setError']),
     handleButtonClick () {
       if (this.label === 'team') this.deleteTeam()
       if (this.label === 'employee') this.deleteEmployee()
@@ -35,7 +37,7 @@ export default {
           this.$router.push({path:'/edit/teams'})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     },
     deleteEmployee () {
@@ -44,7 +46,7 @@ export default {
           this.$router.push({path:'/edit/employees'})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     },
     deleteProject () {
@@ -53,7 +55,7 @@ export default {
           this.$router.push({path:'/edit/projects'})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     },
     deleteClient () {
@@ -62,7 +64,7 @@ export default {
           this.$router.push({path:'/edit/clients'})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

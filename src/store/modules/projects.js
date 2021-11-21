@@ -16,7 +16,6 @@ const actions = {
         commit('setProjects', res)
       })
       .catch(err => {
-        console.log(err)
         commit('setError', err)
       })
   }
