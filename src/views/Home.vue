@@ -2,23 +2,25 @@
   <div class="home">
     <div class="title">
       <span class="before">Welcome to</span>
-      BADINSOFT
+      <span class="highlight">BADINSOFT</span>
       <span class="after">Teams</span>
     </div>
     <div class="content">
       <p>
-        <span class="small-text">Application displays</span>
         <span>
+          <span class="small-text">It's all about people</span>
           <router-link :to="{ name: 'Teams' }">Teams</router-link>
-          and their members.
+          and relationships.
         </span>
         <span class="right-text">
-          Information about
+          <span class="small-text">Here we share</span>
+          Informations about
           <router-link :to="{ name: 'Clients' }">Clients</router-link>.
         </span>
         <span>
+          <span class="small-text">Each of our</span>
           <router-link :to="{ name: 'Projects' }">Projects</router-link>
-          on which they work.
+          is important.
         </span>
       </p>
     </div>
@@ -74,11 +76,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 150px 20px 50px;
-
-  & > div {
-    margin: 30px 0;
-  }
+  padding: 120px 20px 30px;
 
   .logo {
     position: absolute;
@@ -90,18 +88,36 @@ export default {
     transform: scale(0.5);
   }
 
-  .title {
-    position: relative;
-    color: $light;
-    font-size: 50px;
-    letter-spacing: 6px;
-    font-weight: 900;
+    .title {
+      position: relative;
+      // color: $light;
+      font-size: 50px;
+      letter-spacing: 6px;
+      font-weight: 900;
+      .highlight {
+      background: linear-gradient(to right, #fff 0, #4587e1 30%, #fff 50%);
+      background-position: 0;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 2.5s infinite linear;
+      animation-fill-mode: forwards;
+      
+      @keyframes shine {
+        0% {background-position:0;}
+        // 60% {background-position:360px;}
+        100% {background-position:330px;}
+      }
+    }
+
+    .before {
+      color: $white;
+    }
 
     .before, .after {
+      // color: $badin-color;
       position: absolute;
       top: -20px;
       left: 3px;
-      color: $badin-color;
       font-size: 18px;
     }
 
@@ -110,6 +126,7 @@ export default {
       left: unset;
       bottom: -20px;
       right: 3px;
+      color: $badin-color;
     }
   }
   .content {
@@ -127,9 +144,11 @@ export default {
       border-radius: 5px; 
       clear: both;
       font-size: 18px;
+      position: relative;
       
         &:not(.small-text) {
           padding: 10px;
+          box-shadow: 0px 0px 20px #4587e187;
         }
 
         &:not(.right-text) {
@@ -142,11 +161,23 @@ export default {
         font-size: 10px;
         letter-spacing: 4px;
         background-color: transparent;
+        position: absolute;
+        top: -14px;
+        left: 0;
+
+        &.right-text {
+          margin: 0;
+        }
       }
 
       &.right-text {
         margin: 30px 0;
         float: right;
+
+          .small-text {
+            left: unset;
+            right: 0;
+          }
 
         a {
           margin-left: 5px;

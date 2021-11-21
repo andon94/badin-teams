@@ -157,8 +157,6 @@ header {
     padding: 20px;
     width: 100%;
     height: 100%;
-    // width: 70%;
-    // max-width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,9 +171,10 @@ header {
       padding: 15px 0;
       color: $light;
       list-style-type: none;
+      font-size: 30px;
+      font-weight: 900;
 
       &.admin {
-        // padding-left: 10px;
         font-size: 15px;
         color: gray;
       }
@@ -183,6 +182,19 @@ header {
       &.logout {
         color: $error;
       }
+    }
+
+    .router-link-active {
+      animation-name: letterShrink;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+
+      /* The animation code */
+      @keyframes letterShrink {
+        0%   {letter-spacing: 0px; color:$white;}
+        50%  {letter-spacing: 5px; color:$badin-color;}
+        100% {letter-spacing: 0px; color:$white;}
+      } 
     }
   }
 
