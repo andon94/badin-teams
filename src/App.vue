@@ -10,28 +10,30 @@
       <Navigation  v-if="!navigationDisabled" />
       <router-view />
     </div>
+    <BaseError />
     <Footer v-if="!navigationDisabled" />
   </div>
 </template>
 
 <script>
 import { baseFetcher } from './services/api/api'
-// import Storage from './services/storage'
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
 import BaseBreadcrumb from './components/BaseComponents/BaseBreadcrumb';
+import BaseError from './components/BaseComponents/BaseError.vue'
 
 export default {
   name: "app",
   components: {
     BaseBreadcrumb,
     Navigation,
-    Footer
+    Footer,
+    BaseError
   },
   data() {
     return {
       navigationDisabled: null,
-      interceptor: null
+      interceptor: null,
     }
   },
   mounted() {
@@ -45,7 +47,6 @@ export default {
         // this.$store.commit('setLoginStatus', false)
         // this.$router.push({path:'/login'})
         // baseFetcher.setOptions({'Authorization': null})
-
         return config
       },
       (error) => {

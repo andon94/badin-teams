@@ -25,7 +25,7 @@ const actions = {
         commit('setTeams', res)
       })
       .catch(err => {
-        console.log(err)
+        commit('setError', err)
       })
   },
 
@@ -35,6 +35,7 @@ const actions = {
         commit('setTeam', res)
       })
       .catch(err => {
+        commit('setError', err)
         console.log(err)
       })
   },
@@ -45,6 +46,7 @@ const actions = {
         commit('setTeamMembers', res)
       })
       .catch(err => {
+        commit('setError', err)
         console.log(err)
       })
   },
@@ -55,6 +57,7 @@ const actions = {
         commit('setTeamProjects', res)
       })
       .catch(err => {
+        commit('setError', err)
         console.log(err)
       })
   },
@@ -65,6 +68,7 @@ const actions = {
         commit('setTeamClients', res)
       })
       .catch(err => {
+        commit('setError', err)
         console.log(err)
       })
   }

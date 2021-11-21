@@ -25,6 +25,7 @@ const actions = {
       })
       .catch(err => {
         console.log(err)
+        commit('setError', err)
       })
   },
 
@@ -35,16 +36,18 @@ const actions = {
     })
     .catch(err => {
       console.log(err)
+      commit('setError', err)
     })
   },
 
   fetchEmployeeTeams ({commit}, id) {
     return employeesApi.fetchEmployeeTeams(id)
-    .then(res => {
-        commit('setEmployeeTeams', res)
-      })
+      .then(res => {
+          commit('setEmployeeTeams', res)
+        })
       .catch(err => {
         console.log(err)
+        commit('setError', err)
       })
   },
 
@@ -55,6 +58,7 @@ const actions = {
       })
       .catch(err => {
         console.log(err)
+        commit('setError', err)
       })
   },
 
@@ -65,6 +69,7 @@ const actions = {
       })
       .catch(err => {
         console.log(err)
+        commit('setError', err)
       })
   }
 

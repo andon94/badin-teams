@@ -1,5 +1,6 @@
 <template>
   <div class="form-wrap">
+    <BaseError />
     <ValidationObserver ref="loginForm"
                     v-slot="{ invalid }">
       <form @submit.prevent
@@ -30,23 +31,26 @@ import BaseInput from '../components/BaseComponents/BaseInput.vue'
 import BaseButton from '../components/BaseComponents/BaseButton.vue'
 import { mapActions, mapMutations } from "vuex";
 import { setUserRoles } from "../utils/auth";
+import BaseError from '../components/BaseComponents/BaseError.vue'
 
 
 export default {
   name: "Login",
   components: {
     BaseInput,
-    BaseButton
+    BaseButton,
+    BaseError
   },
   data() {
     return {
       email: null,
       password: null,
+      error: null
     }
   },
   methods: {
     ...mapActions(['setPermissions']),
-    ...mapMutations(['setPermissions', 'setLoginStatus']),
+    ...mapMutations(['setPermissions', 'setLoginStatus', 'setError']),
     handleLogin () {
       this.$refs.loginForm.validate().then(success => {
         if (!success) {
@@ -71,7 +75,7 @@ export default {
           baseFetcher.setOptions({'Authorization': res.token})
         })
         .catch(err => {
-          console.log(err)
+          this.setError(err)
         })
     }
   }

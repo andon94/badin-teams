@@ -16,6 +16,7 @@ const actions = {
         commit('setClients', res)
       })
       .catch(err => {
+        commit('setError', err)
         console.log(err)
       })
   }

@@ -20,6 +20,7 @@ import Loader from '../components/BaseComponents/Loader.vue'
 import { projectsApi } from '../services/api/projects.js'
 import BaseFilter from '../components/BaseComponents/BaseFilter.vue'
 import Project from '../components/Projects/Project.vue'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Projects',
@@ -44,6 +45,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setError']),
     fetchProjects () {
       projectsApi.fetchProjects()
         .then(res => {
@@ -53,6 +55,7 @@ export default {
         .catch(err => {
           console.log(err)
           this.loader = false
+          this.setError(err)
         })
     },
     setFilteredData (val) {

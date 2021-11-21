@@ -17,6 +17,7 @@ const actions = {
       })
       .catch(err => {
         console.log(err)
+        commit('setError', err)
       })
   }
 }
