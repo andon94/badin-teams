@@ -16,11 +16,14 @@
 </template>
 
 <script>
+import Storage from './services/storage/index'
 import { baseFetcher } from './services/api/api'
+import { isAuthenticated } from './utils/auth'
 import Navigation from './components/Layout/Navigation';
 import Footer from './components/Layout/Footer';
 import BaseBreadcrumb from './components/BaseComponents/BaseBreadcrumb';
 import BaseError from './components/BaseComponents/BaseError.vue'
+
 
 export default {
   name: "app",
@@ -40,13 +43,15 @@ export default {
     this.checkRoute();
     this.interceptor = baseFetcher.fetcher.interceptors.request.use(
       (config) => {
-
-        // ubaci uslov za expiration tokena
-
-        // Storage.removeItem('storage')
-        // this.$store.commit('setLoginStatus', false)
-        // this.$router.push({path:'/login'})
-        // baseFetcher.setOptions({'Authorization': null})
+        if (this.$route.name !== 'Login') {
+          const storage = Storage.getItem('storage')
+          if (!isAuthenticated(storage)) {
+            Storage.removeItem('storage')
+            this.$store.commit('setLoginStatus', false)
+            this.$router.push({path:'/login'})
+            baseFetcher.setOptions({'Authorization': null})
+          }
+        }
         return config
       },
       (error) => {

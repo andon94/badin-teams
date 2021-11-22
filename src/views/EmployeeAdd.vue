@@ -159,7 +159,7 @@ export default {
               })
               .catch(err => {
                 this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
-                console.log(err)
+                this.setError(err)
               })
           } else this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
 

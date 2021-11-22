@@ -31,8 +31,6 @@ export default {
       console.log(this.error)
       if (this.error !== null) {
         const error = this.error
-        console.log(error.response, error.message);
-
         if (error.response) return error.response.data.errorMessage || error.message
         else return error.message
       } else return null

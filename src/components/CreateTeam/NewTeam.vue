@@ -6,8 +6,8 @@
         <PhotoInput label="Add photo"
                     @fileSelected="setImage"/>
         <BaseInput :placeholder="'Team name'"
-                   v-model="teamName"
-                   rules="required"/>
+                    v-model="teamName"
+                    rules="required"/>
         <BaseInput :placeholder="'Client'"
                    :selectArr="clients"
                    v-model="client"
