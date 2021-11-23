@@ -36,7 +36,8 @@ export default {
       allTeamEmployeesArr: [],
       semiDiameter: 0,
       bubbleDeg: 0,
-      key: 1
+      key: 1,
+      padding: 30
     }
   },
   computed: {
@@ -170,24 +171,23 @@ export default {
       }
     },
     arrangeBubbles () {
-      const padding = 60
       if (this.bubbleArr.length <= 4) {
 
         if (this.bubbleArr.length === 1) {
             this.bubbleArr[0].position = {
-              top: this.semiDiameter + padding,
-              left: this.semiDiameter + padding
+              top: this.semiDiameter + this.padding,
+              left: this.semiDiameter + this.padding
             }
         } else if (this.bubbleArr.length === 2) {
 
           this.bubbleArr[0].position = {
-            top: 0 + padding,
-            left: this.semiDiameter + padding
+            top: 0 + this.padding,
+            left: this.semiDiameter + this.padding
           }
 
           this.bubbleArr[1].position = {
-            top: this.semiDiameter * 2 + padding,
-            left: this.semiDiameter + padding
+            top: this.semiDiameter * 2 + this.padding,
+            left: this.semiDiameter + this.padding
           }
 
         } else if (this.bubbleArr.length === 3) {
@@ -195,39 +195,39 @@ export default {
           const obj = this.calculateSinCos(this.semiDiameter, 1)
 
           this.bubbleArr[0].position = {
-            top: padding,
-            left: this.semiDiameter + padding
+            top: this.padding,
+            left: this.semiDiameter + this.padding
           }
 
           this.bubbleArr[1].position = {
-            top: obj.b + padding,
-            left: obj.c + padding
+            top: obj.b + this.padding,
+            left: obj.c + this.padding
           }
 
           this.bubbleArr[2].position = {
-            top: obj.b + padding,
-            left: this.semiDiameter * 2 - obj.c + padding
+            top: obj.b + this.padding,
+            left: this.semiDiameter * 2 - obj.c + this.padding
           }
 
         } else if (this.bubbleArr.length === 4) {
           this.bubbleArr[0].position = {
-            top: 0 + padding,
-            left: this.semiDiameter + padding
+            top: 0 + this.padding,
+            left: this.semiDiameter + this.padding
           }
 
           this.bubbleArr[1].position = {
-            top: this.semiDiameter + padding,
-            left: this.semiDiameter * 2 + padding
+            top: this.semiDiameter + this.padding,
+            left: this.semiDiameter * 2 + this.padding
           }
 
           this.bubbleArr[2].position = {
-            top: this.semiDiameter * 2 + padding,
-            left: this.semiDiameter + padding
+            top: this.semiDiameter * 2 + this.padding,
+            left: this.semiDiameter + this.padding
           }
 
           this.bubbleArr[3].position = {
-            top: this.semiDiameter + padding,
-            left: 0 + padding
+            top: this.semiDiameter + this.padding,
+            left: 0 + this.padding
           }
         }
       } else {
@@ -236,21 +236,21 @@ export default {
 
           if (i === 0) {
             bubble.position = {
-              top: 0 + padding,
-              left: this.semiDiameter + padding
+              top: 0 + this.padding,
+              left: this.semiDiameter + this.padding
             }
           } else {
             const obj = this.calculateSinCos(this.semiDiameter, i)
             bubble.position = {
-              top: obj.b + padding,
-              left: obj.c + padding
+              top: obj.b + this.padding,
+              left: obj.c + this.padding
             }
           }
         })
       }
     },
     calculateSemiDiameter () {
-      this.semiDiameter =  (this.$refs.bubbleContainer.offsetHeight / 2) - 60
+      this.semiDiameter =  (this.$refs.bubbleContainer.offsetHeight / 2) - this.padding
     },
     debounce (fn, timeout) {
       let tempTimeout = null
@@ -260,6 +260,10 @@ export default {
       }, timeout)
     },
     recalculate () {
+      const width = window.innerWidth
+      if (width > 768) this.padding = 60
+      else this.padding = 30
+
       this.calculateSemiDiameter()
       this.arrangeBubbles()
       this.key++
