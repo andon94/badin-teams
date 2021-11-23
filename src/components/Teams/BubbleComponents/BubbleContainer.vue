@@ -81,6 +81,10 @@ export default {
   },
   created() {
     window.addEventListener("resize", this.resize);
+
+    const width = window.innerWidth
+    if (width > 768) this.padding = 60
+    else this.padding = 3
   },
   destroyed() {
     window.removeEventListener("resize", this.resize);
