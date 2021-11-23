@@ -24,6 +24,7 @@
     .back {
       backface-visibility: hidden;
       transform: rotateY(180deg);
+      padding-left: 20px;
     }
 
     .bubbles, .list {
