@@ -88,6 +88,20 @@ export default {
   box-sizing: border-box;
   font-family: "Quicksand", sans-serif;
   scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    height: 5px;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba($dark, 0.5);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $dark;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba($dark, 0.9);
+  }
 }
 
 .app-wrapper {

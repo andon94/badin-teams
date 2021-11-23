@@ -3,7 +3,7 @@
   <div class="item-list"
        v-else>
     <div class="item-list-container">
-      <BaseFilter placeholder="Filter employees"
+      <BaseFilter placeholder="Search employees"
                   :dataArr="this.employees"
                   :filterProperties="['firstName', 'lastName', 'nickname']"
                   @filteredData="setFilteredData"/>

@@ -3,7 +3,7 @@
   <div class="item-list"
        v-else>
     <div class="item-list-container">
-      <BaseFilter placeholder="Filter teams"
+      <BaseFilter placeholder="Search teams"
                   :dataArr="this.teams"
                   :filterProperties="['name']"
                   @filteredData="setFilteredData"/>

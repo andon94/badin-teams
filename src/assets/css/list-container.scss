@@ -1,6 +1,13 @@
 .item-list {
   padding: 20px 10px 10px;
 
+  &-container {
+    @media (min-width: 768px) {
+      max-width: 600px;
+      margin: auto;
+    }
+  }
+
   &.clients, &.projects {
     padding-top: 45px;
   }

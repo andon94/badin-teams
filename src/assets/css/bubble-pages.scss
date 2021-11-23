@@ -1,5 +1,6 @@
 .colective {
-  overflow: hidden;
+  // overflow: hidden;
+  overflow: auto;
   min-height: 100vh;
 
   &.no-scroll {
@@ -10,11 +11,24 @@
     display: flex;
     flex-direction: row;
     align-content: center;
-    transition: all linear 0.2s;
+    // transition: all linear 0.2s;
 
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+
+    .face {
+      // text-align: center;
+      backface-visibility: hidden;
+    }
+
+    .back {
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+    }
 
     .bubbles, .list {
       min-width: 100vw;
+      position: absolute;
     }
     .bubbles {
       margin-top: 45px;

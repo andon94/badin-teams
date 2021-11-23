@@ -115,15 +115,34 @@ export default {
   padding: 10px 0 10px 10px;
   z-index: 10;
 
+  @media (min-width: 1210px) {
+    justify-content: flex-start;
+    margin-left: -10px;
+  }
+
+
   .crumb {
-    margin-right: 10px;
-    color: $white;
     font-weight: bold;
     font-size: 13px;
     text-decoration: none;
+    background: $white;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:first-of-type {
+      border-top-left-radius: 5px;
+
+      @media (min-width: 1210px) {
+        border-top-left-radius: 0;
+      }
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 5px;
+    }
 
     a {
-      color: $white;
+      color: $dark;
       font-weight: bold;
       font-size: 13px;
       text-decoration: none;

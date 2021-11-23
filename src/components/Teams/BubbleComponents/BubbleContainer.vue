@@ -2,11 +2,13 @@
   <div class="bubble-wrap">
     <div class="bubble-container"
          ref="bubbleContainer">
-      <Bubble v-for="(bubble, i) in bubbleArr" :key="i"
+      <Bubble v-for="(bubble, i) in bubbleArr" :key="i + key"
               :bubble="bubble"/>
     </div>
-    <div class="heading">Badinsoft</div>
-    <div class="caption">Teams</div>
+    <div class="heading-container">
+      <div class="heading">Badinsoft</div>
+      <div class="caption">Teams</div>
+    </div>
   </div>
 </template>
 
@@ -33,7 +35,8 @@ export default {
       allTeamsArr: [],
       allTeamEmployeesArr: [],
       semiDiameter: 0,
-      bubbleDeg: 0
+      bubbleDeg: 0,
+      key: 1
     }
   },
   computed: {
@@ -48,6 +51,7 @@ export default {
           arr.push({
             name: team.name,
             id: team.id,
+            img: team.imageViewPath,
             position
           })
         })
@@ -61,6 +65,7 @@ export default {
             firstName: employee.firstName,
             lastName: employee.lastName,
             id: employee.id,
+            img: employee.imageViewPath,
             position
           })
         })
@@ -73,9 +78,15 @@ export default {
       if (this.bubbleArr.length) this.arrangeBubbles()
     }
   },
+  created() {
+    window.addEventListener("resize", this.resize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resize);
+  },
   mounted () {
     // pola visine bubble-a plus po 30 piksela za marginu
-    this.semiDiameter = (this.$refs.bubbleContainer.offsetHeight / 2) - 60
+    this.calculateSemiDiameter()
   },
   methods: {
     toRadians (angle) {
@@ -159,23 +170,24 @@ export default {
       }
     },
     arrangeBubbles () {
+      const padding = 60
       if (this.bubbleArr.length <= 4) {
 
         if (this.bubbleArr.length === 1) {
             this.bubbleArr[0].position = {
-              top: this.semiDiameter + 60,
-              left: this.semiDiameter + 60
+              top: this.semiDiameter + padding,
+              left: this.semiDiameter + padding
             }
         } else if (this.bubbleArr.length === 2) {
 
           this.bubbleArr[0].position = {
-            top: 0 + 60,
-            left: this.semiDiameter + 60
+            top: 0 + padding,
+            left: this.semiDiameter + padding
           }
 
           this.bubbleArr[1].position = {
-            top: this.semiDiameter * 2 + 60,
-            left: this.semiDiameter + 60
+            top: this.semiDiameter * 2 + padding,
+            left: this.semiDiameter + padding
           }
 
         } else if (this.bubbleArr.length === 3) {
@@ -183,40 +195,39 @@ export default {
           const obj = this.calculateSinCos(this.semiDiameter, 1)
 
           this.bubbleArr[0].position = {
-            top: 60,
-            left: this.semiDiameter + 60
+            top: padding,
+            left: this.semiDiameter + padding
           }
 
           this.bubbleArr[1].position = {
-            top: obj.b + 60,
-            left: obj.c + 60
+            top: obj.b + padding,
+            left: obj.c + padding
           }
 
           this.bubbleArr[2].position = {
-            top: obj.b + 60,
-            left: this.semiDiameter * 2 - obj.c + 60
+            top: obj.b + padding,
+            left: this.semiDiameter * 2 - obj.c + padding
           }
 
         } else if (this.bubbleArr.length === 4) {
-
           this.bubbleArr[0].position = {
-            top: 0 + 60,
-            left: this.semiDiameter + 60
+            top: 0 + padding,
+            left: this.semiDiameter + padding
           }
 
           this.bubbleArr[1].position = {
-            top: this.semiDiameter + 60,
-            left: this.semiDiameter * 2 + 60
+            top: this.semiDiameter + padding,
+            left: this.semiDiameter * 2 + padding
           }
 
           this.bubbleArr[2].position = {
-            top: this.semiDiameter * 2 + 60,
-            left: this.semiDiameter + 60
+            top: this.semiDiameter * 2 + padding,
+            left: this.semiDiameter + padding
           }
 
           this.bubbleArr[3].position = {
-            top: this.semiDiameter + 60,
-            left: 0 + 60
+            top: this.semiDiameter + padding,
+            left: 0 + padding
           }
         }
       } else {
@@ -225,18 +236,36 @@ export default {
 
           if (i === 0) {
             bubble.position = {
-              top: 0 + 60,
-              left: this.semiDiameter + 60
+              top: 0 + padding,
+              left: this.semiDiameter + padding
             }
           } else {
             const obj = this.calculateSinCos(this.semiDiameter, i)
             bubble.position = {
-              top: obj.b + 60,
-              left: obj.c + 60
+              top: obj.b + padding,
+              left: obj.c + padding
             }
           }
         })
       }
+    },
+    calculateSemiDiameter () {
+      this.semiDiameter =  (this.$refs.bubbleContainer.offsetHeight / 2) - 60
+    },
+    debounce (fn, timeout) {
+      let tempTimeout = null
+      if (tempTimeout) clearTimeout(tempTimeout)
+      tempTimeout = setTimeout(() => {
+        fn()
+      }, timeout)
+    },
+    recalculate () {
+      this.calculateSemiDiameter()
+      this.arrangeBubbles()
+      this.key++
+    },
+    resize () {
+      this.debounce(this.recalculate, 300)
     }
   }
 }
@@ -244,17 +273,19 @@ export default {
 
 <style scoped lang="scss">
 .bubble-wrap {
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
+
   .bubble-container {
     position: relative;
     width: 300px;
     height: 300px;
 
     margin: 5vh auto 5vh;
-    background: rgba($badin-color, 0.8);
+    // background: $dark;
     border-radius: 50%;
 
     transition: all ease-in 0.2s;
@@ -262,17 +293,41 @@ export default {
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+
+    @media (min-width: 768px) {
+      width: 500px;
+      height: 500px;
+    }
+
+    @media (min-width: 768px) {
+      margin-top: 20px;
+      width: 650px;
+      height: 650px;
+    }
   }
-  .heading, .caption {
-    color: $light;
-    font-size: 40px;
-    text-align: center;
-  }
-  .heading {
-    margin-top: 30px;
-  }
-  .caption {
-    font-size: 30px;
+
+  .heading-container {
+    @media (min-width: 1024px) {
+      position: absolute;
+      top: calc(100vh - 280px);
+      right: 20px;
+      z-index: 100;
+    }
+    .heading, .caption {
+      color: $light;
+      font-size: 40px;
+      text-align: center;
+
+      @media (min-width: 1024px) {
+        // text-align: right;
+      }
+    }
+    .heading {
+      margin-top: 30px;
+    }
+    .caption {
+      font-size: 30px;
+    }
   }
 }
 </style>

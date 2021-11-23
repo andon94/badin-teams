@@ -1,15 +1,15 @@
 <template>
-  <div class="colective"
-       :class="{'no-scroll': !position}">
+  <div class="colective">
+       <!-- :class="{'no-scroll': !position}"> -->
     <ViewNavigator @setPosition="setPosition"/>
     <div class="colective-content"
-         :style="{'margin-left': position}">
+         :style="{'transform': position}">
       <BubbleContainer :teams="teams"
-                       class="bubbles"/>
+                       class="bubbles face"/>
       <TeamList :teams="teams"
                 :teamsFilter="true"
                 :loader="loader"
-                class="list"/>
+                class="list back"/>
     </div>
   </div>
 </template>

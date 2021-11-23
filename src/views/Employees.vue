@@ -3,8 +3,8 @@
        :class="{'no-scroll': !position}">
     <ViewNavigator @setPosition="setPosition"/>
     <div class="colective-content"
-         :style="{'margin-left': position}">
-      <div class="bubbles">
+         :style="{'transform': position}">
+      <div class="bubbles face">
         <div class="team-name"
              @click="handleTeamClick">
           <div v-if="team">
@@ -13,7 +13,7 @@
         </div>
         <BubbleContainer :employees="teamMembers"/>
       </div>
-      <div class="list">
+      <div class="list back">
         <div class="team-name"
              v-if="team"
              @click="handleTeamClick">
