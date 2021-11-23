@@ -100,6 +100,7 @@ export default {
     overflow: hidden;
     max-height: 100px;
     transform: scale(0.5);
+    z-index: 101;
   }
 }
 
