@@ -111,14 +111,14 @@ export default {
   justify-content: center;
   position: fixed;
   top: calc(100vh - 46px);
-  background: $dark;
+  // background: $dark;
   padding: 10px 0 10px 10px;
   z-index: 10;
 
-  @media (min-width: 1210px) {
-    justify-content: flex-start;
-    // margin-left: -10px;
-  }
+  // @media (min-width: 1210px) {
+  //   justify-content: flex-start;
+  //   // margin-left: -10px;
+  // }
 
   .crumb {
     font-weight: bold;
@@ -132,6 +132,7 @@ export default {
     margin-right: 15px;
     position: relative;
     color: $light;
+    background: $dark;
 
     &:hover {
       border: 1px solid $badin-color;

@@ -28,11 +28,10 @@
     }
 
     .bubbles, .list {
-      min-width: 100vw;
+      min-width: 99vw;
       position: absolute;
     }
     .bubbles {
-      margin-top: 45px;
 
       .team-name {
         color: $light;

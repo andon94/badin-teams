@@ -99,22 +99,23 @@ export default {
   &::-webkit-scrollbar-thumb {
     background: $light;
   }
-  // &::-webkit-scrollbar-thumb:hover {
-  //   background: rgba($dark, 0.5);
-  // }
 }
 
 .app-wrapper {
   position: relative;
   .logo {
-    position: absolute;
+    position: fixed;
     top: -22px;
-    left: -60px;
+    left: -50px;
     margin: 0;
     overflow: hidden;
     max-height: 100px;
     transform: scale(0.5);
-    z-index: 101;
+    z-index: 99;
+
+    @media (min-width: 768px) {
+      z-index: 101;
+    }
   }
 }
 

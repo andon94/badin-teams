@@ -1,98 +1,153 @@
 <template>
   <header>
-    <MenuIcon @click="toggleNav"
-              class="menu-icon"
-              v-show="!mobileNav"/>
-    <transition name="mobile-nav">
+    <MenuIcon class="menu-icon"
+              @click="toggleNav" />
+
       <ul class="mobile-nav"
-          v-if="mobileNav"
-          @click="toggleNav">
-          <div class="close-icon">
+          :class="{'visible': visible}"
+          @click="closeNav"
+          @mouseover="openNav"
+          @mouseleave="closeNav">
+          <div class="close-icon"
+               v-if="visible">
               <svg-icon type="mdi" :path="path.close"></svg-icon>
           </div>
           <router-link class="link"
-          
                        :to="{ name: 'Home' }">
-            <img src="../../assets/images/Icons/home.png" alt="">
-            Home
+            <span class="icon">
+              <svg-icon type="mdi" :path="path.home"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Home
+            </span>
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Teams' }">
-            <img src="../../assets/images/Icons/teams.png" alt="">
-            Teams
+            <span class="icon">
+              <svg-icon type="mdi" :path="path.teams"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Teams
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'CreateTeam' }"
                        v-if="loginStatus">
-            Create Team
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.plus"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Create Team
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'EditTeams' }"
                        v-if="loginStatus">
-            Edit Teams
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.edit"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Edit Team
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'AddEmployee' }"
                        v-if="loginStatus">
-            Add Employee
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.plus"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Add Employee
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'EditEmployees' }"
                        v-if="loginStatus">
-            Edit Employees
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.edit"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Edit Employee
+            </span>
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Clients' }">
-            <img src="../../assets/images/Icons/client.png" alt="">
-            Clients
-          </router-link>
-          <router-link class="link admin"
-                       :to="{ name: 'CreateClient' }"
-                       v-if="loginStatus">
-            Add Client
+            <span class="icon">
+              <svg-icon type="mdi" :path="path.clients"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Clients
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'EditClients' }"
                        v-if="loginStatus">
-            Edit Clients
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.plus"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Add Client
+            </span>
+          </router-link>
+          <router-link class="link admin"
+                       :to="{ name: 'CreateClient' }"
+                       v-if="loginStatus">
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.edit"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Edit Client
+            </span>
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Projects' }">
-            <img src="../../assets/images/Icons/project.png" alt="">
-            Projects
+            <span class="icon">
+              <svg-icon type="mdi" :path="path.projects"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Projects
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'CreateProject' }"
                        v-if="loginStatus">
-            Create Project
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.plus"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Add Project
+            </span>
           </router-link>
           <router-link class="link admin"
                        :to="{ name: 'EditProjects' }"
                        v-if="loginStatus">
-            Edit Projects
+            <span class="icon secondary">
+              <svg-icon type="mdi" :path="path.edit"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Edit Project
+            </span>
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Login' }"
-                       v-if="!loginStatus">
-            <img src="../../assets/images/Icons/login.png" alt="">
+                       v-if="!loginStatus && visible">
             Login
           </router-link>
           <li class="link logout"
               :to="{ name: 'Home' }"
               @click="logout"
-              v-if="loginStatus">
-              <img src="../../assets/images/Icons/logout.png" alt="">
+              v-if="loginStatus && visible">
             Logout
           </li>
       </ul>
-    </transition>
+    <!-- </transition> -->
   </header>
 </template>
 
 <script>
 import { baseFetcher } from '../../services/api/api'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiClose } from '@mdi/js'
+import { mdiArrowLeft, mdiHome, mdiAccountGroup, mdiHandshake, mdiLightbulbOn, mdiAccount, mdiPlus, mdiPencil } from '@mdi/js'
 import { mapGetters } from 'vuex'
 import Storage from '../../services/storage'
 import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
@@ -105,9 +160,16 @@ export default {
   },
   data () {
     return {
-      mobileNav: null,
+      visible: null,
       path: {
-        close: mdiClose,
+        close: mdiArrowLeft,
+        home: mdiHome,
+        teams: mdiAccountGroup,
+        clients: mdiHandshake,
+        projects: mdiLightbulbOn,
+        employee: mdiAccount,
+        plus: mdiPlus,
+        edit: mdiPencil
       }
     }
   },
@@ -115,8 +177,14 @@ export default {
     ...mapGetters(['loginStatus'])
   },
   methods: {
-    toggleNav() {
-      this.mobileNav = !this.mobileNav;
+    toggleNav () {
+      this.visible = !this.visible;
+    },
+    closeNav () {
+      this.visible = false
+    },
+    openNav () {
+      this.visible = true
     },
     logout () {
       Storage.removeItem('storage')
@@ -136,15 +204,21 @@ header {
   z-index: 100;
   position: fixed;
   width: 100%;
-  backdrop-filter: blur(2px);
 
   .link {
     font-weight: 500;
     padding: 0 10px;
     transition: 0.3s color ease;
+    padding: 10px !important;
 
-    &:hover {
-      color: #1eb8b8;
+    @media (min-width: 768px) {
+      &:hover {
+        color: $badin-color !important;
+        backdrop-filter: blur(10px);
+        background-color: rgba($light, 0.2);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        border-radius: 5px;
+      }
     }
   }
 
@@ -156,6 +230,10 @@ header {
     height: 25px;
     width: auto;
     color: $light;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 
   .close-icon {
@@ -163,70 +241,91 @@ header {
   }
 
   .mobile-nav {
-    padding: 20px;
-    width: 100%;
+    width: 0px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     background-color: $dark;
     top: 0;
     left: 0;
     z-index: 100;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    overflow-x: hidden;
+    transition: all 0.2s ease-in;
+    padding-top: 80px;
+
+    @media (min-width: 768px) {
+      width: fit-content;
+    }
+
+    &.visible {
+      width: 100%;
+      @media (min-width: 768px) {
+        width: 250px;
+      }
+    }
+
+    .router-link-exact-active {
+      color: $badin-color;
+    }
 
     .link {
       padding: 15px 0;
       color: $light;
       list-style-type: none;
-      font-size: 50px;
+      font-size: 24px;
       font-weight: 900;
       display: flex;
       align-items: center;
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      margin: 0 20px;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: row;
+      width: calc(100% - 40px);
+
+      span {
+        &.icon {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+
+          &.secondary {
+            svg {
+              transform: scale(0.8);
+            }
+          }
+        }
+      }
 
       &.admin {
-        font-size: 15px;
+        font-size: 14px;
         color: gray;
+
+        &::after {
+          display: none;
+        }
+
+        &.router-link-exact-active {
+          color: $badin-color;
+        }
       }
 
       &.logout {
-        color: $error;
-      }
-
-      img {
-        width: 33px;
-        display: flex;
-        margin-right: 10px;
-        outline: 4px solid white;
-        border-radius: 50%;
+        color: $error !important;
+        margin-bottom: 40px;
+        &::after {
+          display: none;
+        }
       }
     }
 
-    .router-link-active {
+    .router-link-exact-active {
       color: $badin-color;
-
-      img {
-        outline-color: $badin-color;
-      }
     }
-  }
-
-  .mobile-nav-enter-active,
-  .mobile-nav-leave-active {
-    transition: all 0.5s ease;
-  }
-
-  .mobile-nav-enter {
-    transform: translateX(-100%);
-  }
-
-  .mobile-nav-enter-to {
-    transform: translateX(0);
-  }
-
-  .mobile-nav-leave-to {
-    transform: translateX(-100%);
   }
 }
 
