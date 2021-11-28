@@ -11,11 +11,14 @@
               <svg-icon type="mdi" :path="path.close"></svg-icon>
           </div>
           <router-link class="link"
+          
                        :to="{ name: 'Home' }">
+            <img src="../../assets/images/Icons/home.png" alt="">
             Home
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Teams' }">
+            <img src="../../assets/images/Icons/teams.png" alt="">
             Teams
           </router-link>
           <router-link class="link admin"
@@ -40,6 +43,7 @@
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Clients' }">
+            <img src="../../assets/images/Icons/client.png" alt="">
             Clients
           </router-link>
           <router-link class="link admin"
@@ -54,6 +58,7 @@
           </router-link>
           <router-link class="link"
                        :to="{ name: 'Projects' }">
+            <img src="../../assets/images/Icons/project.png" alt="">
             Projects
           </router-link>
           <router-link class="link admin"
@@ -69,12 +74,14 @@
           <router-link class="link"
                        :to="{ name: 'Login' }"
                        v-if="!loginStatus">
+            <img src="../../assets/images/Icons/login.png" alt="">
             Login
           </router-link>
           <li class="link logout"
               :to="{ name: 'Home' }"
               @click="logout"
               v-if="loginStatus">
+              <img src="../../assets/images/Icons/logout.png" alt="">
             Logout
           </li>
       </ul>
@@ -123,11 +130,13 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  background-color: #fff;
-  padding: 0 10px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: transparent;
+  padding: 0 20px;
+  height: 70px;
   z-index: 100;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(2px);
 
   .link {
     font-weight: 500;
@@ -156,12 +165,12 @@ header {
   .mobile-nav {
     padding: 20px;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: absolute;
     background-color: $dark;
     top: 0;
     left: 0;
@@ -171,8 +180,10 @@ header {
       padding: 15px 0;
       color: $light;
       list-style-type: none;
-      font-size: 30px;
+      font-size: 50px;
       font-weight: 900;
+      display: flex;
+      align-items: center;
 
       &.admin {
         font-size: 15px;
@@ -182,19 +193,22 @@ header {
       &.logout {
         color: $error;
       }
+
+      img {
+        width: 33px;
+        display: flex;
+        margin-right: 10px;
+        outline: 4px solid white;
+        border-radius: 50%;
+      }
     }
 
     .router-link-active {
-      animation-name: letterShrink;
-      animation-duration: 3s;
-      animation-iteration-count: infinite;
+      color: $badin-color;
 
-      /* The animation code */
-      @keyframes letterShrink {
-        0%   {letter-spacing: 0px; color:$white;}
-        50%  {letter-spacing: 5px; color:$badin-color;}
-        100% {letter-spacing: 0px; color:$white;}
-      } 
+      img {
+        outline-color: $badin-color;
+      }
     }
   }
 
