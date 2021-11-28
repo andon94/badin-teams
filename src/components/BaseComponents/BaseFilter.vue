@@ -90,6 +90,7 @@ export default {
     .filters {
       display: flex;
       flex-wrap: wrap;
+      padding-left: 10px;
       .filter {
         margin-right: 15px;
         // font-weight: bold;

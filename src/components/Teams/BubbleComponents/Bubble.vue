@@ -33,7 +33,6 @@ export default {
   },
   computed: {
     bubbleData () {
-      console.log(this.bubble)
       if (this.$route.name === 'Teams') return this.bubble.name
       else if (this.$route.name === 'Employees') return `${this.bubble.firstName} ${this.bubble.lastName}`
       else return ''

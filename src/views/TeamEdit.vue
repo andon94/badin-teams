@@ -4,6 +4,7 @@
         @submit.prevent="editTeam"
         v-else>
     <PhotoInput label="Edit photo"
+                class="edit-photo"
                 @fileSelected="setImage"/>
     <BaseInput :placeholder="'Team name'"
                 v-model="team.name"/>
@@ -98,6 +99,7 @@ export default {
           bodyFormData.append('file', this.image);
 
           if (this.image) {
+            console.log(this.image)
             teamsApi.createTeamPhoto(res.id, bodyFormData)
               .then(() => {
                 this.$router.push({path:'/team-profile/:id', query:{id: res.id}})

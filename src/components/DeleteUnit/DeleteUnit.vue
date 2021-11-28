@@ -77,8 +77,8 @@ export default {
 .delete-unit {
   /deep/ button {
     background: none;
-    border: 3px solid $error;
-    color: $light;
+    border: 3px solid $badin-color;
+    color: $error;
   }
 }
 </style>

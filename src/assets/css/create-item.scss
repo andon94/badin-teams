@@ -1,6 +1,11 @@
 .new-item {
   padding: 0 10px 20px;
 
+  @media (min-width: 768px) {
+    max-width: 600px;
+    margin: auto;
+  }
+
   &.project {
     padding-top: 55px;
   }

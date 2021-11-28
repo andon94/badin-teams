@@ -38,14 +38,27 @@ export default {
     border: none;
     background: none;
     outline: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font-weight: bold;
     font-size: 16px;
     color: $light;
     cursor: pointer;
+    border: 2px solid $light;
+    background: dark;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
 
     &.active {
-      color: $active;
+      border: 2px solid $active;
+    }
+
+    &:first-of-type {
+      margin-right: 20px;
+    }
+
+    &:hover {
+      color: $badin-color;
+      border: 2px solid $active;
     }
   }
 }

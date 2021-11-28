@@ -73,6 +73,11 @@ export default {
 
 <style scoped lang="scss">
 .array-input {
+  /deep/ .base-input {
+    input {
+      cursor: pointer;
+    }
+  }
   &-elements {
     min-height: 18px;
     // margin-bottom: -5px;
@@ -80,6 +85,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
 
     .array-input-element, .placeholder{
       cursor: pointer;

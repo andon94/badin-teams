@@ -1,5 +1,35 @@
 .edit {
   padding: 0 10px 20px;
+
+  @media (min-width: 768px) {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  // @media (min-width: 768px) {
+  //   /deep/ .photo-container {
+  //     margin-bottom: 260px;
+  //     .input-container {
+  //       input {
+  //         width: 200px;
+  //         height: 200px;
+  //       }
+  //       label {
+  //         padding-top: 110px;
+  //       }
+  //     }
+  //     .img-container {
+  //       width: 200px;
+  //       height: 200px;
+  //       img {
+  //         width: 200px;
+  //         height: 200px;
+  //       }
+  //     }
+  //   }
+  // }
+
+
   &.project {
     padding-top: 20px;
   }

@@ -110,46 +110,76 @@ export default {
   display: flex;
   justify-content: center;
   position: fixed;
-  top: calc(100vh - 36px);
+  top: calc(100vh - 46px);
   background: $dark;
   padding: 10px 0 10px 10px;
   z-index: 10;
 
   @media (min-width: 1210px) {
     justify-content: flex-start;
-    margin-left: -10px;
+    // margin-left: -10px;
   }
-
 
   .crumb {
     font-weight: bold;
     font-size: 13px;
     text-decoration: none;
-    background: $white;
+    // background: $white;
+    border: 1px solid $light;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
+    margin-right: 15px;
+    position: relative;
+    color: $light;
 
-    &:first-of-type {
-      border-top-left-radius: 5px;
-
-      @media (min-width: 1210px) {
-        border-top-left-radius: 0;
+    &:hover {
+      border: 1px solid $badin-color;
+      color: $badin-color !important;
+      a {
+        color: $badin-color !important;
       }
     }
 
-    &:last-of-type {
-      border-top-right-radius: 5px;
-    }
+    // &:first-of-type {
+    //   border-top-left-radius: 5px;
+
+    //   @media (min-width: 1210px) {
+    //     border-top-left-radius: 0;
+    //   }
+    // }
+
+    // &:last-of-type {
+    //   border-top-right-radius: 5px;
+    // }
 
     a {
-      color: $dark;
+      // color: $dark;
+      color: $light !important;
       font-weight: bold;
       font-size: 13px;
       text-decoration: none;
     }
 
     &:last-of-type {
-      color: $badin-color;
+      // color: $badin-color;
+      border: 1px solid $badin-color;
+      color: $light;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &::after {
+      content: '';
+      height: 3px;
+      width: 3px;
+      background: $light;
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      border-radius: 50%;
     }
   }
 }

@@ -161,7 +161,7 @@ export default {
       this.placeholderLabel = false
     },
     toggleDropdown () {
-      this.selectIsOpen = !this.selectIsOpen
+      if (this.selectArr.length) this.selectIsOpen = !this.selectIsOpen
     }
   }
 }
@@ -182,18 +182,15 @@ export default {
 
     input {
       width: 100%;
-      padding: 10px 15px;
+      padding: 15px;
       outline: none;
       padding-right: 25px;
       font-weight: bold;
       background: transparent;
       border: none;
-      // border-bottom: $light 1px solid;
       color: $light;
       backdrop-filter: blur(10px);
       background-color: rgba($light, 0.1);
-      // border-top-left-radius: 5px;
-      // border-top-right-radius: 5px;
       border-radius: 5px;
     }
 
@@ -207,7 +204,7 @@ export default {
 
     .placeholder {
       position: absolute;
-      padding-top: 12px;
+      padding-top: 15px;
       padding-left: 10px;
       opacity: 0.8;
       transition: all linear 0.1s;
@@ -218,7 +215,7 @@ export default {
       cursor: default;
 
       &.placeholder-label {
-        transform: translate(5px, -18px);
+        transform: translate(5px, -19px);
         padding: 3px;
         opacity: 1;
         z-index: 10;
@@ -230,6 +227,7 @@ export default {
       position: absolute;
       top: 15%;
       right: 5px;
+      cursor: pointer;
       svg {
         color: $light;
         &.rotate-180 {
@@ -241,7 +239,6 @@ export default {
     .trash-button {
       position: absolute;
       color: $light;
-      // top: 20%;
       top: 9px;
       right: 30px;
       transform: scale(0.9);
@@ -265,6 +262,7 @@ export default {
         padding: 5px 0;
         font-weight: bold;
         color: $dark;
+        cursor: pointer;
       }
     }
   }
