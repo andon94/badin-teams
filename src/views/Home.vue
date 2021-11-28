@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div class="hero-background"></div>
     <div class="main-title">
       <span class="before">Welcome to</span>
       <span class="highlight">BADINSOFT</span>
@@ -8,30 +9,27 @@
     <div class="content">
       <div class="content-wrapp">
         <div class="content-item">
-          <img src="../assets/images/Icons/teams.png" alt="">
-          <p class="title">
-            <router-link :to="{ name: 'Teams' }">Teams</router-link>
-            <img class="finger-icon" src="../assets/images/Icons/fingerprint.png" alt="">
+          
+          <p class="title">It's all about 
+            <router-link :to="{ name: 'Teams' }">Teams</router-link> and relationships.
           </p>
-          <p class="text">It's all about people and relationships.</p>
         </div>
         <div class="content-item">
-          <img src="../assets/images/Icons/client.png" alt="">
           <p class="title">
+          Here we share info about 
             <router-link :to="{ name: 'Clients' }">Clients</router-link>
-            <img class="finger-icon"  src="../assets/images/Icons/fingerprint.png" alt="">
+            and our relationships to them.
           </p>
-          <p class="text">Here we share info about them.</p>
         </div>
         <div class="content-item">
-          <img src="../assets/images/Icons/project.png" alt="">
           <p class="title">
+          Each of ours 
           <router-link :to="{ name: 'Projects' }">Projects</router-link>
-          <img class="finger-icon"  src="../assets/images/Icons/fingerprint.png" alt="">
+          is important.
           </p>
-          <p class="text">Each of ours is important.</p>
+
         </div>
-        <div class="content-item">
+        <div class="content-item-text">
           <p class="text">
           "You should never forget where you were, where you started, and where you are now, to know where you will go next. When you have these two things in mind, and keep them in balance, you have all the precondition for a very quality and beautiful life."
           </p>
@@ -91,8 +89,19 @@ export default {
   justify-content: space-between;
   padding: 120px 20px 20px;
 
-  .logo {
+  .hero-background {
+    width: 100%;
+    height: 225px;
+    background: url("../assets/images/blogPhotos/mapa360.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     position: absolute;
+    top: 0;
+  }
+
+  .logo {
+    position: fixed;
     top: -22px;
     left: -60px;
     margin: 0;
@@ -105,23 +114,12 @@ export default {
       position: relative;
       color: $white;
       font-size: 50px;
-      letter-spacing: 6px;
-      font-weight: 900;
-      margin-bottom: 80px;
+    letter-spacing: 6px;
+    font-weight: 900;
+    margin-bottom: 100px;
 
       .highlight {
-      background: linear-gradient(to right, #fff 30%, #4587e1 70%, #fff 90%);
-      background-position: 0;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    //   animation: shine 2.5s infinite linear;
-    //   animation-fill-mode: forwards;
-      
-    //   @keyframes shine {
-    //     0% {background-position:0;}
-    //     60% {background-position:360px;}
-    //     100% {background-position:330px;}
-    //   }
+        text-shadow: -5px -4px 35px #ffffff;
     }
 
     .before {
@@ -130,19 +128,19 @@ export default {
     }
 
     .before, .after {
-      // color: $badin-color;
       position: absolute;
-      top: -20px;
+      top: -10px;
       left: 3px;
       font-size: 18px;
+      text-shadow: -5px -4px 35px #ffffff;
     }
 
     .after {
       top: unset;
       left: unset;
-      bottom: -20px;
+      bottom: -10px;
       right: 3px;
-      color: $badin-color;
+      color: $white;
     }
   }
 
@@ -163,51 +161,30 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid $badin-color-secondary;
 
-      &:not(:last-of-type) {
-        margin-bottom: 40px;  
-      }
-
-      img {
-        width: 100px;
-        margin-bottom: 20px;
+      &:nth-child(3) {
+        border-bottom: none;
       }
 
       .title {
         position: relative;
+       width: 100%;
+       font-size: 20px;
+       letter-spacing: 2px;
       }
 
       .title a {
-        font-size: 32px;
-        letter-spacing: 5px;
-        font-weight: 900;
         position: relative;
-        color: $white;
-        display: block;
-        margin-bottom: 10px;
-        line-height: 1;
-        text-decoration: underline;
-
-          // &:after {
-          //   content: "";
-          //   background-color: $badin-color;
-          //   width: 15px;
-          //   height: 15px;
-          //   position: absolute;
-          //   top: 0;
-          //   right: -14px;
-          //   border-radius: 50%;
-          // }
-
-        
-      }
-
-      .finger-icon {
-        width: 20px;
-        position: absolute;
-        top: 0;
-        right: -20px;
+        display: inline-block;
+        color: white;
+        letter-spacing: 0;
+        background-color: $badin-color-secondary;
+        padding: 3px 5px;
+        border-radius: 5px;
+        margin: 2px 0;
       }
 
       .text {
@@ -220,59 +197,31 @@ export default {
       }
     }
 
-    // span {
-    //   display: inline-flex;
-    //   align-items: center;
-    //   line-height: 1.2;
-    //   background-color: #ffffff26;
-    //   border-radius: 5px; 
-    //   clear: both;
-    //   font-size: 18px;
-    //   position: relative;
-      
-    //     &:not(.small-text) {
-    //       padding: 10px;
-    //       box-shadow: 0px 0px 20px #4587e187;
-    //     }
+    .content-item-text {
+      margin: 30px 0;
+      background: url("../assets/images/blogPhotos/neformalna360.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      padding: 20px;
 
-    //     &:not(.right-text) {
-    //       a {
-    //         margin-right: 5px;
-    //       }
-    //     }
-
-    //   &.small-text {
-    //     font-size: 10px;
-    //     letter-spacing: 4px;
-    //     background-color: transparent;
-    //     position: absolute;
-    //     top: -14px;
-    //     left: 0;
-
-    //     &.right-text {
-    //       margin: 0;
-    //     }
-    //   }
-
-    //   &.right-text {
-    //     margin: 30px 0;
-    //     float: right;
-
-    //       .small-text {
-    //         left: unset;
-    //         right: 0;
-    //       }
-
-    //     a {
-    //       margin-left: 5px;
-    //     }
-    //   }
-    // }
+      .text {
+        font-size: 16px;
+        padding: 10px;
+        backdrop-filter: blur(2px);
+        background-color: #d099647a;
+        color: aliceblue;
+        font-weight: 500;
+        text-align: center;
+        border-radius: 10px;
+      }
+    }
 
     a {
       color: $badin-color;
       text-decoration: none;
-      font-size: 25px;
+      font-size: 20px;
       text-transform: capitalize;
       letter-spacing: 1.5px;
       font-weight: 800;
