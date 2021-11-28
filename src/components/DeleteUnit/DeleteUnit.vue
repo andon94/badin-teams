@@ -1,7 +1,10 @@
 <template>
-  <BaseButton :text="`Remove ${label}`"
-              type="button"
-              @click="handleButtonClick"/>
+  <div class="delete-unit">
+    <BaseButton :text="`Remove ${label}`"
+                type="button"
+                @click="handleButtonClick"
+                class="button"/>
+  </div>
 </template>
 
 <script>
@@ -70,3 +73,12 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+.delete-unit {
+  /deep/ button {
+    background: none;
+    border: 3px solid $error;
+    color: $light;
+  }
+}
+</style>

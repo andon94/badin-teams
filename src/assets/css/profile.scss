@@ -30,6 +30,14 @@
   /deep/ .item {
     flex-direction: column-reverse;
     margin: 20px 0 10px;
+    background: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    &:hover {
+      background: none;
+    }
 
     &-image {
       margin-bottom: 20px;

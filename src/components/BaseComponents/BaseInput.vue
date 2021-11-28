@@ -66,7 +66,7 @@
 <script>
 import '../../assets/customDirectives/customDirectives.js'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiChevronUp, mdiTrashCanOutline } from '@mdi/js'
+import { mdiChevronDown, mdiTrashCanOutline } from '@mdi/js'
 
 export default {
   name: 'BaseInput',
@@ -103,7 +103,7 @@ export default {
       selectIsOpen: false,
       placeholderLabel: false,
       path: {
-        chevronUp: mdiChevronUp,
+        chevronUp: mdiChevronDown,
         trash: mdiTrashCanOutline
       }
     }
@@ -188,8 +188,13 @@ export default {
       font-weight: bold;
       background: transparent;
       border: none;
-      border-bottom: $light 1px solid;
+      // border-bottom: $light 1px solid;
       color: $light;
+      backdrop-filter: blur(10px);
+      background-color: rgba($light, 0.1);
+      // border-top-left-radius: 5px;
+      // border-top-right-radius: 5px;
+      border-radius: 5px;
     }
 
     .error {
@@ -203,15 +208,17 @@ export default {
     .placeholder {
       position: absolute;
       padding-top: 12px;
+      padding-left: 10px;
       opacity: 0.8;
       transition: all linear 0.1s;
       touch-action: none;
       font-size: 14px;
       pointer-events: none;
       color: $light;
+      cursor: default;
 
       &.placeholder-label {
-        transform: translate(0, -15px);
+        transform: translate(5px, -18px);
         padding: 3px;
         opacity: 1;
         z-index: 10;

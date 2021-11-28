@@ -36,7 +36,9 @@ export default {
   outline: none;
   border: none;
   font-weight: bold;
+  cursor: pointer;
   &:disabled {
+    cursor: default;
     opacity: 0.7;
   }
 }

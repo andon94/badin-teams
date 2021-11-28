@@ -94,14 +94,14 @@ export default {
     width: 10px;
   }
   &::-webkit-scrollbar-track {
-    background: rgba($dark, 0.5);
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $dark;
-  }
-  &::-webkit-scrollbar-thumb:hover {
     background: rgba($dark, 0.9);
   }
+  &::-webkit-scrollbar-thumb {
+    background: $light;
+  }
+  // &::-webkit-scrollbar-thumb:hover {
+  //   background: rgba($dark, 0.5);
+  // }
 }
 
 .app-wrapper {

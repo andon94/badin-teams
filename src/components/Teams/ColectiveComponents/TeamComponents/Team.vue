@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="item-info">
-      <div class="item-info-name">
+      <div class="item-info-name team">
         {{team.name}}
       </div>
       <div class="item-info-about">

@@ -38,7 +38,9 @@ export default {
     max-width: 100%;
     min-width: 100%;
     background: transparent;
-    border: 1px solid $light;
+    // border: 1px solid $light;
+    background-color: rgba($light, 0.1);
+    border: none;
     border-radius: 5px;
     padding: 10px;
     color: $light;
@@ -47,7 +49,7 @@ export default {
     }
     &:focus {
       outline: none;
-      border: 1px solid $light;
+      // border: 1px solid $light;
     }
   }
 }

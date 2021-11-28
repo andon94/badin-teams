@@ -3,12 +3,15 @@
     <div class="bubble-container"
          ref="bubbleContainer">
       <Bubble v-for="(bubble, i) in bubbleArr" :key="i + key"
-              :bubble="bubble"/>
+              :bubble="bubble"
+              @bubbleMouseover="handleBubbleMouseover"
+              @bubbleMouseleave="handleBubbleMouseleave"/>
+      <p class="bubble-name">{{ bubbleName }}</p>
     </div>
-    <div class="heading-container">
+    <!-- <div class="heading-container">
       <div class="heading">Badinsoft</div>
       <div class="caption">Teams</div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -37,7 +40,8 @@ export default {
       semiDiameter: 0,
       bubbleDeg: 0,
       key: 1,
-      padding: 30
+      padding: 0,
+      bubbleName: ''
     }
   },
   computed: {
@@ -81,16 +85,15 @@ export default {
   },
   created() {
     window.addEventListener("resize", this.resize);
-
-    const width = window.innerWidth
-    if (width > 768) this.padding = 60
-    else this.padding = 3
   },
   destroyed() {
     window.removeEventListener("resize", this.resize);
   },
   mounted () {
     // pola visine bubble-a plus po 30 piksela za marginu
+    const width = window.innerWidth
+    if (width > 768) this.padding = 60
+    else this.padding = 30
     this.calculateSemiDiameter()
   },
   methods: {
@@ -256,13 +259,6 @@ export default {
     calculateSemiDiameter () {
       this.semiDiameter =  (this.$refs.bubbleContainer.offsetHeight / 2) - this.padding
     },
-    debounce (fn, timeout) {
-      let tempTimeout = null
-      if (tempTimeout) clearTimeout(tempTimeout)
-      tempTimeout = setTimeout(() => {
-        fn()
-      }, timeout)
-    },
     recalculate () {
       const width = window.innerWidth
       if (width > 768) this.padding = 60
@@ -273,7 +269,16 @@ export default {
       this.key++
     },
     resize () {
-      this.debounce(this.recalculate, 300)
+      let timeOutFunctionId;
+      clearTimeout(timeOutFunctionId);
+      timeOutFunctionId = setTimeout(this.recalculate, 500);
+    },
+    handleBubbleMouseover (bubble) {
+      if (bubble.name) return this.bubbleName = bubble.name
+      else return this.bubbleName = bubble.name
+    },
+    handleBubbleMouseleave () {
+      this.bubbleName = ''
     }
   }
 }
@@ -298,9 +303,9 @@ export default {
 
     transition: all ease-in 0.2s;
 
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+    // border-left: 1px solid rgba(255, 255, 255, 0.3);
+    // border-top: 1px solid rgba(255, 255, 255, 0.3);
+    // box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
 
     @media (min-width: 768px) {
       width: 500px;
@@ -311,6 +316,17 @@ export default {
       margin-top: 20px;
       width: 650px;
       height: 650px;
+    }
+
+    .bubble-name {
+      font-weight: bold;
+      color: $light;
+      font-size: 22px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      transition: all ease-in 0.25;
     }
   }
 
