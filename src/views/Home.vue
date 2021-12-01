@@ -87,7 +87,11 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 120px 20px 20px;
+  padding: 145px 20px 20px;
+
+  @media only screen and (min-width: $sm) {
+    padding: 375px 20px 20px;
+  }
 
   .hero-background {
     width: 100%;
@@ -98,6 +102,11 @@ export default {
     background-repeat: no-repeat;
     position: absolute;
     top: 0;
+
+      @media only screen and (min-width: $sm) {
+        background: url("../assets/images/blogPhotos/mapa768.jpg");
+        height: 479px;
+      }
   }
 
   .logo {
@@ -114,9 +123,13 @@ export default {
       position: relative;
       color: $white;
       font-size: 50px;
-    letter-spacing: 6px;
-    font-weight: 900;
-    margin-bottom: 100px;
+      letter-spacing: 6px;
+      font-weight: 900;
+      margin-bottom: 60px;
+
+      @media only screen and (min-width: $sm) {
+        font-size: 70px;
+      }
 
       .highlight {
         text-shadow: -5px -4px 35px #ffffff;
@@ -133,6 +146,10 @@ export default {
       left: 3px;
       font-size: 18px;
       text-shadow: -5px -4px 35px #ffffff;
+
+      @media only screen and (min-width: $sm) {
+        font-size: 20px;
+      }
     }
 
     .after {
@@ -151,10 +168,15 @@ export default {
     font-size: 20px;
     font-weight: 300;
 
-    .content-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .content-wrapp {
+
+      // @media only screen and (min-width: 768px) {
+      //   display: grid;
+      //   grid-template-columns: 1fr 3fr;
+      //   grid-template-rows: repeat(3, 1fr);
+      //   grid-column-gap: 10px;
+      //   grid-row-gap: 0px;
+      // }
     }
 
     .content-item {
@@ -164,6 +186,13 @@ export default {
       margin-bottom: 30px;
       padding-bottom: 30px;
       border-bottom: 2px solid $badin-color-secondary;
+
+      // @media only screen and (min-width: 768px) {
+      //   &:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+      //   &:nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
+      //   &:nth-child(3) { grid-area: 3 / 1 / 4 / 2; }
+      //   &:nth-child(4) { grid-area: 1 / 2 / 4 / 3; }
+      // }
 
       &:nth-child(3) {
         border-bottom: none;
@@ -205,16 +234,28 @@ export default {
       background-repeat: no-repeat;
       border-radius: 10px;
       padding: 20px;
+      display: flex;
+
+      @media only screen and (min-width: $sm) {
+        background: url("../assets/images/blogPhotos/neformalna768.jpg");
+        min-height: 400px;
+      }
 
       .text {
         font-size: 16px;
         padding: 10px;
         backdrop-filter: blur(2px);
+        filter: drop-shadow(1px 1px 28px black);
         background-color: #d099647a;
         color: aliceblue;
         font-weight: 500;
         text-align: center;
         border-radius: 10px;
+        align-self: center;
+
+        @media only screen and (min-width: $sm) {
+         font-size: 20px;
+        }
       }
     }
 
