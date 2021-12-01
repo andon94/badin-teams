@@ -1,11 +1,11 @@
 <template>
     <div class="view-navigator">
-    <button @click="handleButtonClick('rotateY(0)')"
-            :class="{'active': position === 'rotateY(0)'}">
+    <button @click="handleButtonClick(false)"
+            :class="{'active': position === false}">
       Bubbles
     </button>
-    <button @click="handleButtonClick('rotateY(190deg)')"
-            :class="{'active': position === 'rotateY(190deg)'}">
+    <button @click="handleButtonClick(true)"
+            :class="{'active': position === true}">
       List
     </button>
   </div>
@@ -16,7 +16,7 @@ export default {
   name: 'ViewNavigator',
   data () {
     return {
-      position: 'rotateY(0)'
+      position: true
     }
   },
   methods: {

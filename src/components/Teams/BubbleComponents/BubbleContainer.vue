@@ -291,6 +291,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 
   .bubble-container {
     position: relative;
@@ -298,15 +299,9 @@ export default {
     height: 300px;
 
     margin: 5vh auto 5vh;
-    // background: $dark;
     border-radius: 50%;
 
     transition: all ease-in 0.2s;
-
-    // border-left: 1px solid rgba(255, 255, 255, 0.3);
-    // border-top: 1px solid rgba(255, 255, 255, 0.3);
-    // box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
-
     @media (min-width: 768px) {
       width: 500px;
       height: 500px;
@@ -341,10 +336,6 @@ export default {
       color: $light;
       font-size: 40px;
       text-align: center;
-
-      @media (min-width: 1024px) {
-        // text-align: right;
-      }
     }
     .heading {
       margin-top: 30px;

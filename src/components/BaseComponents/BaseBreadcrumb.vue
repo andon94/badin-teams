@@ -133,6 +133,9 @@ export default {
     position: relative;
     color: $light;
     background: $dark;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       border: 1px solid $badin-color;

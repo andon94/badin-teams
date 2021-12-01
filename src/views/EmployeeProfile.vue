@@ -1,20 +1,22 @@
 <template>
-  <div class="profile"
+  <div class="profile employee"
        v-if="employee">
     <Employee :employee="employee" />
     <ul class="profile-details">
-      <li>
-        <div>{{employee.email}}</div>
-      </li>
-      <li>
-        <div>{{employee.position}}</div>
-      </li>
-      <li>
-        <div>{{employee.mainTechnology}}</div>
-      </li>
-      <li v-if="employee.lead">
-        <div>{{employee.lead}}</div>
-      </li>
+      <div class="profile-details-position">
+        <li>
+          <div>{{employee.position}}</div>
+        </li>
+        <li>
+          <div>{{employee.mainTechnology}}</div>
+        </li>
+        <li v-if="employee.lead">
+          <div>{{employee.lead}}</div>
+        </li>
+        <li>
+          <div>{{employee.email}}</div>
+        </li>
+      </div>
       <BaseArrayViewer label="Teams"
                        path="team"
                        :dataArr="employeeTeams"

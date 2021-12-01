@@ -80,7 +80,7 @@
             </span>
           </router-link>
           <router-link class="link admin"
-                       :to="{ name: 'EditClients' }"
+                       :to="{ name: 'CreateClient' }"
                        v-if="loginStatus">
             <span class="icon secondary">
               <svg-icon type="mdi" :path="path.plus"></svg-icon>
@@ -90,7 +90,7 @@
             </span>
           </router-link>
           <router-link class="link admin"
-                       :to="{ name: 'CreateClient' }"
+                       :to="{ name: 'EditClient' }"
                        v-if="loginStatus">
             <span class="icon secondary">
               <svg-icon type="mdi" :path="path.edit"></svg-icon>
@@ -216,6 +216,10 @@ header {
   z-index: 100;
   position: fixed;
   width: 100%;
+
+  @media (min-width: 768px) {
+    width: fit-content;
+  }
 
   .link {
     font-weight: 500;

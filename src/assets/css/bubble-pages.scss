@@ -1,8 +1,7 @@
 .colective {
-  // overflow: hidden;
   overflow: auto;
+  overflow-x: hidden;
   min-height: 100vh;
-
   &.no-scroll {
     max-height: 100vh;
   }
@@ -11,13 +10,17 @@
     display: flex;
     flex-direction: row;
     align-content: center;
-    // transition: all linear 0.2s;
-
     transition: transform 0.5s;
     transform-style: preserve-3d;
 
+    &.rotate {
+      transform: rotateY(190deg) !important;
+      /deep/ .bubble {
+        visibility: hidden;
+      }
+    }
+
     .face {
-      // text-align: center;
       backface-visibility: hidden;
     }
 
@@ -28,7 +31,8 @@
     }
 
     .bubbles, .list {
-      min-width: 99vw;
+      // min-width: calc(100vw - 10px);
+      width: 100vw;
       position: absolute;
     }
     .bubbles {
@@ -39,7 +43,7 @@
         text-align: center;
         position: absolute;
         width: 100vw;
-        transform: translateY(-100%);
+        cursor: pointer;
       }
     }
     .list {

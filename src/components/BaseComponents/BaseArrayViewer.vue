@@ -2,10 +2,15 @@
   <div class="array-viewer" v-if="dataArr.length">
     <div class="label">{{label}}: </div>
     <div class="array-viewer-element"
-          v-for="(element, i) in dataArr" :key="i">
-      <!-- privremeno dok ne ubacim name kao niz-->
-      <router-link class="link" :to="{path:`/${path}-profile/:id`, query:{id: element.id}}">
-        {{label === 'Members' ? `${element.firstName} ${element.lastName} ${element.nickname}` : element[name]}}
+         v-for="(element, i) in dataArr" :key="i">
+      <router-link class="link"
+                   :to="{path:`/${path}-profile/:id`, query:{id: element.id}}">
+        <img :src="`${baseUrl}/${element.imageViewPath}`"
+             v-if="element.imageViewPath">
+        <div v-if="!element.imageViewPath && label !== 'Projects'"
+             class="img-placeholder">
+        </div>
+        <span>{{label === 'Members' ? `${element.firstName} ${element.lastName} ${element.nickname}` : element[name]}}</span>
       </router-link>
     </div>
   </div>
@@ -31,6 +36,11 @@ export default {
       type: String,
       default: ''
     }
+  },
+  data () {
+    return {
+      baseUrl: process.env.VUE_APP_API_BASE_URL
+    }
   }
 }
 </script>
@@ -38,16 +48,45 @@ export default {
 <style lang="scss">
 .array-viewer {
   margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
   .label {
     font-size: 14px;
     color: $light;
     font-weight: bold;
+    flex-grow: 1;
+    width: 100vw;
   }
   &-element{
-    margin: 10px 0;
-
+    margin: 10px 20px 10px 0;
     a {
       color: $light;
+      display: flex;
+      flex-direction: column;
+
+      @media (min-width: 768px) {
+        padding-right: 20px;
+      }
+
+      img {
+        width: 70px;
+        height: 70px;
+      }
+
+      .img-placeholder {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: $badin-color;
+      }
+
+      span {
+        margin-top: 5px;
+      }
     }
   }
 }

@@ -60,7 +60,6 @@ export default {
 <style scoped lang="scss">
 .photo-container {
   position: relative;
-  // margin: 20px 0 30px;
   display: flex;
   flex-direction: row;
   justify-content: center;

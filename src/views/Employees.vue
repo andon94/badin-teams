@@ -1,9 +1,8 @@
 <template>
-  <div class="colective"
-       :class="{'no-scroll': !position}">
+  <div class="colective">
     <ViewNavigator @setPosition="setPosition"/>
     <div class="colective-content"
-         :style="{'transform': position}">
+         :class="{'rotate': position}">
       <div class="bubbles face">
         <div class="team-name"
              @click="handleTeamClick">

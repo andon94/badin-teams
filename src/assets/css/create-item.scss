@@ -1,5 +1,5 @@
 .new-item {
-  padding: 0 10px 20px;
+  padding: 0 16px 60px;
 
   @media (min-width: 768px) {
     max-width: 600px;
@@ -7,7 +7,34 @@
   }
 
   &.project {
-    padding-top: 55px;
+    padding-top: 65px;
   }
 
+  /deep/ .photo-container {
+    @media (min-width: 768px) {
+      margin-bottom: 200px;
+      .input-container {
+        cursor: pointer;
+        label {
+          padding-top: 85px;
+        }
+      }
+
+      input {
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+      }
+
+      .img-container {
+        width: 150px;
+        height: 150px;
+        img {
+          width: 150px;
+          height: 150px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

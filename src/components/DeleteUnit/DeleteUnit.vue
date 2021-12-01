@@ -79,6 +79,10 @@ export default {
     background: none;
     border: 3px solid $light;
     color: $error;
+    &:hover {
+      background: $error;
+      color: $white;
+    }
   }
 }
 </style>

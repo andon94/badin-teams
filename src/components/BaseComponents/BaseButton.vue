@@ -41,5 +41,8 @@ export default {
     cursor: default;
     opacity: 0.7;
   }
+  &:hover {
+    background: darken($badin-color, 5%)
+  }
 }
 </style>

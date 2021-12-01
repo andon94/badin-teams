@@ -1,9 +1,8 @@
 <template>
   <div class="colective">
-       <!-- :class="{'no-scroll': !position}"> -->
     <ViewNavigator @setPosition="setPosition"/>
     <div class="colective-content"
-         :style="{'transform': position}">
+         :class="{'rotate': position}">
       <BubbleContainer :teams="teams"
                        class="bubbles face"/>
       <TeamList :teams="teams"
@@ -16,7 +15,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 import ViewNavigator from '../components/Teams/ViewNavigator.vue'
 import BubbleContainer from '../components/Teams/BubbleComponents/BubbleContainer.vue'
 import TeamList from '../components/Teams/ColectiveComponents/TeamComponents/TeamList.vue'
