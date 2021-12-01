@@ -131,13 +131,23 @@
           <router-link class="link"
                        :to="{ name: 'Login' }"
                        v-if="!loginStatus && visible">
-            Login
+            <span class="icon">
+              <svg-icon type="mdi" :path="path.login"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Login
+            </span>
           </router-link>
           <li class="link logout"
               :to="{ name: 'Home' }"
               @click="logout"
               v-if="loginStatus && visible">
-            Logout
+            <span class="icon">
+              <svg-icon type="mdi" :path="path.logout"></svg-icon>
+            </span>
+            <span v-if="visible">
+              Logout
+            </span>
           </li>
       </ul>
     <!-- </transition> -->
@@ -147,7 +157,7 @@
 <script>
 import { baseFetcher } from '../../services/api/api'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiArrowLeft, mdiHome, mdiAccountGroup, mdiHandshake, mdiLightbulbOn, mdiAccount, mdiPlus, mdiPencil } from '@mdi/js'
+import { mdiArrowLeft, mdiHome, mdiAccountGroup, mdiHandshake, mdiLightbulbOn, mdiAccount, mdiPlus, mdiPencil, mdiLogout, mdiLogin } from '@mdi/js'
 import { mapGetters } from 'vuex'
 import Storage from '../../services/storage'
 import MenuIcon from '../../assets/images/Icons/bars-regular.svg';
@@ -169,7 +179,9 @@ export default {
         projects: mdiLightbulbOn,
         employee: mdiAccount,
         plus: mdiPlus,
-        edit: mdiPencil
+        edit: mdiPencil,
+        logout: mdiLogout,
+        login: mdiLogin
       }
     }
   },
@@ -317,8 +329,19 @@ header {
       &.logout {
         color: $error !important;
         margin-bottom: 40px;
+        flex-grow: 1;
+        align-items: flex-end;
         &::after {
           display: none;
+        }
+        &:hover {
+          background: none;
+          box-shadow: none;
+          cursor: default;
+
+          span {
+            cursor: pointer;
+          }
         }
       }
     }
