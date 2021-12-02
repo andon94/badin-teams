@@ -22,6 +22,10 @@
                       :loader="loader"/>
       </div>
     </div>
+    <div class="heading-container">
+      <div class="heading">Badinsoft</div>
+      <div class="caption">Teams</div>
+    </div>
   </div>
 </template>
 
