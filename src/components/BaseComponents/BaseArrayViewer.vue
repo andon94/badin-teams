@@ -5,8 +5,10 @@
          v-for="(element, i) in dataArr" :key="i">
       <router-link class="link"
                    :to="{path:`/${path}-profile/:id`, query:{id: element.id}}">
-        <img :src="`${baseUrl}/${element.imageViewPath}`"
-             v-if="element.imageViewPath">
+        <div class="link-img">
+          <img :src="`${baseUrl}/${element.imageViewPath}`"
+              v-if="element.imageViewPath">
+        </div>
         <div v-if="!element.imageViewPath && label !== 'Projects'"
              class="img-placeholder">
         </div>
@@ -72,9 +74,22 @@ export default {
         padding-right: 20px;
       }
 
-      img {
-        width: 70px;
-        height: 70px;
+      .link-img {
+
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid $light;
+
+        img {
+          max-width: 120px;
+          max-height: 120px;
+        }
       }
 
       .img-placeholder {
@@ -86,6 +101,7 @@ export default {
 
       span {
         margin-top: 5px;
+        max-width: 100px;
       }
     }
   }

@@ -2,8 +2,11 @@
   overflow: auto;
   overflow-x: hidden;
   min-height: 100vh;
-  &.no-scroll {
-    max-height: 100vh;
+
+  &.employees {
+    /deep/ .bubble {
+      border: 3px solid $light;
+    }
   }
 
   &-content {

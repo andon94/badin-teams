@@ -16,7 +16,7 @@ export default {
   name: 'ViewNavigator',
   data () {
     return {
-      position: true
+      position: false
     }
   },
   methods: {

@@ -104,8 +104,8 @@ export default {
     justify-content: center;
 
     img {
-      width: 80px;
-      height: 80px;
+      max-width: 120px;
+      max-height: 120px;
     }
   }
 

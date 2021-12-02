@@ -274,8 +274,9 @@ export default {
       timeOutFunctionId = setTimeout(this.recalculate, 500);
     },
     handleBubbleMouseover (bubble) {
+      console.log(bubble)
       if (bubble.name) return this.bubbleName = bubble.name
-      else return this.bubbleName = bubble.name
+      else return this.bubbleName = `${bubble.firstName} ${bubble.lastName}`
     },
     handleBubbleMouseleave () {
       this.bubbleName = ''

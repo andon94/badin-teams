@@ -1,5 +1,5 @@
 <template>
-  <div class="colective">
+  <div class="colective employees">
     <ViewNavigator @setPosition="setPosition"/>
     <div class="colective-content"
          :class="{'rotate': position}">

@@ -90,7 +90,7 @@
             </span>
           </router-link>
           <router-link class="link admin"
-                       :to="{ name: 'EditClient' }"
+                       :to="{ name: 'EditClients' }"
                        v-if="loginStatus">
             <span class="icon secondary">
               <svg-icon type="mdi" :path="path.edit"></svg-icon>
