@@ -45,7 +45,7 @@ export default {
       (config) => {
         if (this.$route.name !== 'Login') {
           const storage = Storage.getItem('storage')
-          if (!isAuthenticated(storage)) {
+          if (storage && !isAuthenticated(storage)) {
             Storage.removeItem('storage')
             this.$store.commit('setLoginStatus', false)
             this.$router.push({path:'/login'})
