@@ -280,6 +280,16 @@ header {
       @media (min-width: 768px) {
         width: 250px;
       }
+
+      .link {
+        margin: 0 20px;
+
+        span {
+          &.icon {
+            margin-right: 10px;
+          }
+        }
+      }
     }
 
     .router-link-exact-active {
@@ -297,7 +307,7 @@ header {
       display: flex;
       flex-direction: column;
       width: fit-content;
-      margin: 0 20px;
+      margin: 0 10px;
       white-space: nowrap;
       display: flex;
       flex-direction: row;
@@ -307,7 +317,6 @@ header {
         &.icon {
           display: flex;
           align-items: center;
-          margin-right: 10px;
 
           &.secondary {
             svg {

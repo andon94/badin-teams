@@ -106,7 +106,7 @@ export default {
   .logo {
     position: fixed;
     top: -22px;
-    left: -50px;
+    left: -60px;
     margin: 0;
     overflow: hidden;
     max-height: 100px;
