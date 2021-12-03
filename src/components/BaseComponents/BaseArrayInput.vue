@@ -109,6 +109,7 @@ export default {
 
     .placeholder {
       border: none;
+      box-shadow: none;
     }
 
     .array-input-element {
