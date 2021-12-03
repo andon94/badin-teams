@@ -1,24 +1,30 @@
 <template>
   <div class="array-input">
-    <div class="array-input-elements">
-      <div v-for="(data, i) in finalArr" :key="i"
-           class="array-input-element"
-           @click="handleElementClick(data)">
-        {{data[name]}}
-      </div>
-      <div v-if="!finalArr.length" class="placeholder">
-        {{`No ${placeholder}s selected`}}
-      </div>
-    </div>
     <BaseInput :placeholder="placeholder"
                :name="name"
                :selectArr="selectArr"
                v-model="value"
                @input="handleInput"/>
+    <div class="array-input-elements">
+      <div v-for="(data, i) in finalArr" :key="i"
+           class="array-input-element"
+           @click="handleElementClick(data)">
+        <span>{{data[name]}}</span>
+        <span class="icon">
+          <svg-icon type="mdi" :path="path.close"></svg-icon>
+        </span>
+      </div>
+      <div v-if="!finalArr.length" class="placeholder">
+        {{`No ${placeholder}s selected`}}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiClose } from '@mdi/js'
+
 import BaseInput from './BaseInput.vue'
 
 const EMPTY_ARR = {
@@ -34,7 +40,8 @@ const EMPTY_STRING = {
 export default {
   name: 'ArrayInput',
   components: {
-    BaseInput
+    BaseInput,
+    SvgIcon
   },
   props: {
     dataArr: EMPTY_ARR,
@@ -45,7 +52,10 @@ export default {
   data () {
     return {
       value: '',
-      finalArr: []
+      finalArr: [],
+      path: {
+        close: mdiClose
+      }
     }
   },
   watch: {
@@ -80,8 +90,6 @@ export default {
   }
   &-elements {
     min-height: 18px;
-    // margin-bottom: -5px;
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -92,12 +100,35 @@ export default {
       font-size: 12px;
       margin: 5px 15px 5px 0;
       color: $light;
-      transform: translateY(15px);
+      margin-top: -10px;
+      border: 1px solid $light;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      padding: 0 5px;
+      border-radius: 5px;
+    }
+
+    .placeholder {
+      border: none;
     }
 
     .array-input-element {
-      font-weight: bold;
       font-size: 14px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        border: 1px solid $error;
+        background-color: $error;
+        color: $light;
+      }
+
+      .icon {
+        margin-left: 3px;
+        svg {
+          transform: scale(0.6) translateY(3px);
+        }
+      }
     }
   }
 }

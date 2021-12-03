@@ -111,20 +111,13 @@ export default {
   justify-content: center;
   position: fixed;
   top: calc(100vh - 46px);
-  // background: $dark;
   padding: 10px 0 10px 10px;
   z-index: 10;
-
-  // @media (min-width: 1210px) {
-  //   justify-content: flex-start;
-  //   // margin-left: -10px;
-  // }
 
   .crumb {
     font-weight: bold;
     font-size: 13px;
     text-decoration: none;
-    // background: $white;
     border: 1px solid $light;
     padding: 5px 10px;
     cursor: pointer;
@@ -145,20 +138,7 @@ export default {
       }
     }
 
-    // &:first-of-type {
-    //   border-top-left-radius: 5px;
-
-    //   @media (min-width: 1210px) {
-    //     border-top-left-radius: 0;
-    //   }
-    // }
-
-    // &:last-of-type {
-    //   border-top-right-radius: 5px;
-    // }
-
     a {
-      // color: $dark;
       color: $light !important;
       font-weight: bold;
       font-size: 13px;
@@ -166,7 +146,6 @@ export default {
     }
 
     &:last-of-type {
-      // color: $badin-color;
       border: 1px solid $badin-color;
       color: $light;
 
