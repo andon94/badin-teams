@@ -31,12 +31,14 @@
       backface-visibility: hidden;
       transform: rotateY(180deg);
       padding-left: 20px;
+      z-index: 1000 !important;
     }
 
     .bubbles, .list {
       // min-width: calc(100vw - 10px);
       width: 100vw;
       position: absolute;
+      z-index: 1000;
     }
     .bubbles {
 
