@@ -4,7 +4,7 @@
          class="icon-div">
       <svg-icon type="mdi" :path="path.close"></svg-icon>
     </div>
-    <div>
+    <div class="error-message">
       {{errorMessage}}
     </div>
   </div>
@@ -55,17 +55,24 @@ export default {
   position: fixed;
   width: 100%;
   top: calc(100vh - 85px);
-  padding: 40px 10px 30px 10px;
+  padding: 30px 10px 30px 10px;
   background: $dark;
-  border-top: 1px white solid;
+  border-top: 3px $light solid;
   z-index: 11;
   .icon-div {
     position: absolute;
     top: 10px;
     right: 10px;
+    cursor: pointer;
     svg {
       color: $white;
     }
+  }
+  &-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: $error;
+    cursor: default;
   }
 }
 </style>
