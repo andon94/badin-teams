@@ -7,7 +7,7 @@
              @input="onInput">
     </div>
     <div class="img-container">
-      <img :src="image">
+      <img :src="image || uploaded">
     </div>
     <div class="remove-img"
          v-if="uploaded "
@@ -47,8 +47,8 @@ export default {
   },
   computed: {
     image () {
-      if (this.photoPath && !this.uploaded) return `${this.baseUrl}/${this.photoPath}`
-      else if (this.photoPath && this.uploaded) return this.uploaded
+      if (this.photoPath && this.uploaded) return null
+      else if (this.photoPath && !this.uploaded) return `${this.baseUrl}/${this.photoPath}`
       else return null
     }
   },
