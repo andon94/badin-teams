@@ -225,6 +225,7 @@ header {
     padding: 0 10px;
     transition: 0.3s color ease;
     padding: 10px !important;
+    min-width: 45px;
 
     @media (min-width: 768px) {
       &:hover {
