@@ -128,7 +128,7 @@
               Edit Project
             </span>
           </router-link>
-          <router-link class="link"
+          <router-link class="link logout login"
                        :to="{ name: 'Login' }"
                        v-if="!loginStatus && visible">
             <span class="icon">
@@ -344,6 +344,7 @@ header {
         margin-bottom: 40px;
         flex-grow: 1;
         align-items: flex-end;
+
         &::after {
           display: none;
         }
@@ -356,6 +357,9 @@ header {
             cursor: pointer;
           }
         }
+      }
+      &.login {
+        color: $light !important;
       }
     }
 
