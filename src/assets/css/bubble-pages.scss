@@ -2,6 +2,17 @@
   overflow: auto;
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: 40px;
+
+  @media (min-width: 1024px) {
+    padding-top: 0;
+  }
+  .bubbles {
+    display: none;
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
 
   &.employees {
     /deep/ .bubble {
@@ -37,8 +48,11 @@
     .back {
       backface-visibility: hidden;
       transform: rotateY(180deg);
-      padding-left: 20px;
       z-index: 1000 !important;
+
+      @media (min-width: 1024px) {
+        padding-left: 20px;
+      }
     }
 
     .bubbles, .list {

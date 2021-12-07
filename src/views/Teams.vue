@@ -38,6 +38,7 @@ export default {
     }
   },
   mounted () {
+    this.setPosition()
     this.fetchTeams()
       .then(() => {
         this.loader = false
@@ -52,8 +53,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTeams']),
-    setPosition (val) {
-      this.position = val
+    setPosition () {
+      if (this.$route.query.list === 'true') this.position = true
+      else this.position = false
     }
   }
 }

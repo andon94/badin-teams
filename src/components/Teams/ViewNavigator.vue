@@ -1,11 +1,11 @@
 <template>
     <div class="view-navigator">
     <button @click="handleButtonClick(false)"
-            :class="{'active': position === false}">
+            :class="{'active': this.$route.query.list === 'false'}">
       Bubbles
     </button>
     <button @click="handleButtonClick(true)"
-            :class="{'active': position === true}">
+            :class="{'active': this.$route.query.list === 'true'}">
       List
     </button>
   </div>
@@ -19,10 +19,21 @@ export default {
       position: false
     }
   },
+  mounted () {
+    window.addEventListener('resize', this.onResize)
+    if (window.innerWidth < 1024) this.handleButtonClick(true)
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize)
+  },
   methods: {
     handleButtonClick (val) {
-      this.position = val
-      this.$emit('setPosition', val)
+      if (!val && this.$route.query.list !== 'false') this.$router.push({query: { ...this.$route.query, list: val }})
+      else if (val && this.$route.query.list !== 'true') this.$router.push({query: { ...this.$route.query, list: val }})
+      this.$emit('setPosition')
+    },
+    onResize () {
+      if (window.innerWidth < 1024) this.handleButtonClick(true)
     }
   }
 }
@@ -30,10 +41,15 @@ export default {
 
 <style scoped lang="scss">
 .view-navigator {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin: 60px auto 20px;
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 60px auto 20px;
+  }
+
   button {
     border: none;
     background: none;

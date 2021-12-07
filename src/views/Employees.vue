@@ -49,6 +49,7 @@ export default {
     }
   },
   mounted () {
+    this.setPosition()
     this.fetchTeam(this.$route.query.id)
     this.fetchTeamMembers(this.$route.query.id)
       .then(() => {
@@ -64,8 +65,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchTeam', 'fetchTeamMembers']),
-    setPosition (val) {
-      this.position = val
+    setPosition () {
+      if (this.$route.query.list === 'true') this.position = true
+      else this.position = false
     },
     handleTeamClick () {
       this.$router.push({path:'/team-profile/:id', query:{id: this.team.id}})
