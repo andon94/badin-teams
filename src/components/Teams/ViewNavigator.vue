@@ -1,7 +1,7 @@
 <template>
     <div class="view-navigator">
     <button @click="handleButtonClick(false)"
-            :class="{'active': this.$route.query.list === 'false'}">
+            :class="{'active': this.$route.query.list === 'false' || !this.$route.query.list}">
       Bubbles
     </button>
     <button @click="handleButtonClick(true)"
