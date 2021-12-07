@@ -1,5 +1,7 @@
 <template>
-  <div class="photo-container">
+  <div class="photo-container"
+       :class="{'remove-photo': uploaded}"
+       @click="removeImage">
     <div class="input-container"
          v-if="!uploaded">
       <label v-show="!photoPath">{{label}}</label>
@@ -9,23 +11,12 @@
     <div class="img-container">
       <img :src="image || uploaded">
     </div>
-    <div class="remove-img"
-         v-if="uploaded "
-         @click="removeImage">
-      <svg-icon type="mdi" :path="path.close"></svg-icon>
-    </div>
   </div>
 </template>
 
 <script>
-import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiClose } from '@mdi/js'
-
 export default {
   name: 'PhotoInput',
-  components: {
-    SvgIcon
-  },
   props: {
     label: {
       type: String,
@@ -39,10 +30,7 @@ export default {
   data () {
     return {
       baseUrl: process.env.VUE_APP_API_BASE_URL,
-      uploaded: null,
-      path: {
-        close: mdiClose,
-      }
+      uploaded: null
     }
   },
   computed: {
@@ -58,8 +46,10 @@ export default {
       this.uploaded = URL.createObjectURL(e.target.files[0])
     },
     removeImage () {
-      this.uploaded = null
-      this.$emit('fileSelected', null)
+      if (this.uploaded) {
+        this.uploaded = null
+        this.$emit('fileSelected', null)
+      }
     }
   }
 }
@@ -73,7 +63,16 @@ export default {
   justify-content: center;
   align-content: center;
   margin-bottom: 140px;
+  &.remove-photo {
+    &:hover {
+      .img-container {
+        background-color: $error;
+      }
+    }
+  }
+
   .input-container {
+    transition: all ease-in 0.2s;
     label {
       position: absolute;
       transform: translateX(-50%);
