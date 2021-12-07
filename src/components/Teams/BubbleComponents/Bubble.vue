@@ -68,10 +68,10 @@ export default {
   border-radius: 50%;
   font-size: 16px;
   font-weight: bold;
-  overflow: hidden;
   font-weight: bold;
   transition: all ease-in 0.25s;
   cursor: pointer;
+  overflow: hidden;
 
   @media (min-width: 768px) {
     transform: translate(-50%, -50%) scale(0.8);
@@ -79,14 +79,16 @@ export default {
 
   @media (min-width: 1210px) {
     font-size: 13px;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0.7);
     &:hover {
-      transform: translate(-50%, -50%) scale(1.5);
-      background: none;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%) scale(1.2);
+      background-color: $dark;
       border-left: none;
       border-top: none;
       box-shadow: none;
-      overflow: visible;
+      // overflow: visible;
       z-index: 10;
       border: 5px solid $light;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -96,7 +98,6 @@ export default {
   .img-wrapper {
     width: 80px;
     height: 80px;
-    overflow: hidden;
     border-radius: 50%;
 
     display: flex;
@@ -104,15 +105,10 @@ export default {
     justify-content: center;
 
     img {
-      max-width: 120px;
-      max-height: 120px;
+      max-width: 110px;
+      max-height: 110px;
     }
   }
-
-  // .bubble-name {
-  //   display: none;
-  //   margin-top: 5px;
-  // }
 
   .name {
     color: $white;

@@ -10,4 +10,20 @@
   &.clients, &.projects {
     padding-top: 65px;
   }
+
+  &.icon {
+    /deep/ .item {
+      &-image {
+        img {
+          max-width: 70px;
+          max-height: 70px;
+
+          @media (min-width: 768px) {
+            max-width: 90px;
+            max-height: 90px;
+          }
+        }
+      }
+    }
+  }
 }

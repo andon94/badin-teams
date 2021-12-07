@@ -304,8 +304,8 @@ export default {
       height: 500px;
     }
 
-    @media (min-width: 768px) {
-      margin-top: 20px;
+    @media (min-width: 1024px) {
+      margin-top: 0;
       width: 650px;
       height: 650px;
     }

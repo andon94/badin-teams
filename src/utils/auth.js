@@ -4,10 +4,9 @@ import {Ability} from "@casl/ability";
 
 export function isAuthenticated(data) {
     if(!data) return false;
-
     const tokenExist = Boolean(data.token);
     const isTokenExpired = DateTime.now() >= DateTime.fromFormat(data.expiration, "YYYY/MM/DD HH:mm:ss");
-
+    console.log('tokenExpired', isTokenExpired)
     return tokenExist && !isTokenExpired;
 }
 

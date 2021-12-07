@@ -6,6 +6,13 @@
   &.employees {
     /deep/ .bubble {
       border: 3px solid $light;
+
+      .img-wrapper {
+        img {
+          max-width: 170px;
+          max-height: 170px;
+        }
+      }
     }
   }
 
@@ -35,7 +42,6 @@
     }
 
     .bubbles, .list {
-      // min-width: calc(100vw - 10px);
       width: 100vw;
       position: absolute;
       z-index: 1000;

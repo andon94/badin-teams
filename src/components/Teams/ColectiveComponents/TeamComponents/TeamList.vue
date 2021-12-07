@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="loader"/>
-  <div class="item-list"
+  <div class="item-list icon"
        v-else>
     <div class="item-list-container">
       <BaseFilter placeholder="Search teams"
