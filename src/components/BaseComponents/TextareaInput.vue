@@ -44,12 +44,12 @@ export default {
 
 <style scoped lang="scss">
 .textarea-input {
-  margin: 15px 0;
+  margin: 20px 0;
+  position: relative;
   textarea {
     max-width: 100%;
     min-width: 100%;
     background: transparent;
-    // border: 1px solid $light;
     background-color: rgba($light, 0.1);
     border: none;
     border-radius: 5px;
@@ -60,8 +60,14 @@ export default {
     }
     &:focus {
       outline: none;
-      // border: 1px solid $light;
     }
+  }
+  .error {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    font-weight: bold;
+    color: $error;
   }
 }
 </style>
