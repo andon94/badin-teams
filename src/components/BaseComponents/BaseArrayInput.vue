@@ -98,10 +98,8 @@ export default {
     .array-input-element, .placeholder{
       cursor: pointer;
       font-size: 12px;
-      margin: 5px 15px 5px 0;
       color: $light;
-      margin-top: -10px;
-      border: 1px solid $light;
+      // border: 1px solid $light;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       padding: 0 5px;
       border-radius: 5px;
@@ -110,6 +108,7 @@ export default {
     .placeholder {
       border: none;
       box-shadow: none;
+      margin-top: -10px;
     }
 
     .array-input-element {
@@ -117,9 +116,12 @@ export default {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 5px;
+      background-color: #294870;
+
       &:hover {
-        border: 1px solid $error;
         background-color: $error;
         color: $light;
       }

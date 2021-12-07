@@ -60,9 +60,9 @@ export default {
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  // justify-content: center;
   align-content: center;
-  margin-bottom: 140px;
+  margin-bottom: 150px;
   &.remove-photo {
     &:hover {
       .img-container {
@@ -75,7 +75,7 @@ export default {
     transition: all ease-in 0.2s;
     label {
       position: absolute;
-      transform: translateX(-50%);
+      // transform: translateX(-50%);
       padding-top: 60px;
       z-index: 2;
       font-size: 14px;
@@ -89,8 +89,8 @@ export default {
 
     input {
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      // left: 50%;
+      // transform: translateX(-50%);
       top: 20px;
       width: 100px;
       height: 100px;

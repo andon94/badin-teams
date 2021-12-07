@@ -192,6 +192,12 @@ export default {
       backdrop-filter: blur(10px);
       background-color: rgba($light, 0.1);
       border-radius: 5px;
+
+      @media (min-width: 1366px) {
+        &:hover {
+          background-color: rgba($light, 0.09);
+        }
+      }
     }
 
     .error {
@@ -225,12 +231,14 @@ export default {
 
     .dropdown-button {
       position: absolute;
-      top: 15%;
+      top: 0;
+      height: 46px;
       right: 5px;
       cursor: pointer;
       width: 100%;
       display: flex;
       justify-content: flex-end;
+      padding-top: 10px;
       svg {
         color: $light;
         &.rotate-180 {
@@ -258,6 +266,8 @@ export default {
     background: $light;
     z-index: 10;
     box-shadow: $select-shadow;
+    max-height: 130px;
+    overflow: auto;
     ul {
       li {
         list-style-type: none;

@@ -55,6 +55,12 @@ export default {
     border-radius: 5px;
     padding: 10px;
     color: $light;
+
+    @media (min-width: 1366px) {
+      &:hover {
+        background-color: rgba($light, 0.09);
+      }
+    }
     &::placeholder {
       color: $light;
     }

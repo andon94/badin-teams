@@ -119,10 +119,10 @@ export default {
   }
 }
 
-.app {
+body {
   min-height: 100vh;
   background: rgb(39,41,50);
-  background: linear-gradient(180deg, rgba(39,41,50,1) 15%, rgba(43,85,139,1) 50%, rgba(39,41,50,1) 85%);
+  background: linear-gradient(45deg, rgba(39,41,50,1) 0%, rgba(43,85,139,1) 100%);
 }
 
 .home {

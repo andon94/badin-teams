@@ -36,9 +36,6 @@
                    :selectArr="seniorities"
                    rules="characters:30"
                    v-model="seniority"/>
-        <BaseInput :placeholder="'Main tech'"
-                   rules="characters:30"
-                   v-model="mainTech"/>
         <BaseInput :placeholder="'Work area'"
                    rules="characters:30"
                    :selectArr="workAreas"
@@ -47,6 +44,9 @@
                    rules="characters:30"
                    :selectArr="leads"
                    v-model="lead"/>
+        <BaseInput :placeholder="'Main tech'"
+                   rules="characters:30"
+                   v-model="mainTech"/>
         <BaseButton type="submit"
                     text="Create"
                     :disabled="invalid"

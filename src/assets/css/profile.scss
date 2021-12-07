@@ -1,9 +1,16 @@
 .profile {
   padding: 10px 20px 40px;
+  // padding: 20px;
+  margin: 0 20px 140px;
+  transform: translateY(80px);
+  backdrop-filter: blur(10px);
+  background: rgba(#272932, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 5px;
 
   @media (min-width: 768px) {
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto 140px;
   }
 
   &.client, &.project {
@@ -34,6 +41,7 @@
 
   /deep/ .item {
     flex-direction: column-reverse;
+    align-items: flex-start;
     margin: 20px 0 10px;
     background: none;
     padding: 0;
@@ -46,13 +54,33 @@
     }
 
     &-image {
-      margin-bottom: 20px;
+      @media (min-width: 768px) {
+        // min-width: 150px;
+        // min-height: 150px;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
 
-      img, .item-image-placeholder {
-        @media (min-width: 768px) {
-          width: 150px;
+        img {
+          min-width: 220px;
+          max-height: none;
+          // height: unset;
         }
       }
+
+      // img{
+      //   min-width: 140px;
+      //   height: unset;
+      //   @media (min-width: 768px) {
+      //     min-width: 220px;
+      //   }
+      // }
+
+      // img, .item-image-placeholder {
+      //   @media (min-width: 768px) {
+      //     width: 150px;
+      //   }
+      // }
     }
 
     &-info {
@@ -61,7 +89,7 @@
       align-self: flex-start;
 
       &-name {
-        text-align: center;
+        text-align: left;
         font-size: 20px;
         margin-bottom: 20px;
         @media (min-width: 768px) {
@@ -77,6 +105,7 @@
       }
       &-about {
         font-size: 16px;
+        text-align: left;
         @media (min-width: 768px) {
           margin: 15px 0;
         }

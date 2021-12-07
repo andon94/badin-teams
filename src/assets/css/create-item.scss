@@ -1,5 +1,5 @@
 .new-item {
-  padding: 0 16px 60px;
+  padding: 0 16px 140px;
 
   @media (min-width: 768px) {
     max-width: 600px;
@@ -7,7 +7,17 @@
   }
 
   &.project {
-    padding-top: 65px;
+    // padding-top: 65px;
+    padding-top: 0;
+  }
+
+  form {
+    padding: 20px;
+    transform: translateY(80px);
+    backdrop-filter: blur(10px);
+    background: rgba(#272932, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
   }
 
   /deep/ .photo-container {
@@ -17,6 +27,7 @@
         cursor: pointer;
         label {
           padding-top: 85px;
+          width: 150px;
         }
       }
 

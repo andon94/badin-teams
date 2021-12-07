@@ -56,6 +56,7 @@ export default {
   align-items: flex-start;
   flex-wrap: wrap;
 
+
   .label {
     font-size: 14px;
     color: $light;
@@ -65,18 +66,28 @@ export default {
   }
   &-element{
     margin: 10px 20px 10px 0;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 20px);
+    }
+
     a {
       color: $light;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      // flex-direction: column;
+      // width: 100%;
 
-      @media (min-width: 768px) {
-        padding-right: 20px;
-      }
+      // @media (min-width: 768px) {
+      //   padding-right: 20px;
+      //   // width: 50%;
+      // }
 
       .link-img {
 
         width: 80px;
+        min-width: 80px;
         height: 80px;
         overflow: hidden;
         border-radius: 50%;
@@ -100,8 +111,7 @@ export default {
       }
 
       span {
-        margin-top: 5px;
-        max-width: 100px;
+        margin-left: 20px;
       }
     }
   }

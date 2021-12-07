@@ -1,6 +1,6 @@
 <template>
   <Loader v-if="Object.keys(employee).length === 0"/>
-  <form class="edit"
+  <form class="edit employee"
         @submit.prevent="editEmployee"
         v-else>
     <PhotoInput label="Edit photo"

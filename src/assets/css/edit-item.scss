@@ -1,9 +1,28 @@
 .edit {
-  padding: 0 16px 60px;
+  margin: 0 20px 140px;
+  padding: 20px;
+  transform: translateY(80px);
+  backdrop-filter: blur(10px);
+  background: rgba(#272932, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 5px;
 
   @media (min-width: 768px) {
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto 140px;
+  }
+
+  &.employee {
+      /deep/ .photo-container {
+        .img-container {
+          img{
+            min-width: 140px;
+            @media (min-width: 768px) {
+              min-width: 220px;
+            }
+          }
+        }
+      }
   }
 
   /deep/ .photo-container {
@@ -13,6 +32,7 @@
         cursor: pointer;
         label {
           padding-top: 85px;
+          width: 150px;
         }
       }
 
@@ -35,9 +55,6 @@
     }
   }
 
-  &.project {
-    padding-top: 65px;
-  }
   .button-container {
     display: flex;
     justify-content: space-between;
