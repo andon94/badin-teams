@@ -228,6 +228,9 @@ export default {
       top: 15%;
       right: 5px;
       cursor: pointer;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
       svg {
         color: $light;
         &.rotate-180 {

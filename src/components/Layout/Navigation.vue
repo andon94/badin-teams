@@ -150,7 +150,6 @@
             </span>
           </li>
       </ul>
-    <!-- </transition> -->
   </header>
 </template>
 

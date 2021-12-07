@@ -52,7 +52,7 @@ export default {
   margin: 20px 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
 
