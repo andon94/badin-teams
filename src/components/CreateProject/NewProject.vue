@@ -5,13 +5,14 @@
       <form @submit.prevent>
         <BaseInput :placeholder="'Project name'"
                    v-model="projectName"
-                   rules="required"/>
+                   rules="required|characters:50"/>
         <BaseInput :placeholder="'Client'"
                    name="name"
                    :selectArr="clients"
                    rules="required"
                    v-model="client"/>
         <TextareaInput placeholder="About project"
+                       rules="characters:200"
                        v-model="about"/>
         <BaseButton text="Create"
                     :disabled="invalid"

@@ -6,10 +6,11 @@
         <PhotoInput label="Add photo"
                     @fileSelected="setImage"/>
         <BaseInput :placeholder="'Client name'"
-                  v-model="clientName"
-                  rules="required"/>
+                   v-model="clientName"
+                   rules="required|characters:50"/>
         <TextareaInput placeholder="About client"
-                      v-model="about"/>
+                       rules="characters:200"
+                       v-model="about"/>
         <BaseButton text="Create"
                     :disabled="invalid"
                     @click="handleCreate"/>

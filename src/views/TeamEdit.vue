@@ -8,7 +8,8 @@
                 @fileSelected="setImage"
                 :photoPath="team.imageViewPath"/>
     <BaseInput :placeholder="'Team name'"
-                v-model="team.name"/>
+                v-model="team.name"
+                rules="required|characters:30"/>
     <BaseArrayInput :dataArr="teamClients"
                     :selectArr="clients"
                     name="name"
@@ -20,7 +21,8 @@
                     placeholder="Project"
                     @finalArr="handleProject"/>
     <TextareaInput placeholder="About team"
-                   v-model="team.about"/>
+                   v-model="team.about"
+                   rules="characters:200"/>
     <div class="button-container">
       <BaseButton type="submit"
                   text="Submit"/>

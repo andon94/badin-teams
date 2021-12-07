@@ -1,12 +1,19 @@
 <template>
   <div class="textarea-input">
-    <!-- prekopiraj labelu iz baseInput-a -->
-    <textarea cols="30" rows="10"
-              :placeholder="placeholder"
-              :value="value"
-              @input="updateValue($event.target.value)"
-              :spellcheck="false">
-    </textarea>
+    <ValidationProvider v-slot="{ errors }"
+                        :rules="rules"
+                        class="validator">
+      <textarea cols="30" rows="10"
+                :placeholder="placeholder"
+                :value="value"
+                @input="updateValue($event.target.value)"
+                :spellcheck="false">
+      </textarea>
+      <span class="error">
+        {{errors[0]}}
+      </span>
+    </ValidationProvider>
+
   </div>
 </template>
 
@@ -19,6 +26,10 @@ export default {
       default: ''
     },
     value: {
+      type: String,
+      default: ''
+    },
+    rules: {
       type: String,
       default: ''
     }

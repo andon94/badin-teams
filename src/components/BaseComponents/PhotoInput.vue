@@ -117,7 +117,6 @@ export default {
 
     img {
       width: 100px;
-      height: 100px;
       transform: scale(1.1);
     }
   }

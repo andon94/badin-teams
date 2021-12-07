@@ -26,10 +26,9 @@
         width: 150px;
         height: 150px;
         img {
-          max-width: 160px;
           min-width: 140px;
-          max-height: 160px;
-          min-height: 140px;
+          width: unset;
+          height: unset;
           cursor: pointer;
         }
       }

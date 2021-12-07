@@ -26,3 +26,8 @@ extend('number', value => {
 
 extend('required', required);
 
+extend('characters', (value, target) => {
+  if (value.length <= target) {
+    return true
+  } else return `The field must be up to ${target} characters long`
+})

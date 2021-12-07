@@ -7,8 +7,10 @@
                 @fileSelected="setImage"
                 :photoPath="logo"/>
     <BaseInput :placeholder="'Client name'"
+                rules="required|characters:50"
                 v-model="name"/>
     <TextareaInput placeholder="About client"
+                   rules="characters:200"
                    v-model="about"/>
     <div class="button-container">
       <BaseButton type="submit"

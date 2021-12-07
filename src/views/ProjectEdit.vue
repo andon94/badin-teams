@@ -4,8 +4,10 @@
         v-else
         @submit.prevent="editProject">
     <BaseInput :placeholder="'Project name'"
+                rules="required|characters:50"
                 v-model="name"/>
     <TextareaInput placeholder="About project"
+                   rules="characters:200"
                    v-model="about"/>
     <div class="button-container">
       <BaseButton type="submit"

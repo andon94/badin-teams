@@ -7,7 +7,7 @@
                     @fileSelected="setImage"/>
         <BaseInput :placeholder="'Team name'"
                     v-model="teamName"
-                    rules="required"/>
+                    rules="required|characters:30"/>
         <BaseInput :placeholder="'Client'"
                    :selectArr="clients"
                    v-model="client"
@@ -17,6 +17,7 @@
                    v-model="project"
                    name="name"/>
         <TextareaInput placeholder="About team"
+                       rules="characters:200"
                        v-model="about"/>
         <BaseButton text="Create"
                     :disabled="invalid"
