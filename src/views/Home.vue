@@ -1,29 +1,29 @@
 <template>
   <div class="home">
-    <div class="hero-background"></div>
+    <!-- <div class="hero-background"></div> -->
     <div class="main-title">
       <span class="before">Welcome to</span>
       <span class="highlight">BADINSOFT</span>
       <span class="after">Teams</span>
     </div>
-    <div class="content">
+    <!-- <div class="content">
       <div class="content-wrapp">
         <div class="content-item">
-          
-          <p class="title">It's all about 
+
+          <p class="title">It's all about
             <router-link :to="{ name: 'Teams' }">Teams</router-link> and relationships.
           </p>
         </div>
         <div class="content-item">
           <p class="title">
-          Here we share info about 
+          Here we share info about
             <router-link :to="{ name: 'Clients' }">Clients</router-link>
             and our relationships to them.
           </p>
         </div>
         <div class="content-item">
           <p class="title">
-          Each of ours 
+          Each of ours
           <router-link :to="{ name: 'Projects' }">Projects</router-link>
           is important.
           </p>
@@ -35,7 +35,7 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="social">
       <div>
         <a href="https://www.facebook.com/badinsoft/"
@@ -93,21 +93,21 @@ export default {
     padding: 375px 20px 20px;
   }
 
-  .hero-background {
-    width: 100%;
-    height: 225px;
-    background: url("../assets/images/blogPhotos/mapa360.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
+  // .hero-background {
+  //   width: 100%;
+  //   height: 225px;
+  //   background: url("../assets/images/blogPhotos/mapa360.jpg");
+  //   background-position: center;
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  //   position: absolute;
+  //   top: 0;
 
-      @media only screen and (min-width: $sm) {
-        background: url("../assets/images/blogPhotos/mapa768.jpg");
-        height: 479px;
-      }
-  }
+  //     @media only screen and (min-width: $sm) {
+  //       background: url("../assets/images/blogPhotos/mapa768.jpg");
+  //       height: 479px;
+  //     }
+  // }
 
   .logo {
     position: fixed;
@@ -131,9 +131,9 @@ export default {
         font-size: 70px;
       }
 
-      .highlight {
-        text-shadow: -5px -4px 35px #ffffff;
-    }
+    //   .highlight {
+    //     text-shadow: -5px -4px 35px #ffffff;
+    // }
 
     .before {
       color: $white;
@@ -145,7 +145,7 @@ export default {
       top: -10px;
       left: 3px;
       font-size: 18px;
-      text-shadow: -5px -4px 35px #ffffff;
+      // text-shadow: -5px -4px 35px #ffffff;
 
       @media only screen and (min-width: $sm) {
         font-size: 20px;
