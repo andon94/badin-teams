@@ -8,9 +8,9 @@
         <div class="link-img">
           <img :src="`${baseUrl}/${element.imageViewPath}`"
               v-if="element.imageViewPath">
-        </div>
-        <div v-if="!element.imageViewPath && label !== 'Projects'"
-             class="img-placeholder">
+          <div v-if="!element.imageViewPath && label !== 'Projects'"
+              class="img-placeholder">
+          </div>
         </div>
         <span>{{label === 'Members' ? `${element.firstName} ${element.lastName} ${element.nickname}` : element[name]}}</span>
       </router-link>
