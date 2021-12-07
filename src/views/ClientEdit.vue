@@ -4,7 +4,8 @@
         v-else
         @submit.prevent="editClient">
     <PhotoInput label="Edit photo"
-                @fileSelected="setImage"/>
+                @fileSelected="setImage"
+                :photoPath="logo"/>
     <BaseInput :placeholder="'Client name'"
                 v-model="name"/>
     <TextareaInput placeholder="About client"
@@ -42,7 +43,7 @@ export default {
       name: '',
       about: '',
       id: '',
-      logo: null
+      logo: null,
     }
   },
   mounted () {
@@ -59,6 +60,7 @@ export default {
           this.name = res.name
           this.about = res.about
           this.id = res.id
+          this.logo = res.imageViewPath
         })
         .catch(err => {
           this.setError(err)

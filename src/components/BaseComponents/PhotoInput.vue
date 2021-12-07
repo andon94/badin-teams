@@ -2,12 +2,12 @@
   <div class="photo-container">
     <div class="input-container"
          v-if="!uploaded">
-      <label>{{label}}</label>
+      <label v-show="!photoPath">{{label}}</label>
       <input type="file"
              @input="onInput">
     </div>
     <div class="img-container">
-      <img :src="photoPath || uploaded">
+      <img :src="image">
     </div>
     <div class="remove-img"
          v-if="uploaded "
@@ -38,10 +38,18 @@ export default {
   },
   data () {
     return {
+      baseUrl: process.env.VUE_APP_API_BASE_URL,
       uploaded: null,
       path: {
         close: mdiClose,
       }
+    }
+  },
+  computed: {
+    image () {
+      if (this.photoPath && !this.uploaded) return `${this.baseUrl}/${this.photoPath}`
+      else if (this.photoPath && this.uploaded) return this.uploaded
+      else return null
     }
   },
   methods: {

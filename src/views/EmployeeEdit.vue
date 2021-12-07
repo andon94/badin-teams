@@ -4,7 +4,8 @@
         @submit.prevent="editEmployee"
         v-else>
     <PhotoInput label="Edit photo"
-                @fileSelected="setImage"/>
+                @fileSelected="setImage"
+                :photoPath="employee.imageViewPath"/>
     <BaseInput :placeholder="'First name'"
                 v-model="employee.firstName"/>
     <BaseInput :placeholder="'Last name'"

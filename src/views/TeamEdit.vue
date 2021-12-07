@@ -5,7 +5,8 @@
         v-else>
     <PhotoInput label="Edit photo"
                 class="edit-photo"
-                @fileSelected="setImage"/>
+                @fileSelected="setImage"
+                :photoPath="team.imageViewPath"/>
     <BaseInput :placeholder="'Team name'"
                 v-model="team.name"/>
     <BaseArrayInput :dataArr="teamClients"
