@@ -92,7 +92,7 @@ export default {
 <style scoped lang="scss">
 .base-modal {
   position: fixed;
-  top: 50%;
+  top: 50vh;
   left: 50%;
   transform: translate(-50%, -100%);
   z-index: 100;

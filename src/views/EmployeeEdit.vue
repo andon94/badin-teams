@@ -1,59 +1,60 @@
 <template>
   <Loader v-if="Object.keys(employee).length === 0"/>
-  <form class="edit employee"
-        @submit.prevent="editEmployee"
-        v-else>
-    <PhotoInput label="Edit photo"
-                @fileSelected="setImage"
-                :photoPath="employee.imageViewPath"/>
-    <BaseInput :placeholder="'First name'"
-                rules="required|characters:30"
-                v-model="employee.firstName"/>
-    <BaseInput :placeholder="'Last name'"
-                rules="required|characters:30"
-                v-model="employee.lastName"/>
-    <BaseInput :placeholder="'Nickname'"
-                rules="characters:30"
-                v-model="employee.nickname"/>
-    <BaseInput :placeholder="'Email'"
-                rules="required|characters:30"
-                v-model="employee.email"/>
-    <BaseInput :placeholder="'Position'"
-                rules="required|characters:30"
-                v-model="employee.position"/>
-    <BaseInput :placeholder="'Seniority'"
-                rules="characters:30"
-                v-model="employee.seniority"/>
-    <BaseInput :placeholder="'Main technology'"
-                rules="characters:30"
-                v-model="employee.mainTechnology"/>
-    <BaseInput :placeholder="'Working area'"
-                rules="characters:30"
-                v-model="employee.workingArea"/>
-    <BaseInput :placeholder="'Lead'"
-                rules="characters:30"
-                v-model="employee.lead"/>
-    <BaseArrayInput :dataArr="employeeTeams"
-                    :selectArr="teams"
-                    name="name"
-                    placeholder="Teams"
-                    @finalArr="handleTeam"/>
-    <BaseArrayInput :dataArr="employeeClients"
-                    :selectArr="clients"
-                    name="name"
-                    placeholder="Client"
-                    @finalArr="handleClient"/>
-    <BaseArrayInput :dataArr="employeeProjects"
-                    :selectArr="projects"
-                    name="name"
-                    placeholder="Project"
-                    @finalArr="handleProject"/>
-    <div class="button-container">
-      <BaseButton type="submit"
-                  text="Submit"/>
-      <DeleteUnit label="employee"/>
-    </div>
-  </form>
+  <div v-else class="edit-container">
+    <form class="edit employee"
+          @submit.prevent="editEmployee">
+      <PhotoInput label="Edit photo"
+                  @fileSelected="setImage"
+                  :photoPath="employee.imageViewPath"/>
+      <BaseInput :placeholder="'First name'"
+                  rules="required|characters:30"
+                  v-model="employee.firstName"/>
+      <BaseInput :placeholder="'Last name'"
+                  rules="required|characters:30"
+                  v-model="employee.lastName"/>
+      <BaseInput :placeholder="'Nickname'"
+                  rules="characters:30"
+                  v-model="employee.nickname"/>
+      <BaseInput :placeholder="'Email'"
+                  rules="required|characters:30"
+                  v-model="employee.email"/>
+      <BaseInput :placeholder="'Position'"
+                  rules="required|characters:30"
+                  v-model="employee.position"/>
+      <BaseInput :placeholder="'Seniority'"
+                  rules="characters:30"
+                  v-model="employee.seniority"/>
+      <BaseInput :placeholder="'Main technology'"
+                  rules="characters:30"
+                  v-model="employee.mainTechnology"/>
+      <BaseInput :placeholder="'Working area'"
+                  rules="characters:30"
+                  v-model="employee.workingArea"/>
+      <BaseInput :placeholder="'Lead'"
+                  rules="characters:30"
+                  v-model="employee.lead"/>
+      <BaseArrayInput :dataArr="employeeTeams"
+                      :selectArr="teams"
+                      name="name"
+                      placeholder="Teams"
+                      @finalArr="handleTeam"/>
+      <BaseArrayInput :dataArr="employeeClients"
+                      :selectArr="clients"
+                      name="name"
+                      placeholder="Client"
+                      @finalArr="handleClient"/>
+      <BaseArrayInput :dataArr="employeeProjects"
+                      :selectArr="projects"
+                      name="name"
+                      placeholder="Project"
+                      @finalArr="handleProject"/>
+      <div class="button-container">
+        <BaseButton type="submit"
+                    text="Submit"/>
+        <DeleteUnit label="employee"/>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>

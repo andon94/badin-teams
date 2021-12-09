@@ -16,14 +16,22 @@
       <img v-if="client.imageViewPath"
            :src="`${baseUrl}/${client.imageViewPath}`">
       <div v-else
-           class="item-image-placeholder"></div>
+           class="item-image-placeholder">
+        <svg-icon type="mdi" :path="path.placeholder"></svg-icon>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiHandshake } from '@mdi/js'
+
 export default {
   name: 'Client',
+  components: {
+    SvgIcon
+  },
   props: {
     client: {
       type: Object,
@@ -32,7 +40,10 @@ export default {
   },
   data() {
     return {
-      baseUrl: process.env.VUE_APP_API_BASE_URL
+      baseUrl: process.env.VUE_APP_API_BASE_URL,
+      path: {
+        placeholder: mdiHandshake
+      }
     }
   }
 }

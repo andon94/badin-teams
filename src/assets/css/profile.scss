@@ -1,6 +1,5 @@
 .profile {
   padding: 10px 20px 40px;
-  // padding: 20px;
   margin: 0 20px 140px;
   transform: translateY(80px);
   backdrop-filter: blur(10px);
@@ -54,33 +53,32 @@
     }
 
     &-image {
+      &-placeholder {
+        svg {
+          color: $dark;
+          transform: scale(2);
+        }
+      }
+
       @media (min-width: 768px) {
-        // min-width: 150px;
-        // min-height: 150px;
         width: 150px;
         height: 150px;
         margin-bottom: 20px;
 
+        &-placeholder {
+          width: 150px;
+          height: 150px;
+
+          svg {
+            transform: scale(3);
+          }
+        }
+
         img {
           min-width: 220px;
           max-height: none;
-          // height: unset;
         }
       }
-
-      // img{
-      //   min-width: 140px;
-      //   height: unset;
-      //   @media (min-width: 768px) {
-      //     min-width: 220px;
-      //   }
-      // }
-
-      // img, .item-image-placeholder {
-      //   @media (min-width: 768px) {
-      //     width: 150px;
-      //   }
-      // }
     }
 
     &-info {
@@ -117,8 +115,6 @@
     &.project {
       li {
         & > div {
-
-          text-align: center;
           a {
             color: $light;
             font-weight: bold;

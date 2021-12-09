@@ -27,14 +27,22 @@
       <img v-if="employee.imageViewPath"
            :src="`${baseUrl}/${employee.imageViewPath}`">
       <div v-else
-           class="item-image-placeholder"></div>
+           class="item-image-placeholder">
+        <svg-icon type="mdi" :path="path.placeholder"></svg-icon>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiAccount } from '@mdi/js'
+
 export default {
   name: 'Employee',
+  components: {
+    SvgIcon
+  },
   props: {
     employee: {
       type: Object,
@@ -44,7 +52,10 @@ export default {
   data() {
     return {
       imgClicked: false,
-      baseUrl: process.env.VUE_APP_API_BASE_URL
+      baseUrl: process.env.VUE_APP_API_BASE_URL,
+      path: {
+        placeholder: mdiAccount
+      }
     }
   }
 }

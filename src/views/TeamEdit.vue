@@ -1,33 +1,35 @@
 <template>
   <Loader v-if="Object.keys(team).length === 0"/>
-  <form class="edit"
-        @submit.prevent="editTeam"
-        v-else>
-    <PhotoInput class="edit-photo"
-                @fileSelected="setImage"
-                :photoPath="team.imageViewPath"/>
-    <BaseInput :placeholder="'Team name'"
-                v-model="team.name"
-                rules="required|characters:30"/>
-    <BaseArrayInput :dataArr="teamClients"
-                    :selectArr="clients"
-                    name="name"
-                    placeholder="Client"
-                    @finalArr="handleClient"/>
-    <BaseArrayInput :dataArr="teamProjects"
-                    :selectArr="projects"
-                    name="name"
-                    placeholder="Project"
-                    @finalArr="handleProject"/>
-    <TextareaInput placeholder="About team"
-                   v-model="team.about"
-                   rules="characters:200"/>
-    <div class="button-container">
-      <BaseButton type="submit"
-                  text="Submit"/>
-      <DeleteUnit label="team"/>
-    </div>
-  </form>
+  <div v-else class="edit-container">
+    <form class="edit"
+          @submit.prevent="editTeam">
+      <PhotoInput class="edit-photo"
+                  @fileSelected="setImage"
+                  :photoPath="team.imageViewPath"/>
+      <BaseInput :placeholder="'Team name'"
+                  v-model="team.name"
+                  rules="required|characters:30"/>
+      <BaseArrayInput :dataArr="teamClients"
+                      :selectArr="clients"
+                      name="name"
+                      placeholder="Client"
+                      @finalArr="handleClient"/>
+      <BaseArrayInput :dataArr="teamProjects"
+                      :selectArr="projects"
+                      name="name"
+                      placeholder="Project"
+                      @finalArr="handleProject"/>
+      <TextareaInput placeholder="About team"
+                    v-model="team.about"
+                    rules="characters:200"/>
+      <div class="button-container">
+        <BaseButton type="submit"
+                    text="Submit"/>
+        <DeleteUnit label="team"/>
+      </div>
+    </form>
+
+  </div>
 </template>
 
 <script>
