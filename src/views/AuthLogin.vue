@@ -5,7 +5,7 @@
                     v-slot="{ invalid }">
       <form @submit.prevent
             class="login">
-        <p>Login to Badin Teams</p>
+        <p>Login</p>
         <BaseInput :placeholder="'Email'"
                    v-model="email"
                    rules="required"/>

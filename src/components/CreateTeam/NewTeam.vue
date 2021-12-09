@@ -3,8 +3,7 @@
     <ValidationObserver ref="createTeamForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
-        <PhotoInput label="Add photo"
-                    @fileSelected="setImage"/>
+        <PhotoInput @fileSelected="setImage"/>
         <BaseInput :placeholder="'Team name'"
                     v-model="teamName"
                     rules="required|characters:30"/>
@@ -41,7 +40,7 @@ export default {
     PhotoInput,
     BaseInput,
     TextareaInput,
-    BaseButton
+    BaseButton,
   },
   data() {
     return {

@@ -25,35 +25,35 @@
       }
   }
 
-  /deep/ .photo-container {
-    @media (min-width: 768px) {
-      margin-bottom: 200px;
-      .input-container {
-        cursor: pointer;
-        label {
-          padding-top: 85px;
-          width: 150px;
-        }
-      }
+  // /deep/ .photo-container {
+  //   @media (min-width: 768px) {
+  //     margin-bottom: 200px;
+  //     .input-container {
+  //       cursor: pointer;
+  //       label {
+  //         padding-top: 85px;
+  //         width: 150px;
+  //       }
+  //     }
 
-      input {
-        width: 150px;
-        height: 150px;
-        cursor: pointer;
-      }
+  //     input {
+  //       width: 150px;
+  //       height: 150px;
+  //       cursor: pointer;
+  //     }
 
-      .img-container {
-        width: 150px;
-        height: 150px;
-        img {
-          min-width: 140px;
-          width: unset;
-          height: unset;
-          cursor: pointer;
-        }
-      }
-    }
-  }
+  //     .img-container {
+  //       width: 150px;
+  //       height: 150px;
+  //       img {
+  //         min-width: 140px;
+  //         width: unset;
+  //         height: unset;
+  //         cursor: pointer;
+  //       }
+  //     }
+  //   }
+  // }
 
   .button-container {
     display: flex;

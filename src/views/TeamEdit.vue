@@ -3,8 +3,7 @@
   <form class="edit"
         @submit.prevent="editTeam"
         v-else>
-    <PhotoInput label="Edit photo"
-                class="edit-photo"
+    <PhotoInput class="edit-photo"
                 @fileSelected="setImage"
                 :photoPath="team.imageViewPath"/>
     <BaseInput :placeholder="'Team name'"

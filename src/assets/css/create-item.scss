@@ -7,7 +7,6 @@
   }
 
   &.project {
-    // padding-top: 65px;
     padding-top: 0;
   }
 
@@ -18,34 +17,5 @@
     background: rgba(#272932, 0.8);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 5px;
-  }
-
-  /deep/ .photo-container {
-    @media (min-width: 768px) {
-      margin-bottom: 200px;
-      .input-container {
-        cursor: pointer;
-        label {
-          padding-top: 85px;
-          width: 150px;
-        }
-      }
-
-      input {
-        width: 150px;
-        height: 150px;
-        cursor: pointer;
-      }
-
-      .img-container {
-        width: 150px;
-        height: 150px;
-        img {
-          width: 150px;
-          height: 150px;
-          cursor: pointer;
-        }
-      }
-    }
   }
 }

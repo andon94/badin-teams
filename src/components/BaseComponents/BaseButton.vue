@@ -40,9 +40,12 @@ export default {
   &:disabled {
     cursor: default;
     opacity: 0.7;
+    &:hover {
+      background: $badin-color;
+    }
   }
   &:hover {
-    background: darken($badin-color, 5%)
+    background: darken($badin-color, 5%);
   }
 }
 </style>
