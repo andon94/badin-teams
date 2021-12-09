@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <!-- <div class="hero-background"></div> -->
+    <div class="hero-background"></div>
     <div class="main-title">
       <span class="before">Welcome to</span>
       <span class="highlight">BADINSOFT</span>
       <span class="after">Teams</span>
     </div>
-    <!-- <div class="content">
+    <div class="content">
       <div class="content-wrapp">
         <div class="content-item">
 
@@ -35,7 +35,7 @@
           </p>
         </div>
       </div>
-    </div> -->
+    </div>
     <div class="social">
       <div>
         <a href="https://www.facebook.com/badinsoft/"
@@ -93,21 +93,21 @@ export default {
     padding: 375px 20px 20px;
   }
 
-  // .hero-background {
-  //   width: 100%;
-  //   height: 225px;
-  //   background: url("../assets/images/blogPhotos/mapa360.jpg");
-  //   background-position: center;
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
-  //   position: absolute;
-  //   top: 0;
+  .hero-background {
+    width: 100%;
+    height: 225px;
+    background: url("../assets/images/blogPhotos/mapa360.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
 
-  //     @media only screen and (min-width: $sm) {
-  //       background: url("../assets/images/blogPhotos/mapa768.jpg");
-  //       height: 479px;
-  //     }
-  // }
+      @media only screen and (min-width: $sm) {
+        background: url("../assets/images/blogPhotos/mapa768.jpg");
+        height: 479px;
+      }
+  }
 
   .logo {
     position: fixed;
@@ -131,9 +131,9 @@ export default {
         font-size: 70px;
       }
 
-    //   .highlight {
-    //     text-shadow: -5px -4px 35px #ffffff;
-    // }
+      .highlight {
+        text-shadow: -5px -4px 35px #ffffff;
+    }
 
     .before {
       color: $white;
@@ -145,7 +145,7 @@ export default {
       top: -10px;
       left: 3px;
       font-size: 18px;
-      // text-shadow: -5px -4px 35px #ffffff;
+      text-shadow: -5px -4px 35px #ffffff;
 
       @media only screen and (min-width: $sm) {
         font-size: 20px;
@@ -170,13 +170,13 @@ export default {
 
     .content-wrapp {
 
-      // @media only screen and (min-width: 768px) {
-      //   display: grid;
-      //   grid-template-columns: 1fr 3fr;
-      //   grid-template-rows: repeat(3, 1fr);
-      //   grid-column-gap: 10px;
-      //   grid-row-gap: 0px;
-      // }
+      @media only screen and (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 0px;
+      }
     }
 
     .content-item {
@@ -187,12 +187,12 @@ export default {
       padding-bottom: 30px;
       border-bottom: 2px solid $badin-color-secondary;
 
-      // @media only screen and (min-width: 768px) {
-      //   &:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
-      //   &:nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
-      //   &:nth-child(3) { grid-area: 3 / 1 / 4 / 2; }
-      //   &:nth-child(4) { grid-area: 1 / 2 / 4 / 3; }
-      // }
+      @media only screen and (min-width: 768px) {
+        &:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+        &:nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
+        &:nth-child(3) { grid-area: 3 / 1 / 4 / 2; }
+        &:nth-child(4) { grid-area: 1 / 2 / 4 / 3; }
+      }
 
       &:nth-child(3) {
         border-bottom: none;
