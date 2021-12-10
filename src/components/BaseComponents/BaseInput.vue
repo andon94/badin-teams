@@ -248,6 +248,7 @@ export default {
     }
 
     .trash-button {
+      z-index: 10;
       position: absolute;
       color: $light;
       top: 9px;
