@@ -4,16 +4,22 @@
                         :rules="rules"
                         class="validator">
       <textarea cols="30" rows="10"
-                :placeholder="placeholder"
                 :value="value"
                 @input="updateValue($event.target.value)"
+                @focus="riseLabel"
+                @blur="lowerLabel"
                 :spellcheck="false">
+                <!-- :placeholder="placeholder" -->
       </textarea>
       <span class="error">
         {{errors[0]}}
       </span>
+      <span class="placeholder"
+            :class="{'placeholder-label': labelPosition || placeholderLabel}"
+            @click="riseLabel">
+        {{placeholder}}
+      </span>
     </ValidationProvider>
-
   </div>
 </template>
 
@@ -34,10 +40,27 @@ export default {
       default: ''
     }
   },
+  data () {
+    return {
+      placeholderLabel: false
+    }
+  },
+  computed: {
+    labelPosition () {
+      if (this.value) return true
+      else return false
+    }
+  },
   methods: {
     updateValue: function (value) {
       this.$emit('input', value)
-    }
+    },
+    riseLabel () {
+      this.placeholderLabel = true
+    },
+    lowerLabel () {
+      if (!this.value && !this.option) this.placeholderLabel = false
+    },
   }
 }
 </script>
@@ -74,6 +97,28 @@ export default {
     left: 0;
     font-weight: bold;
     color: $error;
+  }
+
+  .placeholder {
+    position: absolute;
+    left: 0;
+    padding-top: 15px;
+    padding-left: 10px;
+    opacity: 0.8;
+    transition: all linear 0.1s;
+    touch-action: none;
+    font-size: 14px;
+    pointer-events: none;
+    color: $light;
+    cursor: default;
+
+    &.placeholder-label {
+      transform: translate(5px, -19px);
+      padding: 3px;
+      opacity: 1;
+      z-index: 10;
+      font-size: 12px;
+    }
   }
 }
 </style>
