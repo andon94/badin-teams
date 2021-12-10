@@ -28,8 +28,9 @@
                   rules="characters:30"
                   v-model="employee.mainTechnology"/>
       <BaseInput :placeholder="'Working area'"
-                  rules="characters:30"
-                  v-model="employee.workingArea"/>
+                 :selectArr="workAreas"
+                 rules="characters:30"
+                 v-model="employee.workingArea"/>
       <BaseInput :placeholder="'Lead'"
                   rules="characters:30"
                   v-model="employee.lead"/>
@@ -80,6 +81,7 @@ export default {
   },
   data () {
     return {
+      workAreas: ['Frontend developer', 'Backend developer', 'QA', 'Designer', 'HR', 'Staff'],
       currentTeams: null,
       currentClients: null,
       currentProjects: null,

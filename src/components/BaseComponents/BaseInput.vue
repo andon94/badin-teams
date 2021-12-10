@@ -124,7 +124,7 @@ export default {
     },
     customPlaceholder () {
       if (this.name) {
-        if (!this.value) return `Select a ${this.placeholder}`
+        if (!this.value) return `Select ${this.placeholder}`
         else return this.placeholder
       }
       else return this.placeholder
