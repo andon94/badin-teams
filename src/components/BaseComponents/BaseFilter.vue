@@ -93,7 +93,6 @@ export default {
       padding-left: 10px;
       .filter {
         margin-right: 15px;
-        // font-weight: bold;
         cursor: pointer;
         color: $light;
         &.active {

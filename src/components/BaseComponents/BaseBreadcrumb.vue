@@ -6,14 +6,25 @@
           Home
         </router-link>
       </div>
+      <div class="arrow">
+        <svg-icon type="mdi" :path="path.arrow"></svg-icon>
+      </div>
       <div class="crumb"
            @click="navigate(crumbs.first)">
         {{crumbs.first.replace(/([A-Z])/g, " $1")}}
+      </div>
+      <div v-if="crumbs.second"
+           class="arrow">
+        <svg-icon type="mdi" :path="path.arrow"></svg-icon>
       </div>
       <div class="crumb"
            v-if="crumbs.second"
            @click="navigate(crumbs.second)">
         {{crumbs.second.replace(/([A-Z])/g, " $1")}}
+      </div>
+      <div v-if="crumbs.third"
+           class="arrow">
+        <svg-icon type="mdi" :path="path.arrow"></svg-icon>
       </div>
       <div class="crumb"
            v-if="crumbs.third">
@@ -24,15 +35,24 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiArrowRight } from '@mdi/js'
+
 export default {
   name: 'Breadcrumb',
+  components: {
+    SvgIcon
+  },
   data () {
     return {
       crumbs: {
         show: true,
         first: '',
         second: '',
-        third: ''
+        third: '',
+      },
+      path: {
+        arrow: mdiArrowRight,
       }
     }
   },
@@ -114,15 +134,21 @@ export default {
   padding: 10px 0 10px 10px;
   z-index: 10;
 
+  @media (min-width: 768px) {
+    width: fit-content;
+    top: 10px;
+    left: 70px;
+  }
+
+
   .crumb {
     font-weight: bold;
     font-size: 13px;
     text-decoration: none;
-    border: 1px solid $light;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-    margin-right: 15px;
+    margin-right: 10px;
     position: relative;
     color: $light;
     background: $dark;
@@ -131,7 +157,6 @@ export default {
     text-overflow: ellipsis;
 
     &:hover {
-      border: 1px solid $badin-color;
       color: $badin-color !important;
       a {
         color: $badin-color !important;
@@ -146,23 +171,19 @@ export default {
     }
 
     &:last-of-type {
-      border: 1px solid $badin-color;
-      color: $light;
+      color: $badin-color;
 
       &::after {
         display: none;
       }
     }
+  }
 
-    &::after {
-      content: '';
-      height: 3px;
-      width: 3px;
-      background: $light;
-      position: absolute;
-      top: 50%;
-      right: -10px;
-      border-radius: 50%;
+  .arrow {
+    margin-right: 10px;
+    svg {
+      color: $light;
+      transform: scale(0.8);
     }
   }
 }
