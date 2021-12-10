@@ -19,16 +19,18 @@
         {{content}}
       </div>
       <div class="button-container">
-        <BaseButton :text="primary"
-                    v-if="primary"
+        <BaseButton :text="primary.text"
+                    v-if="primary.text"
                     class="primary"
                     type="button"
-                    @click="primaryAction"/>
+                    @click="primaryAction"
+                    :disabled="primary.disabled"/>
         <div class="secondary">
-          <BaseButton :text="secondary"
-                      v-if="secondary"
+          <BaseButton :text="secondary.text"
+                      v-if="secondary.text"
                       type="button"
-                      @click="secondaryAction"/>
+                      @click="secondaryAction"
+                      :disabled="secondary.disabled"/>
         </div>
       </div>
     </div>
@@ -56,12 +58,12 @@ export default {
       default: ''
     },
     primary: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => {}
     },
     secondary: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => {}
     },
     visible: {
       type: Boolean,
@@ -135,7 +137,7 @@ export default {
           background: none;
           border: 3px solid $light;
           color: $error;
-          &:hover {
+          &:hover:enabled {
             background: $error;
             color: $white;
           }

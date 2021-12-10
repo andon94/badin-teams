@@ -3,7 +3,8 @@
     <ValidationObserver ref="createTeamForm"
                         v-slot="{ invalid }">
       <form @submit.prevent>
-        <PhotoInput @fileSelected="setImage"/>
+        <PhotoInput @fileSelected="setImage"
+                    label="Add photo"/>
         <BaseInput :placeholder="'Team name'"
                     v-model="teamName"
                     rules="required|characters:30"/>

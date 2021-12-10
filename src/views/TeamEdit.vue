@@ -3,7 +3,8 @@
   <div v-else class="edit-container">
     <form class="edit"
           @submit.prevent="editTeam">
-      <PhotoInput class="edit-photo"
+      <PhotoInput label="Edit photo"
+                  class="edit-photo"
                   @fileSelected="setImage"
                   :photoPath="team.imageViewPath"/>
       <BaseInput :placeholder="'Team name'"

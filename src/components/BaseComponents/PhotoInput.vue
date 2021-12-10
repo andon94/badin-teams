@@ -10,10 +10,21 @@
     <div class="img-container"
          @click="handleModal">
       <img :src="image || uploaded">
+      <span v-if="!image && !uploaded">{{label}}</span>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <BaseModal header="Image"
-               primary="Add image"
-               secondary="Remove image"
+               :primary="{
+                 text: 'Add image',
+                 disabled: uploaded ? true : false
+               }"
+               :secondary="{
+                 text: 'Remove image',
+                 disabled: !uploaded && !image ? true : false
+               }"
                @primaryAction="handleInput"
                @secondaryAction="removeImage"
                @close="modalIsVisible = false"
@@ -99,6 +110,7 @@ export default {
     }
   }
   .img-container {
+    position: relative;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -124,6 +136,13 @@ export default {
         height: unset;
         cursor: pointer;
       }
+    }
+
+    span {
+      position: absolute;
+      color: $light;
+      font-weight: bold;
+      font-size: 14px;
     }
   }
 }
