@@ -94,6 +94,7 @@ export default {
       .filter {
         margin-right: 15px;
         // font-weight: bold;
+        cursor: pointer;
         color: $light;
         &.active {
           color: $active;

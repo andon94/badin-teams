@@ -254,6 +254,7 @@ export default {
       top: 9px;
       right: 30px;
       transform: scale(0.9);
+      cursor: pointer;
     }
 
   }
