@@ -9,7 +9,6 @@ class BaseFetcher {
 	}
 
 	post(...options) {
-		console.log(...options)
 		return this.fetcher.post(...options).then(res => res.data);
 	}
 

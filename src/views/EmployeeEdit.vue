@@ -85,7 +85,8 @@ export default {
       currentTeams: null,
       currentClients: null,
       currentProjects: null,
-      image: null
+      image: null,
+      fileRemoved: false
     }
   },
   mounted() {
@@ -114,6 +115,8 @@ export default {
     },
     setImage (val) {
       this.image = val
+      if (val) this.fileRemoved = false
+      else this.fileRemoved = true
     },
     editEmployee () {
       const teamIds = this.currentTeams.map(team => team.id)
@@ -140,18 +143,27 @@ export default {
         .then(res => {
           const bodyFormData = new FormData();
           bodyFormData.append('file', this.image);
-
+          const route = {path:'/employee-profile/:id', query:{id: res.id}}
           if (this.image) {
             employeesApi.createEmployeePhoto(res.id, bodyFormData)
               .then(() => {
-                this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+                this.$router.push(route)
               })
               .catch(err => {
-                this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+                this.$router.push(route)
                 console.log(err)
               })
+          } else if (this.fileRemoved) {
+            employeesApi.deleteEmployeePhoto(this.employee.image)
+              .then(() => {
+                this.$router.push(route)
+              })
+              .catch(err => {
+                this.$router.push(route)
+                this.setError(err)
+              })
           } else {
-            this.$router.push({path:'/employee-profile/:id', query:{id: res.id}})
+            this.$router.push(route)
           }
         })
         .catch(err => {

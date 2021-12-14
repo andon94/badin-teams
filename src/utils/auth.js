@@ -5,11 +5,9 @@ import {Ability} from "@casl/ability";
 export function isAuthenticated(data) {
     if(!data) return false;
     const tokenExist = Boolean(data.token);
-    const isTokenExpired = DateTime.now() >= DateTime.fromFormat(data.expiration, "YYYY/MM/DD HH:mm:ss");
-    console.log('tokenExpired', isTokenExpired)
+    const isTokenExpired = DateTime.now() >= DateTime.fromFormat(data.expiration, "yyyy/MM/dd HH:mm:ss");
     return tokenExist && !isTokenExpired;
 }
-
 
 export function setUserRoles(roles = []) {
     const allPermissions = roles.reduce((acc,curr) => {
@@ -17,7 +15,6 @@ export function setUserRoles(roles = []) {
     },[]);
     return new Ability(allPermissions);
 }
-
 
 export function setRolesIfUserIsAuthenticated(storage) {
     const emptyAbility = new Ability()

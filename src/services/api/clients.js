@@ -23,6 +23,10 @@ class ClientsAPI {
 																	{ headers: {'Content-Type':'multipart/form-data'} })
 	}
 
+	deleteClientPhoto (path) {
+		return this.baseFetcher.delete(`/files/delete?path=${path}`)
+	}
+
 	editClient (id, data) {
 		return this.baseFetcher.put(`/clients/${id}`, data)
 	}

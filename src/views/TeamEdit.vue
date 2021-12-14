@@ -61,7 +61,8 @@ export default {
       project: '',
       currentClients: [],
       currentProjects: [],
-      image: null
+      image: null,
+      fileRemoved: false
     }
   },
   mounted() {
@@ -85,6 +86,8 @@ export default {
     },
     setImage (val) {
       this.image = val
+      if (val) this.fileRemoved = false
+      else this.fileRemoved = true
     },
     editTeam () {
       const clientIds = this.currentClients.map(client => client.id)
@@ -102,19 +105,28 @@ export default {
         .then(res => {
           const bodyFormData = new FormData();
           bodyFormData.append('file', this.image);
+          const route = {path:'/team-profile/:id', query:{id: res.id}}
 
           if (this.image) {
-            console.log(this.image)
             teamsApi.createTeamPhoto(res.id, bodyFormData)
               .then(() => {
-                this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+                this.$router.push(route)
               })
               .catch(err => {
-                this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+                this.$router.push(route)
+                this.setError(err)
+              })
+          } else if (this.fileRemoved) {
+            teamsApi.deleteTeamPhoto(this.team.image)
+              .then(() => {
+                this.$router.push(route)
+              })
+              .catch(err => {
+                this.$router.push(route)
                 this.setError(err)
               })
           } else {
-            this.$router.push({path:'/team-profile/:id', query:{id: res.id}})
+            this.$router.push(route)
           }
         })
         .catch(err => {

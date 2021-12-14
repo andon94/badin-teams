@@ -19,6 +19,10 @@ class EmployeesAPI {
 																	{ headers: {'Content-Type':'multipart/form-data'} })
 	}
 
+	deleteEmployeePhoto (path) {
+		return this.baseFetcher.delete(`/files/delete?path=${path}`)
+	}
+
 	fetchEmployee (id) {
 		return this.baseFetcher.get(`/users/${id}`)
   }

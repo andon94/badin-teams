@@ -23,6 +23,10 @@ class TeamsAPI {
 		}})
 	}
 
+	deleteTeamPhoto (path) {
+		return this.baseFetcher.delete(`/files/delete?path=${path}`)
+	}
+
 	fetchTeamMembers (id) {
 		return this.baseFetcher.get(`/teams/${id}/members`)
 	}

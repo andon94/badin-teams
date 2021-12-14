@@ -41,10 +41,15 @@ export default {
   },
   mounted() {
     this.checkRoute();
+    const storage = Storage.getItem('storage')
+
+    if (storage) {
+      baseFetcher.setOptions({'Authorization': storage.token})
+    }
+
     this.interceptor = baseFetcher.fetcher.interceptors.request.use(
       (config) => {
         if (this.$route.name !== 'Login') {
-          const storage = Storage.getItem('storage')
           if (storage && !isAuthenticated(storage)) {
             Storage.removeItem('storage')
             this.$store.commit('setLoginStatus', false)

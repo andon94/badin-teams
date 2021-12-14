@@ -47,6 +47,7 @@ export default {
       about: '',
       id: '',
       logo: null,
+      fileRemoved: false
     }
   },
   mounted () {
@@ -56,6 +57,8 @@ export default {
     ...mapMutations(['setError']),
     setImage (val) {
       this.image = val
+      if (val) this.fileRemoved = false
+      else this.fileRemoved = true
     },
     fetchClient () {
       clientsApi.fetchClient(this.$route.query.id)
@@ -80,18 +83,27 @@ export default {
         .then(res => {
           const bodyFormData = new FormData();
           bodyFormData.append('file', this.image);
-
+          const route = {path:'/client-profile/:id', query:{id: res.id}}
           if (this.image) {
             clientsApi.createClientPhoto(res.id, bodyFormData)
               .then(() => {
-                this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+                this.$router.push(route)
               })
               .catch(err => {
-                this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+                this.$router.push(route)
+                this.setError(err)
+              })
+          } else if (this.fileRemoved) {
+            clientsApi.deleteEmployeePhoto(this.client.logo)
+              .then(() => {
+                this.$router.push(route)
+              })
+              .catch(err => {
+                this.$router.push(route)
                 this.setError(err)
               })
           } else {
-            this.$router.push({path:'/client-profile/:id', query:{id: res.id}})
+            this.$router.push(route)
           }
         })
         .catch(err => {
